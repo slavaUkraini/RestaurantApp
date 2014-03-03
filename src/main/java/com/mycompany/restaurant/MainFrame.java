@@ -270,8 +270,7 @@ public class MainFrame extends javax.swing.JFrame {
         InetAddress addr;
         try {
             addr = InetAddress.getByName(null);
-            new ClientThread(addr);
-			
+            new ClientThread(addr);			
         } catch (UnknownHostException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }			

@@ -51,12 +51,13 @@ public class RestaurantThread extends Thread{
                 //////lots of codes here :)
                 Gson gson = new Gson();
                 ///правильно розпарсити
-                ArrayList<String> members = gson.fromJson(str, ArrayList.class);
+               // ArrayList<String> members = gson.fromJson(str, ArrayList.class);
                 File f = new File("f.txt");
-                f.createNewFile();
+                //f.createNewFile();
                 PrintWriter out2 = new PrintWriter(f);
                 out2.println(str);
-		out2.println(members.get(0));
+                out2.close();
+		/*out2.println(members.get(0));
 					
                 String method = members.get(0);
                 if(method.equals("check")){
@@ -64,7 +65,7 @@ public class RestaurantThread extends Thread{
                         //замінити на адекват
                         //new JFrame().setVisible(true);
                     };
-                }        
+                } */       
             }
         }
         catch (IOException ex) {
