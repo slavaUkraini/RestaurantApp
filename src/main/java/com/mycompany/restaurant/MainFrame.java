@@ -6,6 +6,14 @@
 
 package com.mycompany.restaurant;
 
+import Clients.ClientThread;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import server.Server;
+
 /**
  *
  * @author Vita
@@ -259,6 +267,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void EnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterActionPerformed
         // TODO add your handling code here:
+        InetAddress addr;
+        try {
+            addr = InetAddress.getByName(null);
+            new ClientThread(addr);
+			
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }			
         new UserMainFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_EnterActionPerformed
@@ -294,7 +310,6 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
-                System.out.println("Working");
             }
         });
     }
