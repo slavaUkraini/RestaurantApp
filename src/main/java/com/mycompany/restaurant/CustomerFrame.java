@@ -93,6 +93,11 @@ public class CustomerFrame extends javax.swing.JFrame {
         });
 
         close.setText("Close Table");
+        close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout optionPanelLayout = new javax.swing.GroupLayout(optionPanel);
         optionPanel.setLayout(optionPanelLayout);
@@ -172,6 +177,12 @@ public class CustomerFrame extends javax.swing.JFrame {
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
 
     }//GEN-LAST:event_deleteActionPerformed
+
+    private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
+        // TODO add your handling code here:
+        new PaymentFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_closeActionPerformed
 
     /**
      * @param args the command line arguments
