@@ -20,9 +20,10 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public MainMenu() {
         
-        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+       
        // jPanel1=new NumberPanel();
         initComponents();
+        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
     }
 
     /**
