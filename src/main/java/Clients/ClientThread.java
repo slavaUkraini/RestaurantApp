@@ -44,10 +44,16 @@ public class ClientThread extends Thread{
             }
         }
     }
+    public String checkEmployee(int id) throws IOException{
+        out.println("{\"method\":"+"\"check\""+",\"params\":["+id+"]}");
+        return(in.readLine());
+    }
     
     @Override
-    public void run() {
-        out.println("{\"method\":"+"\"check\""+",\"param\":"+11+"\"}");
+    public void run() {  
+    }
+    
+    public void closeThread(){
         try {
             socket.close();
         } catch (IOException e) {

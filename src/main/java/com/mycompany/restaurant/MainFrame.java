@@ -19,12 +19,13 @@ import server.Server;
  * @author Vita
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    private final ClientThread ct;
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
+    public MainFrame(ClientThread ct) {
         initComponents();
+        this.ct = ct;
     }
 
     /**
@@ -266,16 +267,19 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_clearActionPerformed
 
     private void EnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterActionPerformed
-        // TODO add your handling code here:
-        InetAddress addr;
+        if(this.jTextField1.getText().toString().equals(""))
+            return;
         try {
-            addr = InetAddress.getByName(null);
-            new ClientThread(addr);			
-        } catch (UnknownHostException ex) {
+            // TODO add your handling code here:
+            int id = Integer.parseInt(this.jTextField1.getText().toString());
+            if(ct.checkEmployee(id).equals("true")){
+                new UserMainFrame(id, ct).setVisible(true);
+                this.dispose();
+            }
+            else this.jTextField1.setText("");
+        } catch (IOException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }			
-        new UserMainFrame().setVisible(true);
-        this.dispose();
+        }
     }//GEN-LAST:event_EnterActionPerformed
 
     /**
@@ -308,7 +312,7 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+               // new MainFrame().setVisible(true);
             }
         });
     }

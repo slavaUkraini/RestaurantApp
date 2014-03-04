@@ -6,16 +6,21 @@
 
 package com.mycompany.restaurant;
 
+import Clients.ClientThread;
+
 /**
  *
  * @author Vita
  */
 public class UserMainFrame extends javax.swing.JFrame {
-
+    private int userId;
+    private final ClientThread ct;
     /**
      * Creates new form UserMainFrame
      */
-    public UserMainFrame() {
+    public UserMainFrame(int userId, ClientThread ct) {
+        this.userId = userId;
+        this.ct = ct;
         initComponents();
     }
 
@@ -348,7 +353,7 @@ public class UserMainFrame extends javax.swing.JFrame {
 
     private void EnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterActionPerformed
         // TODO add your handling code here:
-        new CustomerFrame().setVisible(true);
+        new CustomerFrame(ct).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_EnterActionPerformed
 
@@ -359,7 +364,7 @@ public class UserMainFrame extends javax.swing.JFrame {
 
     private void mainFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainFrameActionPerformed
         // TODO add your handling code here:
-        new MainFrame().setVisible(true);
+        new MainFrame(ct).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_mainFrameActionPerformed
 
@@ -397,7 +402,7 @@ public class UserMainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserMainFrame().setVisible(true);
+                //new UserMainFrame(userId, ct).setVisible(true);
             }
         });
     }

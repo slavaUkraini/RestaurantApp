@@ -5,17 +5,19 @@
  */
 
 package com.mycompany.restaurant;
+import Clients.ClientThread;
 import javax.swing.*;
 /**
  *
  * @author Vita
  */
 public class CustomerFrame extends javax.swing.JFrame {
-
+    private final ClientThread ct;
     /**
      * Creates new form CustomerFrame
      */
-    public CustomerFrame() {
+    public CustomerFrame(ClientThread ct) {
+        this.ct = ct;
         initComponents();
     }
 
@@ -170,7 +172,7 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void mainFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainFrameActionPerformed
         // TODO add your handling code here:
-        new MainFrame().setVisible(true);
+        new MainFrame(ct).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_mainFrameActionPerformed
 
@@ -180,7 +182,7 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         // TODO add your handling code here:
-        new PaymentFrame().setVisible(true);
+        new PaymentFrame(ct).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_closeActionPerformed
 
@@ -214,7 +216,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerFrame().setVisible(true);
+               // new CustomerFrame().setVisible(true);
             }
         });
     }
