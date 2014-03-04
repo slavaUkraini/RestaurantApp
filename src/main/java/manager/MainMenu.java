@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
  */
 public class MainMenu extends javax.swing.JFrame {
 
+     String path=System.getProperty("user.dir");
     /**
      * Creates new form MainMenu
      */
@@ -26,7 +27,8 @@ public class MainMenu extends javax.swing.JFrame {
        // jPanel1=new NumberPanel();
         this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
         initComponents();
-
+        
+        System.out.print(path);
         
 
     }
@@ -63,11 +65,9 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu1.setText("Category");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/pizza.png"))); // NOI18N
         jMenuItem1.setText("pizza");
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/drink.png"))); // NOI18N
         jMenuItem2.setText("drinks");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +76,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/add.png"))); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(path+"\\src\\image\\add.png"));
         jMenuItem3.setText("add category");
         jMenu1.add(jMenuItem3);
 
