@@ -65,9 +65,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu1.setText("Category");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
         jMenuItem1.setText("pizza");
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\drink.png"));
         jMenuItem2.setText("drinks");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +78,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(path+"\\src\\image\\add.png"));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\add.png"));
         jMenuItem3.setText("add category");
         jMenu1.add(jMenuItem3);
 
