@@ -7,7 +7,9 @@
 package manager;
 
 import java.awt.Color;
-//import java.awt.Toolkit;
+import java.awt.Toolkit;
+import java.net.URL;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -22,7 +24,9 @@ public class MainMenu extends javax.swing.JFrame {
         
         this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
        // jPanel1=new NumberPanel();
+      
         initComponents();
+    
     }
 
     /**
@@ -57,11 +61,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu1.setText("Category");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/pizza24.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/pizza.png"))); // NOI18N
         jMenuItem1.setText("pizza");
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/drinks24.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/drink.png"))); // NOI18N
         jMenuItem2.setText("drinks");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +74,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/add16.png"))); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/add.png"))); // NOI18N
         jMenuItem3.setText("add category");
         jMenu1.add(jMenuItem3);
 
@@ -78,15 +82,12 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu4.setText("Personnel");
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/view24.png"))); // NOI18N
         jMenuItem7.setText("view");
         jMenu4.add(jMenuItem7);
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/search24.png"))); // NOI18N
         jMenuItem8.setText("search");
         jMenu4.add(jMenuItem8);
 
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/add16.png"))); // NOI18N
         jMenuItem9.setText("add");
         jMenu4.add(jMenuItem9);
 
@@ -94,7 +95,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu5.setText("Custom");
 
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/history24.png"))); // NOI18N
         jMenuItem11.setText("history");
         jMenu5.add(jMenuItem11);
 
@@ -102,7 +102,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu6.setText("Settings");
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/pw16.png"))); // NOI18N
         jMenuItem10.setText("change password");
         jMenu6.add(jMenuItem10);
 
@@ -110,7 +109,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu2.setText("Help");
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/support24.png"))); // NOI18N
         jMenuItem4.setText("support");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,7 +117,6 @@ public class MainMenu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/about24.png"))); // NOI18N
         jMenuItem5.setText("about");
         jMenu2.add(jMenuItem5);
 
@@ -128,7 +125,6 @@ public class MainMenu extends javax.swing.JFrame {
         jMenu3.setText("Exit");
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_CANCEL, 0));
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/close16.png"))); // NOI18N
         jMenuItem6.setText("Exit");
         jMenu3.add(jMenuItem6);
 
