@@ -26,9 +26,10 @@ public class MainMenu extends javax.swing.JFrame {
        
        // jPanel1=new NumberPanel();
         this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
         initComponents();
         
-        System.out.print(path);
+        //System.out.print(path);
         
 
     }
@@ -59,9 +60,11 @@ public class MainMenu extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItemExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Manager");
+        setName("frame"); // NOI18N
 
         jMenu1.setText("Category");
 
@@ -86,12 +89,15 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu4.setText("Personnel");
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\view.png"));
         jMenuItem7.setText("view");
         jMenu4.add(jMenuItem7);
 
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\search.png"));
         jMenuItem8.setText("search");
         jMenu4.add(jMenuItem8);
 
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\add.png"));
         jMenuItem9.setText("add");
         jMenu4.add(jMenuItem9);
 
@@ -99,6 +105,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu5.setText("Custom");
 
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\history.png"));
         jMenuItem11.setText("history");
         jMenu5.add(jMenuItem11);
 
@@ -106,6 +113,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu6.setText("Settings");
 
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\pw.png"));
         jMenuItem10.setText("change password");
         jMenu6.add(jMenuItem10);
 
@@ -113,6 +121,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu2.setText("Help");
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\support.png"));
         jMenuItem4.setText("support");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +130,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\about.png"));
         jMenuItem5.setText("about");
         jMenu2.add(jMenuItem5);
 
@@ -128,9 +138,15 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu3.setText("Exit");
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_CANCEL, 0));
-        jMenuItem6.setText("Exit");
-        jMenu3.add(jMenuItem6);
+        jMenuItemExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemExit.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\close.png"));
+        jMenuItemExit.setText("Exit");
+        jMenuItemExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemExitActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemExit);
 
         jMenuBar1.add(jMenu3);
 
@@ -148,6 +164,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -157,6 +174,11 @@ public class MainMenu extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExitActionPerformed
+        // TODO add your handling code here:
+       this.dispose();
+    }//GEN-LAST:event_jMenuItemExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,9 +230,9 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItemExit;
     // End of variables declaration//GEN-END:variables
 }

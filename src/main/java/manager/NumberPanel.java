@@ -17,6 +17,9 @@ public class NumberPanel extends javax.swing.JPanel {
     /**
      * Creates new form NumberPanel
      */
+    
+   
+    
     public NumberPanel() {
         initComponents();
        
