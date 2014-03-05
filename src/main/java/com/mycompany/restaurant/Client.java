@@ -20,6 +20,7 @@ import javax.inject.Inject;
 public class Client {
     
     public final ClientThread ct;
+    public static final int maxTables = 111;
     
     public Client() throws UnknownHostException{
         InetAddress addr;

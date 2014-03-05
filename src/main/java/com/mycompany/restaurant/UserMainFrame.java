@@ -9,6 +9,11 @@ package com.mycompany.restaurant;
 import Clients.ClientThread;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import server.SessionInfo;
 
 /**
  *
@@ -363,8 +368,28 @@ public class UserMainFrame extends javax.swing.JFrame {
 
     private void EnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterActionPerformed
         // TODO add your handling code here:
-        new CustomerFrame(ct).setVisible(true);
-        this.dispose();
+        if(this.jTextField1.getText().toString().equals(""))
+            return;
+        int tableNumber = Integer.parseInt(this.jTextField1.getText().toString());
+        if(tableNumber>=Client.maxTables){
+            jTextField1.setText("");
+            return;
+        }
+        try {
+            // TODO add your handling code here:
+            if(ct.toTable(tableNumber,this.userId).equals("true")){
+                new CustomerFrame(ct).setVisible(true);
+                this.dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Someone is already serving this table");
+                this.jTextField1.setText("");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_EnterActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed

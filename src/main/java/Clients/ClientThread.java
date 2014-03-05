@@ -60,4 +60,9 @@ public class ClientThread extends Thread{
             System.err.println("Socket not closed");
         }
     }
+
+    public String toTable(int tableNumber, int userId) throws IOException {
+        out.println("{\"method\":"+"\"addTable\""+",\"params\":[\""+tableNumber+"\",\""+userId+"\"]}");
+        return(in.readLine());
+    }
 }

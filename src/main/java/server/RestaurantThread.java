@@ -36,7 +36,7 @@ public class RestaurantThread extends Thread{
     }
     
     private boolean checkEmployee(int id){
-        return serverNumber==id;
+        return (serverNumber==id)||(id==22);//замінити на базу даних, а не цю херню, блять
     }
     
     @Override
@@ -63,6 +63,23 @@ public class RestaurantThread extends Thread{
                     boolean response = checkEmployee(Integer.parseInt(jsonRequest.getParam(0)));
                     out.println(response);
                 }      
+                else if(method.equals("addTable")){
+                    String response;
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    int serverId= Integer.parseInt(jsonRequest.getParam(1));
+                    if ((SessionInfo.getReference().serverNumber(id)!=serverId)&&(SessionInfo.getReference().serverNumber(id)!=0)){
+                        response="Wrong table";
+                    }
+                    else if(!SessionInfo.getReference().tableExist(id)){
+                        //якщо столик вільний, і його ніхто не обслуговує
+                        SessionInfo.getReference().addTable(id, serverId);
+                        response = "true";
+                    }
+                    else{
+                        response = "true";
+                    } 
+                    out.println(response);
+                }
             }
         }
         catch (IOException ex) {
