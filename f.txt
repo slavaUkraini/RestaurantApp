@@ -1,1 +1,2 @@
-{"method":"check","param":11"}
+{"method":"check","params":[11]}
+check

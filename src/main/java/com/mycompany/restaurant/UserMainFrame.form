@@ -238,12 +238,10 @@
                   <EmptySpace pref="47" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="mainFrame" pref="179" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="clocking" max="32767" attributes="0"/>
-                          <Component id="tables" max="32767" attributes="0"/>
-                          <Component id="clear" alignment="1" max="32767" attributes="0"/>
-                          <Component id="Enter" alignment="1" pref="179" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="clocking" max="32767" attributes="0"/>
+                      <Component id="tables" max="32767" attributes="0"/>
+                      <Component id="clear" alignment="1" max="32767" attributes="0"/>
+                      <Component id="Enter" alignment="1" pref="179" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

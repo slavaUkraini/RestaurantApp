@@ -32,14 +32,14 @@ public class Server {
     public Server() throws IOException {
         ServerSocket s = new ServerSocket(PORT);
 		try {
-			while (true) {
-				Socket socket = s.accept();
-				try {
-                                    new RestaurantThread(socket);
-				} catch (IOException e) {
-					socket.close();
-				}
-			}
+                    while (true) {
+                        Socket socket = s.accept();
+                        try {
+                            new RestaurantThread(socket);
+                        } catch (IOException e) {
+                            socket.close();
+                        }
+                    }
 		} finally {
 			s.close();
 		}

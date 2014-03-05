@@ -6,6 +6,7 @@
 
 package com.mycompany.restaurant;
 
+import Clients.ClientThread;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,10 +15,12 @@ import javax.swing.JOptionPane;
  */
 public class PaymentFrame extends javax.swing.JFrame {
 
+    private final ClientThread ct;
     /**
      * Creates new form PaymentFrame
      */
-    public PaymentFrame() {
+    public PaymentFrame(ClientThread ct) {
+        this.ct = ct;
         initComponents();
     }
 
@@ -341,14 +344,14 @@ public class PaymentFrame extends javax.swing.JFrame {
 
     private void mainFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainFrameActionPerformed
         // TODO add your handling code here:
-        new MainFrame().setVisible(true);
+        new MainFrame(ct).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_mainFrameActionPerformed
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "Change = 0.0");
-        new MainFrame().setVisible(true);
+        new MainFrame(ct).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_okActionPerformed
 
@@ -382,7 +385,7 @@ public class PaymentFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PaymentFrame().setVisible(true);
+                //new PaymentFrame().setVisible(true);
             }
         });
     }
