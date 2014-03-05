@@ -7,6 +7,8 @@
 package com.mycompany.restaurant;
 
 import Clients.ClientThread;
+import java.awt.Color;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,9 +21,15 @@ public class PaymentFrame extends javax.swing.JFrame {
     /**
      * Creates new form PaymentFrame
      */
+    
+    String path=System.getProperty("user.dir");
+    
     public PaymentFrame(ClientThread ct) {
         this.ct = ct;
+        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
         initComponents();
+        numberPanel.setBackground(Color.getHSBColor(276,9,95));
     }
 
     /**

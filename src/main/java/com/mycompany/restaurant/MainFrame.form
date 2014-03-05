@@ -50,11 +50,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="47" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="clear" max="32767" attributes="0"/>
-                      <Component id="Enter" pref="179" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="clear" alignment="1" min="-2" pref="179" max="-2" attributes="0"/>
+                      <Component id="Enter" alignment="1" min="-2" pref="179" max="-2" attributes="0"/>
+                      <Component id="Smile" alignment="1" min="-2" pref="190" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -63,11 +64,13 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="Smile" min="-2" pref="148" max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Component id="Enter" min="-2" pref="46" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="clear" min="-2" pref="48" max="-2" attributes="0"/>
-                  <EmptySpace pref="304" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -88,6 +91,13 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Smile">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(path+&quot;\\src\\main\\java\\manager\\image\\Smile128.png&quot;)" type="code"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

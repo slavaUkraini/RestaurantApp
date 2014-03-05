@@ -6,6 +6,8 @@
 
 package com.mycompany.restaurant;
 import Clients.ClientThread;
+import java.awt.Color;
+import java.awt.Toolkit;
 import javax.swing.*;
 /**
  *
@@ -16,9 +18,15 @@ public class CustomerFrame extends javax.swing.JFrame {
     /**
      * Creates new form CustomerFrame
      */
+    String path=System.getProperty("user.dir");
+    
     public CustomerFrame(ClientThread ct) {
         this.ct = ct;
+        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
         initComponents();
+        menu.setBackground(Color.getHSBColor(276,9,95));
+        optionPanel.setBackground(Color.getHSBColor(276,9,95));
     }
 
     /**
@@ -127,12 +135,12 @@ public class CustomerFrame extends javax.swing.JFrame {
                     .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(mainFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(close, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mainFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,6 +182,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         new MainFrame(ct).setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_mainFrameActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed

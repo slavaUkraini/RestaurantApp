@@ -7,21 +7,31 @@
 package com.mycompany.restaurant;
 
 import Clients.ClientThread;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 /**
  *
  * @author Vita
  */
+
 public class UserMainFrame extends javax.swing.JFrame {
     private int userId;
     private final ClientThread ct;
     /**
      * Creates new form UserMainFrame
      */
+    String path=System.getProperty("user.dir");
+    
     public UserMainFrame(int userId, ClientThread ct) {
         this.userId = userId;
         this.ct = ct;
+        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
         initComponents();
+        optionPanel.setBackground(Color.getHSBColor(276,9,95));
+        numberPanel.setBackground(Color.getHSBColor(276,9,95));
+                
     }
 
     /**

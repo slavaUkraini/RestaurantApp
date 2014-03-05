@@ -7,6 +7,8 @@
 package com.mycompany.restaurant;
 
 import Clients.ClientThread;
+import java.awt.Color;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -23,8 +25,15 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    
+    String path=System.getProperty("user.dir");
+    
     public MainFrame(ClientThread ct) {
+        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
         initComponents();
+        numberPanel.setBackground(Color.getHSBColor(276,9,95));
+        optionPanel.setBackground(Color.getHSBColor(276,9,95));
         this.ct = ct;
     }
 
@@ -40,6 +49,7 @@ public class MainFrame extends javax.swing.JFrame {
         optionPanel = new javax.swing.JPanel();
         Enter = new javax.swing.JButton();
         clear = new javax.swing.JButton();
+        Smile = new javax.swing.JLabel();
         numberPanel = new javax.swing.JPanel();
         one = new javax.swing.JButton();
         four = new javax.swing.JButton();
@@ -70,25 +80,30 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        Smile.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\Smile128.png"));
+
         javax.swing.GroupLayout optionPanelLayout = new javax.swing.GroupLayout(optionPanel);
         optionPanel.setLayout(optionPanelLayout);
         optionPanelLayout.setHorizontalGroup(
             optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelLayout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
-                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Enter, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+            .addGroup(optionPanelLayout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Enter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Smile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         optionPanelLayout.setVerticalGroup(
             optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addContainerGap()
+                .addComponent(Smile, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(Enter, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addGap(146, 146, 146))
         );
 
         one.setText("1");
@@ -319,6 +334,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Enter;
+    private javax.swing.JLabel Smile;
     private javax.swing.JButton clear;
     private javax.swing.JButton eight;
     private javax.swing.JButton five;
