@@ -78,7 +78,7 @@ public class PersonnelPanel extends javax.swing.JPanel {
                         .addComponent(search_person)
                         .addGap(52, 52, 52)
                         .addComponent(delete_person)))
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +90,7 @@ public class PersonnelPanel extends javax.swing.JPanel {
                     .addComponent(add_person)
                     .addComponent(search_person)
                     .addComponent(delete_person))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -22,14 +22,14 @@
               <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jComboBox1" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
                   <Component id="chose" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="addCategory" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="deleteCategory" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="7" max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="search_dish" min="-2" max="-2" attributes="0"/>
@@ -62,13 +62,13 @@
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="328" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="search_dish" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="add_dish" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="delete_dish" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
