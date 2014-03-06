@@ -51,6 +51,7 @@ public class PasswordFrame extends javax.swing.JFrame {
         numberPanel.setBackground(Color.getHSBColor(276,9,95));
         password.setText("");
         password.setEditable(false);
+        setResizable(false);
         
         
       

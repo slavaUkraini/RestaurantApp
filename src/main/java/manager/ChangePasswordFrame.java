@@ -6,17 +6,30 @@
 
 package manager;
 
+import java.awt.Color;
+import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tanysha
  */
 public class ChangePasswordFrame extends javax.swing.JFrame {
-
+    
+    String path=System.getProperty("user.dir");
+    String pw="";
+   
     /**
      * Creates new form ChangePasswordFrame
      */
     public ChangePasswordFrame() {
+        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pw.png"));
         initComponents();
+        setResizable(false);
+        password.setText("");
+        password1.setText("");
+        password2.setText("");
     }
 
     /**
@@ -28,33 +41,125 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        password = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        password1 = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
+        password2 = new javax.swing.JPasswordField();
         changeB = new javax.swing.JButton();
+        checkps = new javax.swing.JLabel();
+        checknps = new javax.swing.JLabel();
+        checkcfp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        changeB.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        changeB.setForeground(new java.awt.Color(255, 51, 0));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 0));
+        jLabel1.setText("Enter your password:");
+
+        password.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        password.setText("jPasswordField1");
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        jLabel2.setText("Change password");
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 0));
+        jLabel3.setText("Enter new password:");
+
+        password1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        password1.setText("jPasswordField1");
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 0));
+        jLabel4.setText("Confirm password:");
+
+        password2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        password2.setText("jPasswordField1");
+
+        changeB.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         changeB.setText("Change");
+        changeB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeBActionPerformed(evt);
+            }
+        });
+
+        checkps.setText("invalid/corect");
+
+        checknps.setText("jLabel6");
+
+        checkcfp.setText("jLabel7");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(changeB, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addGap(174, 174, 174)
+                .addComponent(jLabel2)
+                .addGap(186, 186, 186))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(password))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(changeB, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkps, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(checkcfp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                        .addComponent(checknps, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(294, Short.MAX_VALUE)
-                .addComponent(changeB)
-                .addGap(23, 23, 23))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(checkps))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(checknps)
+                    .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkcfp))
+                .addGap(47, 47, 47)
+                .addComponent(changeB, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(509, 382));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void changeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, " Password is changed ! ");
+        dispose();
+    }//GEN-LAST:event_changeBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -93,5 +198,15 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton changeB;
+    private javax.swing.JLabel checkcfp;
+    private javax.swing.JLabel checknps;
+    private javax.swing.JLabel checkps;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField password1;
+    private javax.swing.JPasswordField password2;
     // End of variables declaration//GEN-END:variables
 }

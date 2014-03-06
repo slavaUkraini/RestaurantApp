@@ -25,6 +25,7 @@ public class AboutFrame extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\about.png"));
         initComponents();
+        setResizable(false);
     }
 
     /**
