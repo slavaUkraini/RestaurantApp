@@ -1,2 +1,0 @@
-{"method":"check","params":[11]}
-check

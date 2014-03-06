@@ -15,12 +15,14 @@ import javax.swing.*;
  */
 public class CustomerFrame extends javax.swing.JFrame {
     private final ClientThread ct;
+    private final int tableId;
     /**
      * Creates new form CustomerFrame
      */
     String path=System.getProperty("user.dir");
     
-    public CustomerFrame(ClientThread ct) {
+    public CustomerFrame(ClientThread ct, int tableId) {
+        this.tableId = tableId;
         this.ct = ct;
         this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
@@ -52,6 +54,9 @@ public class CustomerFrame extends javax.swing.JFrame {
         close = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Pizzeria");
+        setPreferredSize(new java.awt.Dimension(630, 478));
+        setResizable(false);
 
         jLabel1.setText("Menu Here");
 
@@ -80,9 +85,15 @@ public class CustomerFrame extends javax.swing.JFrame {
         orderList.setName(""); // NOI18N
         jScrollPane1.setViewportView(orderList);
 
-        tableNumber.setText("Table 11");
+        tableNumber.setText(" ");
+        tableNumber.setText("Table "+ this.tableId);
 
         send.setText("Send");
+        send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendActionPerformed(evt);
+            }
+        });
 
         print.setText("Print");
 
@@ -140,7 +151,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                     .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mainFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,14 +176,14 @@ public class CustomerFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tableNumber)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
                     .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(optionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(optionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -191,9 +202,13 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         // TODO add your handling code here:
-        new PaymentFrame(ct).setVisible(true);
+        new PaymentFrame(ct, this.tableId).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_closeActionPerformed
+
+    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sendActionPerformed
 
     /**
      * @param args the command line arguments

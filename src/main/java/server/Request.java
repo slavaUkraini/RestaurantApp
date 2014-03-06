@@ -19,8 +19,7 @@ class Request {
     public void setParams(String[] params) {
         this.params = params;
     }
-    private String method;
-
+    
     public String getMethod() {
         return method;
     }
@@ -36,4 +35,6 @@ class Request {
     }
     
     private String[] params;
+    private String method;
+
 }

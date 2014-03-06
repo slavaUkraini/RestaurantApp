@@ -16,6 +16,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -36,7 +37,7 @@ public class RestaurantThread extends Thread{
     }
     
     private boolean checkEmployee(int id){
-        return serverNumber==id;
+        return (serverNumber==id)||(id==22);//замінити на базу даних, а не цю херню, блять
     }
     
     @Override
@@ -63,6 +64,32 @@ public class RestaurantThread extends Thread{
                     boolean response = checkEmployee(Integer.parseInt(jsonRequest.getParam(0)));
                     out.println(response);
                 }      
+                else if(method.equals("addTable")){
+                    String response;
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    int serverId= Integer.parseInt(jsonRequest.getParam(1));
+                    if ((SessionInfo.getReference().serverNumber(id)!=serverId)&&(SessionInfo.getReference().serverNumber(id)!=0)){
+                        response="Wrong table";
+                    }
+                    else if(!SessionInfo.getReference().tableExist(id)){
+                        //якщо столик вільний, і його ніхто не обслуговує
+                        SessionInfo.getReference().addTable(id, serverId);
+                        if (SessionInfo.getReference().serverNumber(id)!=serverId)
+                        response="Wrong table";
+                        else response = "true";
+                    }
+                    else{
+                        response = "true";
+                    } 
+                    out.println(response);
+                }
+                else if(method.equals("getTables")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    LinkedList<Integer> ll = (LinkedList<Integer>) SessionInfo.getReference().getTables(id);
+                    if (ll.size()==0)
+                        out.println("null");
+                    else out.println(gson.toJson(ll));
+                }
             }
         }
         catch (IOException ex) {

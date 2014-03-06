@@ -11,7 +11,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.inject.Inject;
 
 /**
  *
@@ -20,6 +19,7 @@ import javax.inject.Inject;
 public class Client {
     
     public final ClientThread ct;
+    public static final int maxTables = 111;
     
     public Client() throws UnknownHostException{
         InetAddress addr;
@@ -54,9 +54,12 @@ public class Client {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Client c;
+                //Client c2;
                 try {
                     c = new Client();
+                    //c2 = new Client();
                     new MainFrame(c.ct).setVisible(true);
+                   // new MainFrame(c2.ct).setVisible(true);
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                 }
