@@ -55,9 +55,12 @@ public class Client {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Client c;
+                //Client c2;
                 try {
                     c = new Client();
+                    //c2 = new Client();
                     new MainFrame(c.ct).setVisible(true);
+                   // new MainFrame(c2.ct).setVisible(true);
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                 }

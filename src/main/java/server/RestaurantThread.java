@@ -16,6 +16,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -79,6 +80,13 @@ public class RestaurantThread extends Thread{
                         response = "true";
                     } 
                     out.println(response);
+                }
+                else if(method.equals("getTables")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    LinkedList<Integer> ll = (LinkedList<Integer>) SessionInfo.getReference().getTables(id);
+                    if (ll.size()==0)
+                        out.println("null");
+                    else out.println(gson.toJson(ll));
                 }
             }
         }

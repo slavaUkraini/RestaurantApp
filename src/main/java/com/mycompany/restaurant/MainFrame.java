@@ -65,6 +65,11 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Pizzeria");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(630, 478));
+        setMinimumSize(new java.awt.Dimension(630, 478));
+        setResizable(false);
 
         Enter.setText("Enter");
         Enter.addActionListener(new java.awt.event.ActionListener() {
@@ -298,6 +303,9 @@ public class MainFrame extends javax.swing.JFrame {
             else this.jTextField1.setText("");
         } catch (IOException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch(java.lang.NumberFormatException e){
+            this.jTextField1.setText("");
         }
     }//GEN-LAST:event_EnterActionPerformed
 

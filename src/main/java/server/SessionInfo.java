@@ -1,6 +1,7 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,15 +14,22 @@ import java.util.ArrayList;
  *
  * @author Vita
 **/
-
+class Tables{
+   LinkedList<Integer> tables = new LinkedList<Integer>(); 
+}
 public class SessionInfo {
    public static final int maxTables = 111;
+   public static final int maxServers = 50;
    private static SessionInfo reference;
    private int[] tables = new int[maxTables];
+   private Tables[] servers = new Tables[maxServers];
      
      private SessionInfo(){
-         for(int i = 0; i<111; i++){
+         for(int i = 0; i<maxTables; i++){
              tables[i]=0;
+         }
+         for (int i=0; i<maxServers;i++){
+             servers[i]=new Tables();
          }
      }
      public static SessionInfo getReference(){
@@ -35,11 +43,16 @@ public class SessionInfo {
      }
      public void addTable(int id, int serverId){
          tables[id] = serverId;
+         servers[serverId].tables.add(id);
      }
      public void deleteTable(int id){
+         servers[serverNumber(id)].tables.remove(id);
          tables[id]=0;
      }
      public int serverNumber(int id){
          return tables[id];
+     }
+     public Iterable getTables(int id){
+         return servers[id].tables;
      }
 }
