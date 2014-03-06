@@ -14,6 +14,7 @@ import java.util.LinkedList;
  *
  * @author Vita
 **/
+
 class Tables{
    LinkedList<Integer> tables = new LinkedList<Integer>(); 
 }
@@ -38,12 +39,14 @@ public class SessionInfo {
          }
          return reference;
      }
-     public boolean tableExist(int id){
+     synchronized public boolean tableExist(int id){
          return tables[id]!=0;
      }
-     public void addTable(int id, int serverId){
+     synchronized public void addTable(int id, int serverId){
+         if(!tableExist(id)){
          tables[id] = serverId;
          servers[serverId].tables.add(id);
+         }
      }
      public void deleteTable(int id){
          servers[serverNumber(id)].tables.remove(id);

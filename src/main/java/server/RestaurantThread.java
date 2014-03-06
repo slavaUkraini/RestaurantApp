@@ -74,7 +74,9 @@ public class RestaurantThread extends Thread{
                     else if(!SessionInfo.getReference().tableExist(id)){
                         //якщо столик вільний, і його ніхто не обслуговує
                         SessionInfo.getReference().addTable(id, serverId);
-                        response = "true";
+                        if (SessionInfo.getReference().serverNumber(id)!=serverId)
+                        response="Wrong table";
+                        else response = "true";
                     }
                     else{
                         response = "true";
