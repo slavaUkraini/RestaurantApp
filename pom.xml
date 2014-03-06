@@ -50,5 +50,15 @@
       <artifactId>sqlite4java</artifactId>
       <version>0.282-2</version>
     </dependency>
+    <dependency>
+      <groupId>org.buildsomethingawesome.lib</groupId>
+      <artifactId>awesome-java-swing</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>net.coderazzi</groupId>
+      <artifactId>tablefilter-swing-java5</artifactId>
+      <version>4.2.0</version>
+    </dependency>
   </dependencies>
 </project>
