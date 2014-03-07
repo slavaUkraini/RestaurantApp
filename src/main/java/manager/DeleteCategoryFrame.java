@@ -6,6 +6,8 @@
 
 package manager;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author tanysha
@@ -15,8 +17,13 @@ public class DeleteCategoryFrame extends javax.swing.JFrame {
     /**
      * Creates new form DeleteCategoryFrame
      */
+    String path=System.getProperty("user.dir");
+    
     public DeleteCategoryFrame() {
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\delete16.png"));
         initComponents();
+        setResizable(false);
+        
     }
 
     /**

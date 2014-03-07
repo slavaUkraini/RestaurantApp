@@ -22,14 +22,27 @@
               <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jComboBox1" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
-                  <Component id="chose" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="addCategory" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="deleteCategory" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="deleteCategory" max="32767" attributes="0"/>
+                              <Component id="addCategory" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jSeparator1" min="-2" pref="168" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jComboBox1" alignment="1" min="-2" pref="159" max="-2" attributes="0"/>
+                          <Component id="chose" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSeparator2" alignment="1" min="-2" pref="168" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="search_dish" min="-2" max="-2" attributes="0"/>
@@ -52,13 +65,17 @@
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="chose" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Component id="addCategory" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="deleteCategory" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="328" max="-2" attributes="0"/>
               </Group>
@@ -91,6 +108,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="addCategory">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.ImageIcon(path+&quot;\\src\\main\\java\\manager\\image\\add.png&quot;)" type="code"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Add category"/>
       </Properties>
     </Component>
@@ -182,8 +202,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="deleteCategory">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.ImageIcon(path+&quot;\\src\\main\\java\\manager\\image\\delete16.png&quot;)" type="code"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Delete category"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator2">
     </Component>
   </SubComponents>
 </Form>
