@@ -119,6 +119,7 @@ public class PersonnelPanel extends javax.swing.JPanel {
 
     private void delete_personActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_personActionPerformed
         // TODO add your handling code here:
+        new DeletePersFrame().setVisible(true);
     }//GEN-LAST:event_delete_personActionPerformed
 
     private void add_personActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_personActionPerformed

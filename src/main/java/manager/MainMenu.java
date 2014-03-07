@@ -106,6 +106,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         deleteCategory.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\delete.png"));
         deleteCategory.setText("delette");
+        deleteCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCategoryActionPerformed(evt);
+            }
+        });
         jMenu1.add(deleteCategory);
 
         addCategory.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\add.png"));
@@ -283,6 +288,11 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         new AddPersonnelFrame().setVisible(true);
     }//GEN-LAST:event_addPersonnelActionPerformed
+
+    private void deleteCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCategoryActionPerformed
+        // TODO add your handling code here:
+        new DeleteCategoryFrame().setVisible(true);
+    }//GEN-LAST:event_deleteCategoryActionPerformed
 
     /**
      * @param args the command line arguments

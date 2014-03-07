@@ -215,6 +215,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="delete"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delete_dishActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="deleteCategory">
       <Properties>
@@ -224,6 +227,9 @@
         <Property name="text" type="java.lang.String" value="Delete category"/>
         <Property name="horizontalAlignment" type="int" value="2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCategoryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>

@@ -103,10 +103,20 @@ public class CategoryPanel extends javax.swing.JPanel {
 
         delete_dish.setBackground(new java.awt.Color(255, 204, 204));
         delete_dish.setText("delete");
+        delete_dish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_dishActionPerformed(evt);
+            }
+        });
 
         deleteCategory.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\delete16.png"));
         deleteCategory.setText("Delete category");
         deleteCategory.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        deleteCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCategoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -180,6 +190,16 @@ public class CategoryPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         new AddDishFrame().setVisible(true);
     }//GEN-LAST:event_add_dishActionPerformed
+
+    private void deleteCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCategoryActionPerformed
+        // TODO add your handling code here:
+        new DeleteCategoryFrame().setVisible(true);
+    }//GEN-LAST:event_deleteCategoryActionPerformed
+
+    private void delete_dishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_dishActionPerformed
+        // TODO add your handling code here:
+        new DeleteDishFrame().setVisible(true);
+    }//GEN-LAST:event_delete_dishActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -27,6 +27,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="delette"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCategoryActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="addCategory">
               <Properties>
