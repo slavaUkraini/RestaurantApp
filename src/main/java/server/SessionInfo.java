@@ -24,6 +24,7 @@ public class SessionInfo {
    private static SessionInfo reference;
    private int[] tables = new int[maxTables];
    private Tables[] servers = new Tables[maxServers];
+   private boolean[] activeServers = new boolean[maxServers]; //true - працівники, що зараз на роботі
      
      private SessionInfo(){
          for(int i = 0; i<maxTables; i++){
@@ -57,5 +58,14 @@ public class SessionInfo {
      }
      public Iterable getTables(int id){
          return servers[id].tables;
+     }
+     public void clockIn(int serverId){
+         activeServers[serverId] = true;
+     }
+     public boolean clockedIn(int serverId){
+         return activeServers[serverId];
+     }
+     public void clockOut(int serverId){
+         activeServers[serverId] = false;
      }
 }

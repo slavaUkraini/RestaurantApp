@@ -70,4 +70,16 @@ public class ClientThread extends Thread{
         out.println("{\"method\":"+"\"getTables\""+",\"params\":["+userId+"]}");
         return in.readLine();
     }
+
+    public String clockedIn(int userId) throws IOException {
+        out.println("{\"method\":"+"\"clockedIn\""+",\"params\":["+userId+"]}");
+        return in.readLine();
+    }
+
+    public void clockIn(int userId) {
+        out.println("{\"method\":"+"\"clockIn\""+",\"params\":["+userId+"]}");
+    }
+     public void clockOut(int userId) {
+        out.println("{\"method\":"+"\"clockOut\""+",\"params\":["+userId+"]}");
+    }
 }

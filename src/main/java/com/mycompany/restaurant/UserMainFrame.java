@@ -11,11 +11,12 @@ import com.google.gson.Gson;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import server.SessionInfo;
 
 /**
  *
@@ -250,6 +251,11 @@ public class UserMainFrame extends javax.swing.JFrame {
         });
 
         clocking.setText("Clock in/out");
+        clocking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clockingActionPerformed(evt);
+            }
+        });
 
         mainFrame.setText("Main Frame");
         mainFrame.addActionListener(new java.awt.event.ActionListener() {
@@ -373,9 +379,18 @@ public class UserMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void EnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterActionPerformed
-        // TODO add your handling code here:
         if(this.jTextField1.getText().toString().equals(""))
             return;
+        
+         try {
+            // TODO add your handling code here:
+            if(ct.clockedIn(userId).equals("false")){
+                JOptionPane.showMessageDialog(this, "You are not clocked in!");
+                return;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(UserMainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int tableNumber;
         try{
             tableNumber = Integer.parseInt(this.jTextField1.getText().toString());
@@ -417,7 +432,15 @@ public class UserMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_mainFrameActionPerformed
 
     private void tablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tablesActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            if(ct.clockedIn(userId).equals("false")){
+                JOptionPane.showMessageDialog(this, "You are not clocked in!");
+                return;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(UserMainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             // TODO add your handling code here:
             String response = ct.getTables(this.userId);
@@ -437,6 +460,23 @@ public class UserMainFrame extends javax.swing.JFrame {
     private void sevenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sevenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sevenActionPerformed
+
+    private void clockingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockingActionPerformed
+        try {
+            if(ct.clockedIn(this.userId).equals("true")){
+                new ServerReport(ct, userId).setVisible(true);
+                this.dispose();
+            }
+            else{
+                ct.clockIn(this.userId);
+                Calendar cal = Calendar.getInstance();
+                //cal.getTime();
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                JOptionPane.showMessageDialog(this, "You are clocked in \n "+sdf.format(cal.getTime()));
+            }} catch (IOException ex) {
+            Logger.getLogger(UserMainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_clockingActionPerformed
 
     /**
      * @param args the command line arguments

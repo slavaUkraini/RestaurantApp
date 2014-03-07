@@ -90,6 +90,21 @@ public class RestaurantThread extends Thread{
                         out.println("null");
                     else out.println(gson.toJson(ll));
                 }
+                else if(method.equals("clockedIn")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    //if (SessionInfo.getReference().clockedIn(id))
+                    out.println(SessionInfo.getReference().clockedIn(id));
+                }
+                 else if(method.equals("clockIn")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    //if (SessionInfo.getReference().clockedIn(id))
+                    SessionInfo.getReference().clockIn(id);
+                }
+                else if(method.equals("clockOut")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    //if (SessionInfo.getReference().clockedIn(id))
+                    SessionInfo.getReference().clockOut(id);
+                }
             }
         }
         catch (IOException ex) {

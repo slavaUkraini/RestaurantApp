@@ -172,8 +172,6 @@ public class ActiveTablesFrame extends javax.swing.JFrame {
 
         tableCollection.add(table);
 
-        j1.setBackground(new java.awt.Color(153, 153, 255));
-        j1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         j1.setToolTipText(" ");
 
         tableNumber1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,7 +185,7 @@ public class ActiveTablesFrame extends javax.swing.JFrame {
         j1Layout.setHorizontalGroup(
             j1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, j1Layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(tableNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -196,7 +194,7 @@ public class ActiveTablesFrame extends javax.swing.JFrame {
             .addGroup(j1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(tableNumber1)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         tableCollection.add(j1);
