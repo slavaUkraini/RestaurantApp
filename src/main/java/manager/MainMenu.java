@@ -136,6 +136,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         addPersonnel.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\add.png"));
         addPersonnel.setText("add");
+        addPersonnel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPersonnelActionPerformed(evt);
+            }
+        });
         jMenu4.add(addPersonnel);
 
         jMenuBar1.add(jMenu4);
@@ -273,6 +278,11 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         new AddCategoryFrame().setVisible(true);
     }//GEN-LAST:event_addCategoryActionPerformed
+
+    private void addPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPersonnelActionPerformed
+        // TODO add your handling code here:
+        new AddPersonnelFrame().setVisible(true);
+    }//GEN-LAST:event_addPersonnelActionPerformed
 
     /**
      * @param args the command line arguments

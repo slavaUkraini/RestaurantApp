@@ -204,6 +204,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="add"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="add_dishActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="delete_dish">
       <Properties>

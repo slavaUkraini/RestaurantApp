@@ -95,6 +95,11 @@ public class CategoryPanel extends javax.swing.JPanel {
 
         add_dish.setBackground(new java.awt.Color(204, 204, 255));
         add_dish.setText("add");
+        add_dish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_dishActionPerformed(evt);
+            }
+        });
 
         delete_dish.setBackground(new java.awt.Color(255, 204, 204));
         delete_dish.setText("delete");
@@ -170,6 +175,11 @@ public class CategoryPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         new AddCategoryFrame().setVisible(true);
     }//GEN-LAST:event_addCategoryActionPerformed
+
+    private void add_dishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_dishActionPerformed
+        // TODO add your handling code here:
+        new AddDishFrame().setVisible(true);
+    }//GEN-LAST:event_add_dishActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

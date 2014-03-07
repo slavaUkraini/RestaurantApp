@@ -50,7 +50,7 @@ public class AddDishFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add dish");
 
-        add.setBackground(new java.awt.Color(204, 255, 204));
+        add.setBackground(new java.awt.Color(204, 204, 255));
         add.setText("Add");
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +87,11 @@ public class AddDishFrame extends javax.swing.JFrame {
 
         cancel.setBackground(new java.awt.Color(255, 204, 204));
         cancel.setText("Cancel");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,7 +157,7 @@ public class AddDishFrame extends javax.swing.JFrame {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, " Add new dish "  );
+        JOptionPane.showMessageDialog(null, " Add new dish !"  );
         dispose();
     }//GEN-LAST:event_addActionPerformed
 
@@ -167,6 +172,11 @@ public class AddDishFrame extends javax.swing.JFrame {
     private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priceActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_cancelActionPerformed
 
     /**
      * @param args the command line arguments
