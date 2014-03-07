@@ -32,6 +32,7 @@ public class UserMainFrame extends javax.swing.JFrame {
     String path=System.getProperty("user.dir");
     
     public UserMainFrame(int userId, ClientThread ct) {
+        
         this.userId = userId;
         this.ct = ct;
         this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
