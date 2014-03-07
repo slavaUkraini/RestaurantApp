@@ -6,6 +6,9 @@
 
 package manager;
 
+import java.awt.Color;
+import java.awt.Toolkit;
+
 /**
  *
  * @author tanysha
@@ -15,8 +18,14 @@ public class SearchPersFrame extends javax.swing.JFrame {
     /**
      * Creates new form SearchPersFrame
      */
+    
+    String path=System.getProperty("user.dir");
+    
     public SearchPersFrame() {
+        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\search.png"));
         initComponents();
+        setResizable(false);
     }
 
     /**

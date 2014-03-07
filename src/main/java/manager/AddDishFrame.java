@@ -6,6 +6,9 @@
 
 package manager;
 
+import java.awt.Color;
+import java.awt.Toolkit;
+
 /**
  *
  * @author tanysha
@@ -15,8 +18,13 @@ public class AddDishFrame extends javax.swing.JFrame {
     /**
      * Creates new form AddDishFrame
      */
+    String path=System.getProperty("user.dir");
+     
     public AddDishFrame() {
+        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\add.png"));
         initComponents();
+        setResizable(false);
     }
 
     /**
@@ -29,6 +37,7 @@ public class AddDishFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Add dish");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -41,7 +50,8 @@ public class AddDishFrame extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(416, 338));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

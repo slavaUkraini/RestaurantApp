@@ -6,6 +6,9 @@
 
 package manager;
 
+import java.awt.Color;
+import java.awt.Toolkit;
+
 /**
  *
  * @author tanysha
@@ -15,8 +18,13 @@ public class AddPersonnelFrame extends javax.swing.JFrame {
     /**
      * Creates new form AddPersonnelFrame
      */
+    String path=System.getProperty("user.dir");
+    
     public AddPersonnelFrame() {
+        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\add.png"));
         initComponents();
+        setResizable(false);
     }
 
     /**
