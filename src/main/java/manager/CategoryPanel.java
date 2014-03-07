@@ -55,6 +55,11 @@ public class CategoryPanel extends javax.swing.JPanel {
         addCategory.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\add.png"));
         addCategory.setText("Add category");
         addCategory.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        addCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCategoryActionPerformed(evt);
+            }
+        });
 
         category.setText("Name of category");
 
@@ -160,6 +165,11 @@ public class CategoryPanel extends javax.swing.JPanel {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCategoryActionPerformed
+        // TODO add your handling code here:
+        new AddCategoryFrame().setVisible(true);
+    }//GEN-LAST:event_addCategoryActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

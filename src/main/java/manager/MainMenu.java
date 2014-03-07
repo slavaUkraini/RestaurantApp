@@ -110,6 +110,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         addCategory.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\add.png"));
         addCategory.setText("add category");
+        addCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCategoryActionPerformed(evt);
+            }
+        });
         jMenu1.add(addCategory);
 
         jMenuBar1.add(jMenu1);
@@ -263,6 +268,11 @@ public class MainMenu extends javax.swing.JFrame {
         empty();
         personelP.setVisible(true);
     }//GEN-LAST:event_viewPersonnelActionPerformed
+
+    private void addCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCategoryActionPerformed
+        // TODO add your handling code here:
+        new AddCategoryFrame().setVisible(true);
+    }//GEN-LAST:event_addCategoryActionPerformed
 
     /**
      * @param args the command line arguments

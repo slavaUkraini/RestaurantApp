@@ -8,6 +8,7 @@ package manager;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,9 +46,17 @@ public class AddCategoryFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add category");
 
+        ok.setBackground(new java.awt.Color(204, 204, 255));
         ok.setText("Ok");
+        ok.setActionCommand("Add");
 
+        cancel.setBackground(new java.awt.Color(255, 204, 204));
         cancel.setText("Cancel");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
@@ -98,7 +107,14 @@ public class AddCategoryFrame extends javax.swing.JFrame {
 
     private void nameOfCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameOfCategoryActionPerformed
         // TODO add your handling code here:
+         JOptionPane.showMessageDialog(null, " Add category  -   " +nameOfCategory.getText() );
+         dispose();
     }//GEN-LAST:event_nameOfCategoryActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_cancelActionPerformed
 
     /**
      * @param args the command line arguments

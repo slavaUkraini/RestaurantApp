@@ -114,6 +114,9 @@
         <Property name="text" type="java.lang.String" value="Add category"/>
         <Property name="horizontalAlignment" type="int" value="2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCategoryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="category">
       <Properties>
