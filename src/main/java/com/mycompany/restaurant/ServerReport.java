@@ -96,7 +96,7 @@ public class ServerReport extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        Smile.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\bigpizza.png"));
+        brand.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\bigpizza.png"));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

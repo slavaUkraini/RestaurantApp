@@ -96,7 +96,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="brand">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Smile.setIcon(new javax.swing.ImageIcon(path+&quot;\\src\\main\\java\\manager\\image\\bigpizza.png&quot;));"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="brand.setIcon(new javax.swing.ImageIcon(path+&quot;\\src\\main\\java\\manager\\image\\bigpizza.png&quot;));"/>
       </AuxValues>
     </Component>
   </SubComponents>
