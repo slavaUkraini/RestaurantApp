@@ -95,6 +95,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="search"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="search_personActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="delete_person">
       <Properties>

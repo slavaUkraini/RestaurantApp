@@ -137,6 +137,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         searchPersonel.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\search.png"));
         searchPersonel.setText("search");
+        searchPersonel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchPersonelActionPerformed(evt);
+            }
+        });
         jMenu4.add(searchPersonel);
 
         addPersonnel.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\add.png"));
@@ -293,6 +298,11 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         new DeleteCategoryFrame().setVisible(true);
     }//GEN-LAST:event_deleteCategoryActionPerformed
+
+    private void searchPersonelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPersonelActionPerformed
+        // TODO add your handling code here:
+        new SearchPersFrame().setVisible(true);
+    }//GEN-LAST:event_searchPersonelActionPerformed
 
     /**
      * @param args the command line arguments

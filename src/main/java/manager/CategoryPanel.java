@@ -92,6 +92,11 @@ public class CategoryPanel extends javax.swing.JPanel {
 
         search_dish.setBackground(new java.awt.Color(204, 255, 204));
         search_dish.setText("search");
+        search_dish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_dishActionPerformed(evt);
+            }
+        });
 
         add_dish.setBackground(new java.awt.Color(204, 204, 255));
         add_dish.setText("add");
@@ -200,6 +205,11 @@ public class CategoryPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         new DeleteDishFrame().setVisible(true);
     }//GEN-LAST:event_delete_dishActionPerformed
+
+    private void search_dishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_dishActionPerformed
+        // TODO add your handling code here:
+        new SearchDishFrame().setVisible(true);
+    }//GEN-LAST:event_search_dishActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -69,6 +69,11 @@ public class PersonnelPanel extends javax.swing.JPanel {
 
         search_person.setBackground(new java.awt.Color(204, 255, 204));
         search_person.setText("search");
+        search_person.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_personActionPerformed(evt);
+            }
+        });
 
         delete_person.setBackground(new java.awt.Color(255, 204, 204));
         delete_person.setText("delete");
@@ -126,6 +131,11 @@ public class PersonnelPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         new AddPersonnelFrame().setVisible(true);
     }//GEN-LAST:event_add_personActionPerformed
+
+    private void search_personActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_personActionPerformed
+        // TODO add your handling code here:
+        new SearchPersFrame().setVisible(true);
+    }//GEN-LAST:event_search_personActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
