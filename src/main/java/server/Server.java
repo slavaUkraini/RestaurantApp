@@ -36,6 +36,7 @@ public class Server {
                         Socket socket = s.accept();
                         try {
                             new RestaurantThread(socket);
+                            new ManagerThread(socket);
                         } catch (IOException e) {
                             socket.close();
                         }
