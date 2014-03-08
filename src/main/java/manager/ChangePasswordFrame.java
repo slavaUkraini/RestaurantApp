@@ -8,6 +8,9 @@ package manager;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -156,8 +159,12 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void changeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, " Password is changed ! ");
+        try {
+            Manager.getThread().changePass(this.password1.getPassword());
+            JOptionPane.showMessageDialog(null, " Password is changed ! ");
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(ChangePasswordFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
     }//GEN-LAST:event_changeBActionPerformed
 

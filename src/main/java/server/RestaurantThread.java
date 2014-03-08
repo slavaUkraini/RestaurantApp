@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -104,6 +105,41 @@ public class RestaurantThread extends Thread{
                     int id = Integer.parseInt(jsonRequest.getParam(0));
                     //if (SessionInfo.getReference().clockedIn(id))
                     SessionInfo.getReference().clockOut(id);
+                }
+                ////////////MANAGER/////////////
+                else if(method.equals("addEmployee")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    String name = jsonRequest.getParam(1);
+                    String surname = jsonRequest.getParam(2);
+                    double salary = Double.parseDouble(jsonRequest.getParam(3));
+                    //insert to database
+                    out.println("true");
+                }    
+                else if(method.equals("addCategory")){
+                    String name = jsonRequest.getParam(0);
+                    //insert to database
+                    out.println("true");
+                }
+                else if(method.equals("changePass")){
+                    SessionInfo.password = jsonRequest.getParam(0);
+                    File f = new File("Pass.txt");
+                    if (!f.exists()){
+                        f.createNewFile();
+                    }
+                    PrintWriter out2 = new PrintWriter(f);
+                    out2.println(SessionInfo.password);
+                    out2.close();
+                } 
+                else if(method.equals("checkPass")){
+                    File f = new File("Pass.txt");
+                    FileReader fr = new FileReader(f);
+                    BufferedReader br = new BufferedReader(fr);
+                    String pass = br.readLine();
+                    System.out.println(pass);
+                    fr.close();
+                    if(pass.equals(jsonRequest.getParam(0)))
+                        out.println("true");
+                    else out.println("false");
                 }
             }
         }

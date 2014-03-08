@@ -19,6 +19,7 @@ class Tables{
    LinkedList<Integer> tables = new LinkedList<Integer>(); 
 }
 public class SessionInfo {
+   public static String password = "1234";  
    public static final int maxTables = 111;
    public static final int maxServers = 50;
    private static SessionInfo reference;

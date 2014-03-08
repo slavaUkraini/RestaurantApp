@@ -37,11 +37,6 @@ public class ClientThread extends Thread{
 					socket.getOutputStream())), true);
             start();
         } catch (IOException e) {
-            try {
-                socket.close();
-            } catch (IOException e2) {
-                System.err.println("РЎРѕРєРµС‚ РЅРµ Р·Р°РєСЂРёС‚Рѕ");
-            }
         }
     }
     public String checkEmployee(int id) throws IOException{

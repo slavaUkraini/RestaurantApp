@@ -14,7 +14,11 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -394,21 +398,37 @@ public class PasswordFrame extends javax.swing.JFrame {
         char [] b =password.getPassword();
         System.out.println(a.length);
         System.out.println(b.length);
-        if(a.length!=b.length) {
+        try {
+            /*if(a.length!=b.length) {
             password.setText("");
             pw=""; 
             JOptionPane.showMessageDialog(null, " Incorrect password! ");}
-        else
-        if (chek(a,b)==false) {
+            else*/
+            /*if (chek(a,b)==false) {
             password.setText("");
             pw=""; 
             JOptionPane.showMessageDialog(null, " Incorrect password! ");}
-                else {
+            else {
             new MainMenu().setVisible(true);
             this.dispose();
+            }*/
+            
+            boolean response = Manager.getThread().checkPass(b);
+            System.out.println(response);
+            if(response){
+                new MainMenu().setVisible(true);
+                this.dispose();
             }
-        
-         
+            else {JOptionPane.showMessageDialog(this, " Incorrect password! ");}
+        }
+        catch (UnknownHostException ex) {
+            System.out.println("HostException");
+            Logger.getLogger(PasswordFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            System.out.println("OIException");
+            Logger.getLogger(PasswordFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
     }//GEN-LAST:event_enterActionPerformed
 
     private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed

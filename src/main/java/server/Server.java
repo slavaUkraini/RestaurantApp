@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
  * @author Vita
  */
 public class Server {
-    public static final int PORT = 8081;
-    public static final int PORT2 = 8082;
+    public static final int PORT = 8085;
+    //public static final int PORT2 = 8085;
     public static void main(String args[]) {
    java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -34,10 +34,17 @@ public class Server {
     }
     public Server() throws IOException {
         ServerSocket s = new ServerSocket(PORT);
-        ServerSocket s2 = new ServerSocket(PORT2);
+        //ServerSocket s2 = new ServerSocket(PORT2);
         JOptionPane.showMessageDialog(new JFrame(), "Server started");
 		try {
                     while (true) {
+                        //жизнь - боль :(
+                        /*Socket socket2 = s2.accept();                         
+                        try {
+                            new ManagerThread(socket2);
+                        } catch (IOException e) {
+                            socket2.close();
+                        }*/
                         Socket socket = s.accept();
                         try {
                             new RestaurantThread(socket);
@@ -45,16 +52,11 @@ public class Server {
                         } catch (IOException e) {
                             socket.close();
                         }
-                        Socket socket2 = s.accept();
-                        try {
-                            new ManagerThread(socket2);
-                        } catch (IOException e) {
-                            socket2.close();
-                        }
+                       
                     }
 		} finally {
 			s.close();
-                        s2.close();
+                       // s2.close();
 		}
 	}
     }

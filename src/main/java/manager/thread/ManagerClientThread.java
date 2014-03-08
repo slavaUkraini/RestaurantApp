@@ -27,7 +27,7 @@ public class ManagerClientThread extends Thread{
     
     public ManagerClientThread(InetAddress addr) throws java.lang.NullPointerException{
         try {
-            socket = new Socket(addr, Server.PORT2);
+            socket = new Socket(addr, Server.PORT);
         } catch (IOException e) {
             System.err.println("IOException |?|?|?|?|?|??|");
         }
@@ -38,16 +38,36 @@ public class ManagerClientThread extends Thread{
 					socket.getOutputStream())), true);
             start();
         } catch (IOException e) {
-            try {
-                socket.close();
-            } catch (IOException e2) {
                 System.err.println("IO EXCEPTION");
-            }
         }
     }
     
-    public boolean addEmployee(int id, String name, String surname, double salary){
-        return true;
+    public boolean addEmployee(int id, String name, String surname, double salary) throws IOException{
+        out.println("{\"method\":"+"\"addEmployee\""+",\"params\":[\""+id+"\",\""+name+"\",\""+surname+"\",\""+salary+"\"]}");
+        String str = in.readLine();
+        return str.equals("true");
+    }
+    
+    public boolean addCategory(String name) throws IOException{
+        out.println("{\"method\":"+"\"addCategory\""+",\"params\":["+name+"]}");
+        String str = in.readLine();
+        return str.equals("true");
+    }
+    
+    public void changePass(char[] pass){
+        String s = "";
+        for(int i = 0; i<pass.length; i++){
+            s+=pass[i];
+        }
+        out.println("{\"method\":"+"\"changePass\""+",\"params\":["+s+"]}");
+    }
+    public boolean checkPass(char[] pass) throws IOException{
+        String s = "";
+        for(int i = 0; i<pass.length; i++){
+            s+=pass[i];
+        }
+        out.println("{\"method\":"+"\"checkPass\""+",\"params\":[\""+s+"\"]}");
+        return in.readLine().equals("true");
     }
     
     public void closeThread(){

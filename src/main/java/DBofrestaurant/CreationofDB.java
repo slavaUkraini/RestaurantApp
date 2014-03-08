@@ -49,7 +49,7 @@ public class CreationofDB {
             e.printStackTrace();
         }
     }
-     private void insertWorks(String name, int experiense, String post){
+     public void insertWorks(String name, int experiense, String post){
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement = con.prepareStatement("INSERT INTO WORKERS(NAME,EXPERIENSE,POST) VALUES (?,?,?)");
@@ -66,7 +66,7 @@ public class CreationofDB {
         }
     }
      
-     private void insertManager(String name, int experiense){
+     public void insertManager(String name, int experiense){
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement = con.prepareStatement("INSERT INTO MANAGER(NAME,EXPERIENSE) VALUES (?,?)");
@@ -81,7 +81,7 @@ public class CreationofDB {
             e.printStackTrace();
         }
     }
-      private void insertMenu (String category, String name, String compound, int price){
+      public void insertMenu (String category, String name, String compound, int price){
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement = con.prepareStatement("INSERT INTO MENU(CATEGORY,NAME,COMPOUND,PRICE) VALUES (?,?,?,?)");
@@ -97,7 +97,7 @@ public class CreationofDB {
             e.printStackTrace();
         }
     }
-      private void DeleteManagers(int id){
+      public void DeleteManagers(int id){
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement1 = con.prepareStatement("DELETE FROM MANAGER WHERE Id=?");
@@ -111,7 +111,7 @@ public class CreationofDB {
             e.printStackTrace();
         }
     }
-        private void DeleteWORKERS(int id){
+        public void DeleteWORKERS(int id){
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement1 = con.prepareStatement("DELETE FROM WORKERS WHERE Id=?");
@@ -125,7 +125,7 @@ public class CreationofDB {
             e.printStackTrace();
         }
     }
-      private void DeleteMenu(int id){
+      public void DeleteMenu(int id){
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement1 = con.prepareStatement("DELETE FROM MENU WHERE Id=?");
@@ -164,7 +164,6 @@ public static void main(String[] args) throws SQLException {
         //object1.insertManager("Olena", 5);
         object1.insertMenu("піца", "Barbecue","курка,моцарела,соус барбекю", 30);
         object1.DeleteMenu(1);
-        
         }
   }
 
