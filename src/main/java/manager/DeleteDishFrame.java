@@ -14,19 +14,17 @@ import javax.swing.JOptionPane;
  *
  * @author tanysha
  */
-public class DeleteCategoryFrame extends javax.swing.JFrame {
+public class DeleteDishFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form DeleteCategoryFrame
+     * Creates new form DeleteDishFrame
      */
-    String path=System.getProperty("user.dir");
-    
-    public DeleteCategoryFrame() {
-        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+     String path=System.getProperty("user.dir");
+    public DeleteDishFrame() {
+       this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\delete16.png"));
         initComponents();
         setResizable(false);
-        
     }
 
     /**
@@ -38,19 +36,20 @@ public class DeleteCategoryFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        delete = new javax.swing.JButton();
+        dlete = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        nameOfCategory = new javax.swing.JTextField();
+        id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Delete category");
+        setTitle("Delete dish");
 
-        delete.setBackground(new java.awt.Color(102, 153, 255));
-        delete.setText("Delete");
-        delete.addActionListener(new java.awt.event.ActionListener() {
+        dlete.setBackground(new java.awt.Color(102, 153, 255));
+        dlete.setText("Delete");
+        dlete.setToolTipText("");
+        dlete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
+                dleteActionPerformed(evt);
             }
         });
 
@@ -64,65 +63,54 @@ public class DeleteCategoryFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel1.setText("Write name of category:");
-
-        nameOfCategory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameOfCategoryActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Write Id of dish:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(nameOfCategory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(111, 111, 111)
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(id)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(dlete, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(nameOfCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(delete)
+                    .addComponent(dlete)
                     .addComponent(cancel))
-                .addGap(28, 28, 28))
+                .addGap(21, 21, 21))
         );
 
-        setSize(new java.awt.Dimension(330, 208));
+        setSize(new java.awt.Dimension(335, 194));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameOfCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameOfCategoryActionPerformed
+    private void dleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dleteActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_nameOfCategoryActionPerformed
+        JOptionPane.showMessageDialog(null, " Delete dish -" + id.getText()+ "!");
+        dispose();
+    }//GEN-LAST:event_dleteActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelActionPerformed
-
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, " Delete category!" + nameOfCategory.getText());
-        dispose();
-    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,28 +129,28 @@ public class DeleteCategoryFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeleteCategoryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteDishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeleteCategoryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteDishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeleteCategoryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteDishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeleteCategoryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteDishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteCategoryFrame().setVisible(true);
+                new DeleteDishFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
-    private javax.swing.JButton delete;
+    private javax.swing.JButton dlete;
+    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField nameOfCategory;
     // End of variables declaration//GEN-END:variables
 }

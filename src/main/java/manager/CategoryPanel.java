@@ -17,9 +17,13 @@ public class CategoryPanel extends javax.swing.JPanel {
     /**
      * Creates new form CategoryPanel
      */
+    String path=System.getProperty("user.dir");
+    
     public CategoryPanel() {
         initComponents();
         setBackground(Color.getHSBColor(276,9,95));
+        addCategory.setText("  Add category");
+        deleteCategory.setText("  Delete category");
     }
 
     /**
@@ -41,14 +45,23 @@ public class CategoryPanel extends javax.swing.JPanel {
         add_dish = new javax.swing.JButton();
         delete_dish = new javax.swing.JButton();
         deleteCategory = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         chose.setText("Chose ");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "pizza", "drinks" }));
 
+        addCategory.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\add.png"));
         addCategory.setText("Add category");
+        addCategory.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        addCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCategoryActionPerformed(evt);
+            }
+        });
 
-        category.setText("Category");
+        category.setText("Name of category");
 
         menu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,64 +90,126 @@ public class CategoryPanel extends javax.swing.JPanel {
             menu.getColumnModel().getColumn(3).setPreferredWidth(5);
         }
 
+        search_dish.setBackground(new java.awt.Color(204, 255, 204));
         search_dish.setText("search");
+        search_dish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_dishActionPerformed(evt);
+            }
+        });
 
+        add_dish.setBackground(new java.awt.Color(204, 204, 255));
         add_dish.setText("add");
+        add_dish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_dishActionPerformed(evt);
+            }
+        });
 
+        delete_dish.setBackground(new java.awt.Color(255, 204, 204));
         delete_dish.setText("delete");
+        delete_dish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_dishActionPerformed(evt);
+            }
+        });
 
+        deleteCategory.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\delete16.png"));
         deleteCategory.setText("Delete category");
+        deleteCategory.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        deleteCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCategoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chose)
-                    .addComponent(addCategory)
-                    .addComponent(deleteCategory))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(search_dish)
-                        .addGap(18, 18, 18)
-                        .addComponent(add_dish)
-                        .addGap(30, 30, 30)
-                        .addComponent(delete_dish))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(deleteCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(chose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(add_dish, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(search_dish, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(delete_dish, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(233, 233, 233))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(category)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addGap(39, 39, 39)
                         .addComponent(chose)
-                        .addGap(37, 37, 37)
+                        .addGap(59, 59, 59)
                         .addComponent(addCategory)
                         .addGap(18, 18, 18)
-                        .addComponent(deleteCategory))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                        .addComponent(deleteCategory)
+                        .addGap(63, 63, 63)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(search_dish)
                     .addComponent(add_dish)
+                    .addComponent(search_dish)
                     .addComponent(delete_dish))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCategoryActionPerformed
+        // TODO add your handling code here:
+        new AddCategoryFrame().setVisible(true);
+    }//GEN-LAST:event_addCategoryActionPerformed
+
+    private void add_dishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_dishActionPerformed
+        // TODO add your handling code here:
+        new AddDishFrame().setVisible(true);
+    }//GEN-LAST:event_add_dishActionPerformed
+
+    private void deleteCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCategoryActionPerformed
+        // TODO add your handling code here:
+        new DeleteCategoryFrame().setVisible(true);
+    }//GEN-LAST:event_deleteCategoryActionPerformed
+
+    private void delete_dishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_dishActionPerformed
+        // TODO add your handling code here:
+        new DeleteDishFrame().setVisible(true);
+    }//GEN-LAST:event_delete_dishActionPerformed
+
+    private void search_dishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_dishActionPerformed
+        // TODO add your handling code here:
+        new SearchDishFrame().setVisible(true);
+    }//GEN-LAST:event_search_dishActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -146,6 +221,8 @@ public class CategoryPanel extends javax.swing.JPanel {
     private javax.swing.JButton delete_dish;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable menu;
     private javax.swing.JButton search_dish;
     // End of variables declaration//GEN-END:variables

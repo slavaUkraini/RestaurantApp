@@ -27,6 +27,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="delette"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCategoryActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="addCategory">
               <Properties>
@@ -35,6 +38,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="add category"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCategoryActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -61,6 +67,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="search"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchPersonelActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="addPersonnel">
               <Properties>
@@ -69,6 +78,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="add"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addPersonnelActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
