@@ -46,6 +46,10 @@ public class ManagerClientThread extends Thread{
         }
     }
     
+    public boolean addEmployee(int id, String name, String surname, double salary){
+        return true;
+    }
+    
     public void closeThread(){
         try {
             socket.close();
