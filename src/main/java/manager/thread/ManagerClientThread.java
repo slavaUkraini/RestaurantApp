@@ -25,9 +25,9 @@ public class ManagerClientThread extends Thread{
     private BufferedReader in;
     private PrintWriter out;
     
-    public ManagerClientThread(InetAddress addr) {
+    public ManagerClientThread(InetAddress addr) throws java.lang.NullPointerException{
         try {
-            socket = new Socket(addr, Server.PORT);
+            socket = new Socket(addr, Server.PORT2);
         } catch (IOException e) {
             System.err.println("IOException |?|?|?|?|?|??|");
         }

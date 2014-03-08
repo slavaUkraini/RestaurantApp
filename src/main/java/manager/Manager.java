@@ -4,30 +4,39 @@
  * and open the template in the editor.
  */
 
-package com.mycompany.restaurant;
+package manager;
 
 import Clients.ClientThread;
+import com.mycompany.restaurant.MainFrame;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import manager.thread.ManagerClientThread;
+import server.Server;
 
 /**
  *
  * @author Vita
  */
-public class Client {
-    
-    public final ClientThread ct;
+public class Manager {
+    private static ManagerClientThread ct;
     public static final int maxTables = 111;
     
-    public Client() throws UnknownHostException{
+    private Manager() throws UnknownHostException{
         InetAddress addr;
         addr = InetAddress.getByName(null);
-        ct = new ClientThread(addr);					
-    }    
+        ct = new ManagerClientThread(addr);					
+    }  
+    
+    public static ManagerClientThread getThread() throws UnknownHostException{
+        if(ct==null)
+            new Manager();
+        return ct; 
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -55,15 +64,18 @@ public class Client {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Client c;
+                ManagerClientThread c;
                 //Client c2;
                 try {
-                    c = new Client();
-                    //c2 = new Client();
-                    new MainFrame(c.ct).setVisible(true);
-                   // new MainFrame(c2.ct).setVisible(true);
+                     //створюємо потік для менеджера
+                    c = Manager.getThread();
+                    //пішли фрейми
+                    new MainMenu().setVisible(true);
+                  
                 } catch (UnknownHostException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManagerClientThread.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 catch (java.lang.NullPointerException e){
                     JOptionPane.showMessageDialog(new JFrame(), "Please, start the server");
@@ -73,3 +85,4 @@ public class Client {
         });
     }
 }
+

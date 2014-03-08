@@ -24,7 +24,7 @@ public class ClientThread extends Thread{
     private Socket socket;
     private BufferedReader in;
     private PrintWriter out;
-    public ClientThread(InetAddress addr) {
+    public ClientThread(InetAddress addr) throws NullPointerException {
         try {
             socket = new Socket(addr, Server.PORT);
         } catch (IOException e) {

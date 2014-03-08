@@ -11,6 +11,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +20,7 @@ import java.util.logging.Logger;
  */
 public class Server {
     public static final int PORT = 8081;
+    public static final int PORT2 = 8082;
     public static void main(String args[]) {
    java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -31,18 +34,27 @@ public class Server {
     }
     public Server() throws IOException {
         ServerSocket s = new ServerSocket(PORT);
+        ServerSocket s2 = new ServerSocket(PORT2);
+        JOptionPane.showMessageDialog(new JFrame(), "Server started");
 		try {
                     while (true) {
                         Socket socket = s.accept();
                         try {
                             new RestaurantThread(socket);
-                            new ManagerThread(socket);
+                            //new ManagerThread(socket);
                         } catch (IOException e) {
                             socket.close();
+                        }
+                        Socket socket2 = s.accept();
+                        try {
+                            new ManagerThread(socket2);
+                        } catch (IOException e) {
+                            socket2.close();
                         }
                     }
 		} finally {
 			s.close();
+                        s2.close();
 		}
 	}
     }

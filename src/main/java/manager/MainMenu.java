@@ -30,7 +30,6 @@ public class MainMenu extends javax.swing.JFrame {
    
     public MainMenu() {
         
-       
        // jPanel1=new NumberPanel();
         this.add(categoryP);
          this.pack();
