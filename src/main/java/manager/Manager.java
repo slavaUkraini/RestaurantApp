@@ -70,7 +70,7 @@ public class Manager {
                      //створюємо потік для менеджера
                     c = Manager.getThread();
                     //пішли фрейми
-                    new MainMenu().setVisible(true);
+                    new PasswordFrame().setVisible(true);
                   
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(ManagerClientThread.class.getName()).log(Level.SEVERE, null, ex);
