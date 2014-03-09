@@ -85,6 +85,10 @@ public class RestaurantThread extends Thread{
                     } 
                     out.println(response);
                 }
+                else if(method.equals("closeTable")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    SessionInfo.getReference().deleteTable(id);
+                }
                 else if(method.equals("getTables")){
                     int id = Integer.parseInt(jsonRequest.getParam(0));
                     LinkedList<Integer> ll = (LinkedList<Integer>) SessionInfo.getReference().getTables(id);

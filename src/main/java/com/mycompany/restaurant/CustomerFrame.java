@@ -6,9 +6,12 @@
 
 package com.mycompany.restaurant;
 import Clients.ClientThread;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 /**
  *
@@ -17,6 +20,7 @@ import javax.swing.*;
 public class CustomerFrame extends javax.swing.JFrame {
     private final ClientThread ct;
     private final int tableId;
+    private DefaultListModel listModel;
     /**
      * Creates new form CustomerFrame
      */
@@ -35,7 +39,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
         this.setLocation (screenWidth / 2 - this.getWidth()/2, screenHeight / 2 - this.getHeight() / 2);
-
+        loadMenu();
     }
 
     /**
@@ -48,8 +52,9 @@ public class CustomerFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         menu = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        listModel = new DefaultListModel();
+        orderList = new javax.swing.JList(listModel);
         orderList = new javax.swing.JList();
         tableNumber = new javax.swing.JLabel();
         optionPanel = new javax.swing.JPanel();
@@ -65,31 +70,21 @@ public class CustomerFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(630, 478));
         setResizable(false);
 
-        jLabel1.setText("Menu Here");
-
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addComponent(jLabel1)
-                .addContainerGap(267, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 361, Short.MAX_VALUE)
         );
 
-        orderList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        orderList.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        orderList.setModel(listModel);
         orderList.setName(""); // NOI18N
+        orderList.setSelectionBackground(new java.awt.Color(255, 255, 102));
         jScrollPane1.setViewportView(orderList);
 
         tableNumber.setText(" ");
@@ -132,7 +127,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         optionPanelLayout.setHorizontalGroup(
             optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelLayout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
@@ -169,15 +164,16 @@ public class CustomerFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(optionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tableNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54)
-                        .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(optionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(143, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,7 +200,9 @@ public class CustomerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_mainFrameActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        
+        int selectedIndex = orderList.getSelectedIndex();
+        if (selectedIndex != -1)
+        listModel.remove(orderList.getSelectedIndex());
     }//GEN-LAST:event_deleteActionPerformed
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
@@ -217,6 +215,43 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sendActionPerformed
 
+    private void loadMenu(){
+        Font font = new Font("Verdana", Font.PLAIN, 12);
+        final JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.setFont(font);
+        menu.setLayout(new BorderLayout());
+        
+        JPanel jp = new JPanel();
+        jp.setLayout(new java.awt.GridLayout(4, 7));
+        //jp.setPreferredSize(new Dimension(100,100));
+        for(int i = 1; i<16; i++){
+            final JLabel jl = new JLabel();
+            jl.setText("Item "+i);
+            JPanel jpItem = new JPanel(); 
+            //jpItem.setPreferredSize(new Dimension(10,10));
+            jpItem.setBackground(new java.awt.Color(153, 255, 153));
+            jpItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            jpItem.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    addItem(evt, jl);
+                }
+            });  
+            jpItem.add(jl);
+            jp.add(jpItem);
+    } 
+        
+        tabbedPane.addTab("Pizza", jp);
+        
+        JPanel jp2 = new JPanel();
+        tabbedPane.addTab("Beverages", jp2);
+        menu.add(tabbedPane);              
+    }
+    
+     private void addItem(java.awt.event.MouseEvent evt, JLabel jl) {
+         //JPanel jp = (JPanel) evt.getComponent();
+         this.listModel.addElement(jl.getText().toString());
+     }
     /**
      * @param args the command line arguments
      */
@@ -255,7 +290,6 @@ public class CustomerFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton close;
     private javax.swing.JButton delete;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton mainFrame;
     private javax.swing.JPanel menu;

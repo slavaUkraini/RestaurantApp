@@ -6,6 +6,7 @@
 
 package server;
 
+import Kitchen.KitchenPrinter;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -21,10 +22,13 @@ import javax.swing.JOptionPane;
 public class Server {
     public static final int PORT = 8085;
     //public static final int PORT2 = 8085;
+    static KitchenPrinter printer;
     public static void main(String args[]) {
    java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    printer = new KitchenPrinter();
+                    printer.setVisible(true);
                     Server s = new Server();
                 } catch (IOException ex) {
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
@@ -36,6 +40,7 @@ public class Server {
         ServerSocket s = new ServerSocket(PORT);
         //ServerSocket s2 = new ServerSocket(PORT2);
         JOptionPane.showMessageDialog(new JFrame(), "Server started");
+         
 		try {
                     while (true) {
                         //жизнь - боль :(

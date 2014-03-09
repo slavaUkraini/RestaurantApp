@@ -58,7 +58,7 @@ public class SessionInfo {
          }
      }
      public void deleteTable(int id){
-         servers[serverNumber(id)].tables.remove(id);
+         servers[serverNumber(id)].tables.remove(Integer.valueOf(id));
          tables[id]=0;
      }
      public int serverNumber(int id){
@@ -81,5 +81,8 @@ public class SessionInfo {
      public String getClocks(int id){
          SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
          return sdf.format(this.clockin.get(id));
+     }
+     public Date getDate(int id){
+         return this.clockin.get(id);
      }
 }

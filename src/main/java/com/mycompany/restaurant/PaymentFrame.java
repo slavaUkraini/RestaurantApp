@@ -384,15 +384,16 @@ public class PaymentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_mainFrameActionPerformed
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
-        // TODO add your handling code here:
         try{
             double sum = Double.parseDouble(this.jTextField1.getText().toString());
+            this.ct.closeTable(this.tableNumber);
         }
         catch(java.lang.NumberFormatException e){
             this.jTextField1.setText("");
             return;
         }
         JOptionPane.showMessageDialog(this, "Change = 0.0");
+        
         new MainFrame(ct).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_okActionPerformed

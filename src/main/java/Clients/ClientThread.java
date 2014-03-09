@@ -60,6 +60,9 @@ public class ClientThread extends Thread{
         out.println("{\"method\":"+"\"addTable\""+",\"params\":[\""+tableNumber+"\",\""+userId+"\"]}");
         return(in.readLine());
     }
+    public void closeTable(int id) {
+        out.println("{\"method\":"+"\"closeTable\""+",\"params\":["+id+"]}");
+    }
 
     public String getTables(int userId) throws IOException {
         out.println("{\"method\":"+"\"getTables\""+",\"params\":["+userId+"]}");
