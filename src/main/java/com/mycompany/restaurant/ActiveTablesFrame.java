@@ -7,6 +7,8 @@
 package com.mycompany.restaurant;
 
 import Clients.ClientThread;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.JLabel;
@@ -31,7 +33,12 @@ public class ActiveTablesFrame extends javax.swing.JFrame {
         this.ct = ct;
         this.tables = (LinkedList<Double>) list;
         initComponents();
-        
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
+        this.setLocation (screenWidth / 2 - this.getWidth()/2, screenHeight / 2 - this.getHeight() / 2);
+
         addPanels();
         addLabels();
         

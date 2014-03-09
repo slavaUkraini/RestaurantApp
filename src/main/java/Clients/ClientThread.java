@@ -77,4 +77,9 @@ public class ClientThread extends Thread{
      public void clockOut(int userId) {
         out.println("{\"method\":"+"\"clockOut\""+",\"params\":["+userId+"]}");
     }
+     public String getClocks(int id) throws IOException{
+        out.println("{\"method\":"+"\"getClocks\""+",\"params\":["+id+"]}");
+        return in.readLine();
+   
+     }
 }

@@ -1,7 +1,12 @@
 package server;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,15 +24,17 @@ class Tables{
    LinkedList<Integer> tables = new LinkedList<Integer>(); 
 }
 public class SessionInfo {
-   public static String password = "1234";  
+   //public static String password = "1234";  
    public static final int maxTables = 111;
    public static final int maxServers = 50;
    private static SessionInfo reference;
    private int[] tables = new int[maxTables];
    private Tables[] servers = new Tables[maxServers];
    private boolean[] activeServers = new boolean[maxServers]; //true - працівники, що зараз на роботі
+   private Map<Integer,Date> clockin;
      
      private SessionInfo(){
+         clockin = new HashMap<Integer,Date>();
          for(int i = 0; i<maxTables; i++){
              tables[i]=0;
          }
@@ -62,11 +69,17 @@ public class SessionInfo {
      }
      public void clockIn(int serverId){
          activeServers[serverId] = true;
+         Calendar cal = Calendar.getInstance();
+         clockin.put(serverId, cal.getTime());
      }
      public boolean clockedIn(int serverId){
          return activeServers[serverId];
      }
      public void clockOut(int serverId){
          activeServers[serverId] = false;
+     }
+     public String getClocks(int id){
+         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+         return sdf.format(this.clockin.get(id));
      }
 }

@@ -61,13 +61,13 @@ public class ManagerThread extends Thread{
                     out.println("true");
                 }
                 else if(method.equals("changePass")){
-                    SessionInfo.password = jsonRequest.getParam(0);
+                    //SessionInfo.password = jsonRequest.getParam(0);
                     File f = new File("Pass.txt");
                     if (!f.exists()){
                         f.createNewFile();
                     }
                     PrintWriter out2 = new PrintWriter(f);
-                    out2.println(SessionInfo.password);
+                    out2.println(jsonRequest.getParam(0));
                     out2.close();
                 } 
                 else if(method.equals("checkPass")){

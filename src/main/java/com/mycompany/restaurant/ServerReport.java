@@ -7,6 +7,17 @@
 package com.mycompany.restaurant;
 
 import Clients.ClientThread;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,10 +32,27 @@ public class ServerReport extends javax.swing.JFrame {
      * Creates new form ServerReport
      * @param ct
      */
-    public ServerReport(ClientThread ct, int userId) {
+    public ServerReport(ClientThread ct, int userId) throws IOException {
         this.ct = ct;
         this.userId = userId;
         initComponents();
+        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
+        this.setLocation (screenWidth / 2 - this.getWidth()/2, screenHeight / 2 - this.getHeight() / 2);
+
+        
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("M/dd/yyyy");
+        this.jTextArea1.setText(" Server report \n\n Server "+this.userId+
+                "\n\n Start working     " + this.ct.getClocks(userId)+
+                "\n Finish working     " + sdf.format(cal.getTime())+ "\n\n Date     "+ 
+                sdf2.format(cal.getTime())+"\n\n Net Deposit"+"\n\n Signature    _______________");
+
     }
 
     /**
@@ -43,6 +71,7 @@ public class ServerReport extends javax.swing.JFrame {
         brand = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         mainFrame.setText("Main Frame");
         mainFrame.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +89,9 @@ public class ServerReport extends javax.swing.JFrame {
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Monospaced", 2, 12)); // NOI18N
         jTextArea1.setRows(5);
+        jTextArea1.setTabSize(12);
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,8 +141,22 @@ public class ServerReport extends javax.swing.JFrame {
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         ct.clockOut(userId);
-        new MainFrame(ct).setVisible(true);
-        this.dispose();
+        File f = new File("ServerReport.txt");
+        try {
+            if(!f.exists())
+            f.createNewFile();
+            PrintWriter out2 = new PrintWriter(f);
+            out2.println(this.jTextArea1.getText());
+            out2.close();
+            new MainFrame(ct).setVisible(true);
+            this.dispose();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ServerReport.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (IOException ex) {
+            Logger.getLogger(ServerReport.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_okActionPerformed
 
     /**

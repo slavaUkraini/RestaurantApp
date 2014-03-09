@@ -8,6 +8,7 @@ package com.mycompany.restaurant;
 
 import Clients.ClientThread;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
@@ -32,6 +33,12 @@ public class PaymentFrame extends javax.swing.JFrame {
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
         initComponents();
         numberPanel.setBackground(Color.getHSBColor(276,9,95));
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
+        this.setLocation (screenWidth / 2 - this.getWidth()/2, screenHeight / 2 - this.getHeight() / 2);
+
     }
 
     /**
@@ -235,7 +242,14 @@ public class PaymentFrame extends javax.swing.JFrame {
         checkReport.setColumns(20);
         checkReport.setFont(new java.awt.Font("Monospaced", 0, 8)); // NOI18N
         checkReport.setRows(5);
-        checkReport.setText("Check 101\nTable 22\n\nGlacier Village Cafe\n\ncoffee\t\t2\t10.10\ntoast\t\t2\t11.00\nhuck cobb\t1\t6.00\n\n\n____________\n\ntotal amount\t\t27.10\n\nplease, pay your server\n7% - 1.9\n10% - 2.7\n\nPlease, come again!\n---------Thank you!----------\n\nyour server Vita\n");
+        checkReport.setText("Check \nTable "
+            + this.tableNumber+"\n\nGlacier Village Cafe\n\n"
+            + "coffee\t\t2\t10.10\ntoast\t\t2\t11.00\nhuck cobb\t1\t6.00"
+            + "\n\n\n____________\n\ntotal amount\t\t27.10"
+            + "\n\nplease, pay your server\n7% - 1.9\n10% - 2.7\n\n"
+            + "Please, come again!"
+            + "\n---------Thank you!----------"
+            + "\n\nyour server Vita\n");
         jScrollPane1.setViewportView(checkReport);
 
         mainFrame.setText("Main Frame");

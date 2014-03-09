@@ -8,6 +8,7 @@ package com.mycompany.restaurant;
 
 import Clients.ClientThread;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -35,6 +36,12 @@ public class MainFrame extends javax.swing.JFrame {
         numberPanel.setBackground(Color.getHSBColor(276,9,95));
         optionPanel.setBackground(Color.getHSBColor(276,9,95));
         this.ct = ct;
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
+        this.setLocation (screenWidth / 2 - this.getWidth()/2, screenHeight / 2 - this.getHeight() / 2);
+
     }
 
     /**

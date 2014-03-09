@@ -7,6 +7,7 @@
 package com.mycompany.restaurant;
 import Clients.ClientThread;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.*;
 /**
@@ -29,6 +30,12 @@ public class CustomerFrame extends javax.swing.JFrame {
         initComponents();
         menu.setBackground(Color.getHSBColor(276,9,95));
         optionPanel.setBackground(Color.getHSBColor(276,9,95));
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
+        this.setLocation (screenWidth / 2 - this.getWidth()/2, screenHeight / 2 - this.getHeight() / 2);
+
     }
 
     /**
@@ -67,7 +74,7 @@ public class CustomerFrame extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(144, 144, 144)
                 .addComponent(jLabel1)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +204,7 @@ public class CustomerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_mainFrameActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-
+        
     }//GEN-LAST:event_deleteActionPerformed
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed

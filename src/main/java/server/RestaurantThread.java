@@ -16,6 +16,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -106,6 +107,10 @@ public class RestaurantThread extends Thread{
                     //if (SessionInfo.getReference().clockedIn(id))
                     SessionInfo.getReference().clockOut(id);
                 }
+                else if(method.equals("getClocks")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    out.println(SessionInfo.getReference().getClocks(id));
+                } 
                 ////////////MANAGER/////////////
                 else if(method.equals("addEmployee")){
                     int id = Integer.parseInt(jsonRequest.getParam(0));
@@ -120,14 +125,34 @@ public class RestaurantThread extends Thread{
                     //insert to database
                     out.println("true");
                 }
+                else if(method.equals("addDish")){
+                    String category = jsonRequest.getParam(0);
+                    String name = jsonRequest.getParam(1);
+                    String description = jsonRequest.getParam(2);
+                    double price = Double.parseDouble(jsonRequest.getParam(3));
+                    //insert to database
+                    out.println("true");
+                }
+                else if(method.equals("deleteCategory")){
+                    String name = jsonRequest.getParam(0);
+                    //delete from database
+                }
+                 else if(method.equals("deleteDish")){
+                    String name = jsonRequest.getParam(0);
+                    //delete from database
+                }
+                 else if(method.equals("deleteEmployee")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    //delete from database
+                }
                 else if(method.equals("changePass")){
-                    SessionInfo.password = jsonRequest.getParam(0);
+                    //SessionInfo.password = jsonRequest.getParam(0);
                     File f = new File("Pass.txt");
                     if (!f.exists()){
                         f.createNewFile();
                     }
                     PrintWriter out2 = new PrintWriter(f);
-                    out2.println(SessionInfo.password);
+                    out2.println(jsonRequest.getParam(0));
                     out2.close();
                 } 
                 else if(method.equals("checkPass")){

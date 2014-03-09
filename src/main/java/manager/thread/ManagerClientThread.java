@@ -43,15 +43,35 @@ public class ManagerClientThread extends Thread{
     }
     
     public boolean addEmployee(int id, String name, String surname, double salary) throws IOException{
+        //still need database
         out.println("{\"method\":"+"\"addEmployee\""+",\"params\":[\""+id+"\",\""+name+"\",\""+surname+"\",\""+salary+"\"]}");
         String str = in.readLine();
         return str.equals("true");
     }
     
     public boolean addCategory(String name) throws IOException{
+        //still need database
         out.println("{\"method\":"+"\"addCategory\""+",\"params\":["+name+"]}");
         String str = in.readLine();
         return str.equals("true");
+    }
+    
+    public boolean addDish(String category, String name, String description, double price) throws IOException{
+        //still need database
+        out.println("{\"method\":"+"\"addDish\""+",\"params\":[\""+category+"\",\""+name+"\",\""+description+"\",\""+price+"\"]}");
+        String str = in.readLine();
+        return str.equals("true");
+    }
+    
+    public void deleteCategory(String name){
+        out.println("{\"method\":"+"\"deleteCategory\""+",\"params\":[\""+name+"\"]}");
+    }
+    public void deleteDish(String name){
+        out.println("{\"method\":"+"\"deleteDish\""+",\"params\":[\""+name+"\"]}");
+    }
+    
+    public void deleteEmployee(int id){
+        out.println("{\"method\":"+"\"deleteEmploye\""+",\"params\":[\""+id+"\"]}");
     }
     
     public void changePass(char[] pass){
@@ -69,6 +89,8 @@ public class ManagerClientThread extends Thread{
         out.println("{\"method\":"+"\"checkPass\""+",\"params\":[\""+s+"\"]}");
         return in.readLine().equals("true");
     }
+    
+    
     
     public void closeThread(){
         try {
