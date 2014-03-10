@@ -7,6 +7,8 @@
 package manager;
 
 import java.awt.Color;
+import javax.swing.JComboBox;
+
 
 /**
  *
@@ -18,14 +20,24 @@ public class CategoryPanel extends javax.swing.JPanel {
      * Creates new form CategoryPanel
      */
     String path=System.getProperty("user.dir");
+    private static CategoryPanel reference;
     
-    public CategoryPanel() {
+    CategoryPanel() {
         initComponents();
         setBackground(Color.getHSBColor(276,9,95));
         addCategory.setText("  Add category");
         deleteCategory.setText("  Delete category");
     }
-
+     public static CategoryPanel getReference(){
+         if (reference==null){
+             reference = new CategoryPanel();
+         }
+         return reference;
+     }
+     
+     public JComboBox getCategory(){
+         return category;
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,9 +48,9 @@ public class CategoryPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         chose = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        category = new javax.swing.JComboBox();
         addCategory = new javax.swing.JButton();
-        category = new javax.swing.JLabel();
+        nameOfcategory = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         menu = new javax.swing.JTable();
         search_dish = new javax.swing.JButton();
@@ -49,8 +61,18 @@ public class CategoryPanel extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
 
         chose.setText("Chose ");
+        chose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                choseActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "pizza", "drinks" }));
+        category.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "pizza", "drinks" }));
+        category.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryActionPerformed(evt);
+            }
+        });
 
         addCategory.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\add.png"));
         addCategory.setText("Add category");
@@ -61,7 +83,9 @@ public class CategoryPanel extends javax.swing.JPanel {
             }
         });
 
-        category.setText("Name of category");
+        nameOfcategory.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        nameOfcategory.setForeground(new java.awt.Color(0, 0, 51));
+        nameOfcategory.setText("Name of category");
 
         menu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,7 +164,7 @@ public class CategoryPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(category, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(chose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,20 +178,20 @@ public class CategoryPanel extends javax.swing.JPanel {
                 .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(233, 233, 233))
+                .addComponent(nameOfcategory)
+                .addGap(261, 261, 261))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(category)
+                .addComponent(nameOfcategory)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(chose)
                         .addGap(59, 59, 59)
@@ -182,7 +206,7 @@ public class CategoryPanel extends javax.swing.JPanel {
                     .addComponent(add_dish)
                     .addComponent(search_dish)
                     .addComponent(delete_dish))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -211,19 +235,29 @@ public class CategoryPanel extends javax.swing.JPanel {
         new SearchDishFrame().setVisible(true);
     }//GEN-LAST:event_search_dishActionPerformed
 
+    private void categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_categoryActionPerformed
+
+    private void choseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choseActionPerformed
+        // TODO add your handling code here:
+        nameOfcategory.setText(category.getSelectedItem().toString());
+    }//GEN-LAST:event_choseActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCategory;
     private javax.swing.JButton add_dish;
-    private javax.swing.JLabel category;
+    public javax.swing.JComboBox category;
     private javax.swing.JButton chose;
     private javax.swing.JButton deleteCategory;
     private javax.swing.JButton delete_dish;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable menu;
+    private javax.swing.JLabel nameOfcategory;
     private javax.swing.JButton search_dish;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
  */
 public class MainMenu extends javax.swing.JFrame {
     
-   private CategoryPanel categoryP = new CategoryPanel();
+   private final CategoryPanel categoryP;
    private HistoryPanel historyP = new HistoryPanel();
    private PersonnelPanel personelP = new PersonnelPanel();
    
@@ -29,6 +29,7 @@ public class MainMenu extends javax.swing.JFrame {
      */
    
     public MainMenu() {
+        this.categoryP = new CategoryPanel();
         
        // jPanel1=new NumberPanel();
         this.add(categoryP);
