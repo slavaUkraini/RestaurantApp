@@ -6,6 +6,7 @@
 
 package manager.thread;
 
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import server.Server;
+import server.SessionInfo;
 
 /**
  *
@@ -43,31 +45,29 @@ public class ManagerClientThread extends Thread{
     }
     
     public boolean addEmployee(int id, String name, String surname, double salary) throws IOException{
-        //still need database
         out.println("{\"method\":"+"\"addEmployee\""+",\"params\":[\""+id+"\",\""+name+"\",\""+surname+"\",\""+salary+"\"]}");
         String str = in.readLine();
         return str.equals("true");
     }
     
     public boolean addCategory(String name) throws IOException{
-        //still need database
         out.println("{\"method\":"+"\"addCategory\""+",\"params\":["+name+"]}");
         String str = in.readLine();
         return str.equals("true");
     }
     
-    public boolean addDish(String category, String name, String description, double price) throws IOException{
-        //still need database
-        out.println("{\"method\":"+"\"addDish\""+",\"params\":[\""+category+"\",\""+name+"\",\""+description+"\",\""+price+"\"]}");
+    public boolean addDish(int id, String category, String name, String description, double price) throws IOException{
+        out.println("{\"method\":"+"\"addDish\""+",\"params\":[\""+id+"\",\""+category+"\",\""+name+"\",\""+description+"\",\""+price+"\"]}");
         String str = in.readLine();
         return str.equals("true");
     }
     
-    public void deleteCategory(String name){
+    /*public void deleteCategory(String name){
         out.println("{\"method\":"+"\"deleteCategory\""+",\"params\":[\""+name+"\"]}");
-    }
+    }*/
     public void deleteDish(String name){
         out.println("{\"method\":"+"\"deleteDish\""+",\"params\":[\""+name+"\"]}");
+        
     }
     
     public void deleteEmployee(int id){
@@ -90,7 +90,12 @@ public class ManagerClientThread extends Thread{
         return in.readLine().equals("true");
     }
     
-    
+    public String[] getAllCategories() throws IOException{
+        out.println("{\"method\":"+"\"getAllCategories\""+",\"params\":[]}");
+        String response = in.readLine();
+        Gson gson = new Gson();
+        return gson.fromJson(response, String[].class);        
+    }
     
     public void closeThread(){
         try {

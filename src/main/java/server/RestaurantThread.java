@@ -122,19 +122,24 @@ public class RestaurantThread extends Thread{
                     String surname = jsonRequest.getParam(2);
                     double salary = Double.parseDouble(jsonRequest.getParam(3));
                     //insert to database
+                    SessionInfo.db.insertWorks(id, name, surname, 0, "офіціант", salary);
                     out.println("true");
                 }    
                 else if(method.equals("addCategory")){
+                    //не використовується
                     String name = jsonRequest.getParam(0);
                     //insert to database
+                    
                     out.println("true");
                 }
                 else if(method.equals("addDish")){
-                    String category = jsonRequest.getParam(0);
-                    String name = jsonRequest.getParam(1);
-                    String description = jsonRequest.getParam(2);
-                    double price = Double.parseDouble(jsonRequest.getParam(3));
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    String category = jsonRequest.getParam(1);
+                    String name = jsonRequest.getParam(2);
+                    String description = jsonRequest.getParam(3);
+                    int price = Integer.parseInt(jsonRequest.getParam(4));
                     //insert to database
+                    SessionInfo.db.insertMenu(id, category, name, description, price);
                     out.println("true");
                 }
                 else if(method.equals("deleteCategory")){
@@ -144,11 +149,17 @@ public class RestaurantThread extends Thread{
                  else if(method.equals("deleteDish")){
                     String name = jsonRequest.getParam(0);
                     //delete from database
+                    SessionInfo.db.DeleteMenuOFNAME(name);
                 }
                  else if(method.equals("deleteEmployee")){
                     int id = Integer.parseInt(jsonRequest.getParam(0));
                     //delete from database
+                    SessionInfo.db.DeleteWORKERS(id);
                 }
+                 else if(method.equals("getAllCategories")){
+                    // from database
+                    out.println(gson.toJson(SessionInfo.dbfood.getAllCategories()));
+                 }
                 else if(method.equals("changePass")){
                     //SessionInfo.password = jsonRequest.getParam(0);
                     File f = new File("Pass.txt");

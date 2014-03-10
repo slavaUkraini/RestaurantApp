@@ -6,6 +6,7 @@
 
 package Clients;
 
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -68,6 +69,13 @@ public class ClientThread extends Thread{
         out.println("{\"method\":"+"\"getTables\""+",\"params\":["+userId+"]}");
         return in.readLine();
     }
+    public String[] getAllCategories() throws IOException{
+        out.println("{\"method\":"+"\"getAllCategories\""+",\"params\":[]}");
+        String response = in.readLine();
+        Gson gson = new Gson();
+        return gson.fromJson(response, String[].class);        
+    }
+    
 
     public String clockedIn(int userId) throws IOException {
         out.println("{\"method\":"+"\"clockedIn\""+",\"params\":["+userId+"]}");

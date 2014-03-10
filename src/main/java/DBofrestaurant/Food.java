@@ -59,6 +59,7 @@ public class Food {
 
                     return Collections.emptyList();
                     }
+        
                 public String[] getAllCategories() {
 		Connection connection = getConnection();
 		Statement st = null;

@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import server.SessionInfo;
 /**
  *
  * @angelika
@@ -21,6 +22,10 @@ import java.util.logging.Logger;
 public class CreationofDB {
        private static Object con; 
     //створюємо нашу базу даних
+       
+       public CreationofDB(){
+           initialization("");
+       }
     private void initialization(String name) {
         try {
             Class.forName("org.sqlite.JDBC");
@@ -55,15 +60,15 @@ public class CreationofDB {
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement = con.prepareStatement("INSERT INTO WORKERS(ID,NAME,SURNAME,EXPERIENSE,POST,SALARY) VALUES (?,?,?,?,?,?)");
-            statement.setInt(1,999);
-            statement.setString(2,"Олег");
-            statement.setString(3,"Королюк");
-            statement.setInt(4,3);
-            statement.setString(5,"Офіціант");
-            statement.setDouble(6,2200);
+            statement.setInt(1,id);
+            statement.setString(2,name);
+            statement.setString(3,surname);
+            statement.setInt(4,experiense);
+            statement.setString(5,post);
+            statement.setDouble(6,salary);
             int result = statement.executeUpdate();
             //
-            statement.setInt(1,334);
+            /*statement.setInt(1,334);
             statement.setString(2,"Оксана");
             statement.setString(3,"Нижник");
             statement.setInt(4,5);
@@ -85,7 +90,7 @@ public class CreationofDB {
             statement.setInt(4,5);
             statement.setString(5,"Офіціант");
             statement.setDouble(6,4500);
-            int result4 = statement.executeUpdate();
+            int result4 = statement.executeUpdate();*/
 
             statement.close();
         }catch (SQLException e){
@@ -98,25 +103,24 @@ public class CreationofDB {
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement = con.prepareStatement("INSERT  INTO MANAGER(NAME,SURNAME,EXPERIENSE,SALARY) VALUES (?,?,?,?)");
-            statement.setString(1,"Olena");
-            statement.setString(2,"Буєва");
-            statement.setInt(3,5);
-            statement.setDouble(4,6000);
+            statement.setString(1,name);
+            statement.setString(2,surname);
+            statement.setInt(3,experiense);
+            statement.setDouble(4,salary);
             
-            statement.setString(1,"Віктор");
+            /*statement.setString(1,"Віктор");
             statement.setString(2,"Тихонов");
             statement.setInt(3,4);
              
             statement.setDouble(4,5000);
-            
+            */
             int result5 = statement.executeUpdate();
-            statement.setString(1,"Вікторія");
+            /*statement.setString(1,"Вікторія");
             statement.setString(2,"Орлюк");
             statement.setInt(3,6);
             statement.setDouble(4,7000);
             
-            int result6 = statement.executeUpdate();
-
+            int result6 = statement.executeUpdate(); */
             statement.close();
         }catch (SQLException e){
             System.out.println("Не правильно введенні дані");
@@ -128,14 +132,14 @@ public class CreationofDB {
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement = con.prepareStatement("INSERT INTO MENU(ID,CATEGORY,NAME,COMPOUND,PRICE) VALUES (?,?,?,?,?)");
-            statement.setInt(1,300);
-            statement.setString(2,"піца");
-            statement.setString(3,"Барбекю");
-            statement.setString(4,"курка,моцарела,соус барбекю");
-            statement.setInt(5,30);
+            statement.setInt(1,id);
+            statement.setString(2,category);
+            statement.setString(3,name);
+            statement.setString(4,compound);
+            statement.setInt(5,price);
             int result7 = statement.executeUpdate();
             //
-            statement.setInt(1,223);
+            /*statement.setInt(1,223);
             statement.setString(2,"піца");
             statement.setString(3,"Піца з куркою");
             statement.setString(4," маринована курка,цибуля,соус делікат,мариновані огірки");
@@ -148,6 +152,7 @@ public class CreationofDB {
             statement.setString(4,"морозиво пломбір, полуничний наповнювач");
             statement.setInt(5,15);
             int result9 = statement.executeUpdate();
+            */
 
             statement.close();
         }catch (SQLException e){
@@ -159,7 +164,7 @@ public class CreationofDB {
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement1 = con.prepareStatement("DELETE FROM MANAGER WHERE Id=?");
-            statement1.setInt(1, 1);
+            statement1.setInt(1, id);
             
             int result = statement1.executeUpdate();
 
@@ -174,7 +179,7 @@ public class CreationofDB {
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement1 = con.prepareStatement("DELETE FROM WORKERS WHERE Id=?");
-            statement1.setInt(1, 1);
+            statement1.setInt(1, id);
             
             int result = statement1.executeUpdate();
 
@@ -189,7 +194,7 @@ public class CreationofDB {
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement1 = con.prepareStatement("DELETE FROM WORKERS WHERE NAME=?");
-            statement1.setString(1,"Тарас");
+            statement1.setString(1,name);
             
             int result = statement1.executeUpdate();
 
@@ -203,7 +208,7 @@ public class CreationofDB {
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement1 = con.prepareStatement("DELETE FROM MENU WHERE Id=?");
-            statement1.setInt(1, 1);
+            statement1.setInt(1, id);
             
             int result = statement1.executeUpdate();
 
@@ -218,7 +223,7 @@ public class CreationofDB {
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement1 = con.prepareStatement("DELETE FROM MENU WHERE NAME=?");
-            statement1.setString(1,"Піца з куркою");
+            statement1.setString(1,name);
             
             int result = statement1.executeUpdate();
 
@@ -248,14 +253,16 @@ public class CreationofDB {
 public static void main(String[] args) throws SQLException {
     CreationofDB object1 = new CreationofDB();
         object1.initialization("");
-        object1.insertWorks(999, "Олег", "Королюк", 3, "Офіціант", 2200);
-        object1.insertWorks(334, "Оксана","Нижник",5,"Бармен", 5000);
+        //object1.insertWorks(999, "Олег", "Королюк", 3, "Офіціант", 2200);
+        //object1.insertWorks(334, "Оксана","Нижник",5,"Бармен", 5000);
         //object1.insertWorks(555, "Альона","Кулик",4,"Рецепшен", 4300);
        // object1.insertWorks(564, "Віта","Матвійчук",5,"Офіціант", 4500);
         object1.DeleteWORKERSofNAME("Тарас");
-        object1.insertManager("Віктор", "Тихонов",4,5000);
-        object1.insertManager("Вікторія", "Орлюк",6,7000);
+        
+        //object1.insertManager("Віктор", "Тихонов",4,5000);
+        //object1.insertManager("Вікторія", "Орлюк",6,7000);
         object1.insertMenu(300,"піца","Барбекю","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(223, "напої", "Coca-Cola", " 0.5 ", 10);
         }
   }
 

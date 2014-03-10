@@ -12,6 +12,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 /**
  *
@@ -39,7 +42,11 @@ public class CustomerFrame extends javax.swing.JFrame {
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
         this.setLocation (screenWidth / 2 - this.getWidth()/2, screenHeight / 2 - this.getHeight() / 2);
-        loadMenu();
+        try {
+            loadMenu();
+        } catch (IOException ex) {
+            Logger.getLogger(CustomerFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -215,12 +222,13 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sendActionPerformed
 
-    private void loadMenu(){
+    private void loadMenu() throws IOException{
         Font font = new Font("Verdana", Font.PLAIN, 12);
         final JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setFont(font);
         menu.setLayout(new BorderLayout());
-        
+        String[] categories = ct.getAllCategories();
+        for(int j = 0; j<categories.length; j++){
         JPanel jp = new JPanel();
         jp.setLayout(new java.awt.GridLayout(4, 7));
         //jp.setPreferredSize(new Dimension(100,100));
@@ -241,10 +249,10 @@ public class CustomerFrame extends javax.swing.JFrame {
             jp.add(jpItem);
     } 
         
-        tabbedPane.addTab("Pizza", jp);
-        
-        JPanel jp2 = new JPanel();
-        tabbedPane.addTab("Beverages", jp2);
+        tabbedPane.addTab(categories[j], jp);
+        }
+        //JPanel jp2 = new JPanel();
+        //tabbedPane.addTab("Beverages", jp2);
         menu.add(tabbedPane);              
     }
     

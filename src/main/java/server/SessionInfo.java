@@ -1,5 +1,8 @@
 package server;
 
+import DBofrestaurant.CreationofDB;
+import DBofrestaurant.Food;
+import DBofrestaurant.Workers;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,6 +27,11 @@ class Tables{
    LinkedList<Integer> tables = new LinkedList<Integer>(); 
 }
 public class SessionInfo {
+    
+    public static CreationofDB db = new CreationofDB();
+    public static Food dbfood= new Food();
+    public static Workers dbworkers = new Workers();
+    
    //public static String password = "1234";  
    public static final int maxTables = 111;
    public static final int maxServers = 50;
