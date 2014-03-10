@@ -83,7 +83,14 @@ public class ClientThread extends Thread{
     public List<FoodData> getFood(String category)throws IOException{
         out.println("{\"method\":"+"\"getFood\""+",\"params\":[\""+category+"\"]}");
         String response = in.readLine();
-        JOptionPane.showMessageDialog(null, response);
+        //JOptionPane.showMessageDialog(null, response);
+        Gson gson = new Gson();
+        return gson.fromJson(response, new TypeToken<List<FoodData>>(){}.getType());        
+    }
+    public List<FoodData> getAllFood()throws IOException{
+        out.println("{\"method\":"+"\"getAllFood\""+",\"params\":[]}");
+        String response = in.readLine();
+        //JOptionPane.showMessageDialog(null, response);
         Gson gson = new Gson();
         return gson.fromJson(response, new TypeToken<List<FoodData>>(){}.getType());        
     }

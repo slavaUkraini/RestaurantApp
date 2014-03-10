@@ -57,8 +57,8 @@ public class FoodData{
 		
 		@Override
 		public String toString() {
-			return "FoodData [name=" + name + ", category=" + category
-					+ ", compound=" + compound + ", price=" + price + "]";
+                    
+                    return (name + "        " + price);
 		}
 	}
 

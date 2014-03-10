@@ -158,6 +158,10 @@ public class RestaurantThread extends Thread{
                     // from database
                     out.println(gson.toJson(SessionInfo.dbfood.getFood(category)));
                  }
+                 else if(method.equals("getAllFood")){
+                    // from database
+                    out.println(gson.toJson(SessionInfo.dbfood.getAllFood()));
+                 }
                  else if(method.equals("getEmployees")){
                     // from database
                     out.println(gson.toJson(SessionInfo.dbworkers.getWorkers()));

@@ -26,6 +26,8 @@ public class CustomerFrame extends javax.swing.JFrame {
     private final ClientThread ct;
     private final int tableId;
     private DefaultListModel listModel;
+    private double totalSum = 0;//замінити на щось нормальне
+    //private List<FoodData> allFood;
     /**
      * Creates new form CustomerFrame
      */
@@ -46,6 +48,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         this.setLocation (screenWidth / 2 - this.getWidth()/2, screenHeight / 2 - this.getHeight() / 2);
         try {
             loadMenu();
+            //allFood = this.ct.getAllFood();
         } catch (IOException ex) {
             Logger.getLogger(CustomerFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,6 +76,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         mainFrame = new javax.swing.JButton();
         delete = new javax.swing.JButton();
         close = new javax.swing.JButton();
+        total = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pizzeria");
@@ -96,6 +100,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         orderList.setSelectionBackground(new java.awt.Color(255, 255, 102));
         jScrollPane1.setViewportView(orderList);
 
+        tableNumber.setFont(new java.awt.Font("Verdana", 3, 11)); // NOI18N
         tableNumber.setText(" ");
         tableNumber.setText("Table "+ this.tableId);
 
@@ -165,6 +170,9 @@ public class CustomerFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        total.setFont(new java.awt.Font("Verdana", 3, 11)); // NOI18N
+        total.setText("Total amount");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,11 +181,12 @@ public class CustomerFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tableNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                                .addComponent(total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -190,9 +199,12 @@ public class CustomerFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addComponent(tableNumber)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(optionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -210,8 +222,12 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         int selectedIndex = orderList.getSelectedIndex();
-        if (selectedIndex != -1)
-        listModel.remove(orderList.getSelectedIndex());
+        if (selectedIndex != -1){
+            FoodData item = (FoodData)listModel.getElementAt(selectedIndex);
+            totalSum-=item.getPrice();
+            total.setText("Total amount        "+totalSum);
+            listModel.remove(orderList.getSelectedIndex());
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
@@ -237,17 +253,20 @@ public class CustomerFrame extends javax.swing.JFrame {
             List<FoodData> food = ct.getFood(categories[j]);
             for(int i = 0; i<food.size(); i++){
                 final JLabel jl = new JLabel();
-                jl.setText(food.get(i).getCategory());
+                jl.setText(food.get(i).getName());
                 JPanel jpItem = new JPanel(); 
                 jpItem.add(jl);
-                
+                //final JLabel price = new JLabel();
+                //price.setText(""+food.get(i).getPrice());
+                //jpItem.add(price);
+                final FoodData foodItem = food.get(i);
                 //jpItem.setPreferredSize(new Dimension(10,10));
                 jpItem.setBackground(new java.awt.Color(153, 255, 153));
                 jpItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
                 jpItem.addMouseListener(new java.awt.event.MouseAdapter() {
                     @Override
                     public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        addItem(evt, jl);
+                        addItem(foodItem);
                     }
                 }); 
                 jp.add(jpItem);
@@ -260,9 +279,12 @@ public class CustomerFrame extends javax.swing.JFrame {
         menu.add(tabbedPane);              
     }
     
-     private void addItem(java.awt.event.MouseEvent evt, JLabel jl) {
+     private void addItem(FoodData food) {
          //JPanel jp = (JPanel) evt.getComponent();
-         this.listModel.addElement(jl.getText().toString());
+         //this.listModel.addElement(jl.getText().toString());
+         this.listModel.addElement(food);         
+         totalSum+=food.getPrice();
+         this.total.setText("Total amount        " +totalSum);
      }
     /**
      * @param args the command line arguments
@@ -311,5 +333,6 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JButton send;
     private javax.swing.JButton sendPrint;
     private javax.swing.JLabel tableNumber;
+    private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }

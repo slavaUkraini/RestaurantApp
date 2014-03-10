@@ -40,6 +40,24 @@ public class Food {
 	 * @param categorie
 	 * @return
 	 */
+        public Iterable<FoodData> getAllFood(){
+            Connection connection = getConnection();
+		Statement st = null;
+		try {
+			st = connection.createStatement();
+			ResultSet resultSet = st.executeQuery("SELECT * FROM " + TABLE_NAME);
+
+			List<FoodData> result = convertResultSetToFoodList(resultSet);
+
+			connection.close();
+
+			return result;
+                            } catch (SQLException e1) {
+                            e1.printStackTrace();
+                            }
+
+                    return Collections.emptyList();
+        }
 	public Iterable<FoodData> getFood(String categorie) {
 		Connection connection = getConnection();
 		Statement st = null;
