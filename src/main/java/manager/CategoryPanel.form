@@ -52,8 +52,8 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="nameOfcategory" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="261" max="-2" attributes="0"/>
+              <Component id="nameOfcategory" min="-2" pref="196" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,7 +85,7 @@
                   <Component id="search_dish" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="delete_dish" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -102,17 +102,15 @@
     <Component class="javax.swing.JComboBox" name="category">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="pizza"/>
-            <StringItem index="1" value="drinks"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox(items);"/>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="CategoryPanel_category"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="addCategory">
@@ -130,7 +128,7 @@
     <Component class="javax.swing.JLabel" name="nameOfcategory">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="18" style="1"/>
+          <Font name="Times New Roman" size="20" style="3"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="0" type="rgb"/>
@@ -151,26 +149,20 @@
               <Table columnCount="4" rowCount="5">
                 <Column editable="true" title="Id" type="java.lang.Integer"/>
                 <Column editable="true" title="Name" type="java.lang.String">
-                  <Data value="margarita"/>
+                  <Data value=""/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
                 <Column editable="true" title="Composition" type="java.lang.String">
-                  <Data value="tomato chese"/>
+                  <Data value=""/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="true" title="Price" type="java.lang.Double">
-                  <Data value="10.0"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
+                <Column editable="true" title="Price" type="java.lang.Double"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

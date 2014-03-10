@@ -6,8 +6,15 @@
 
 package manager;
 
+import com.mycompany.restaurant.UserMainFrame;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 
 /**
@@ -19,14 +26,27 @@ public class CategoryPanel extends javax.swing.JPanel {
     /**
      * Creates new form CategoryPanel
      */
+    
+    String[] items;
     String path=System.getProperty("user.dir");
     private static CategoryPanel reference;
+    DefaultTableModel tbm = new DefaultTableModel(); 
     
-    CategoryPanel() {
+   private CategoryPanel() {
+         try {
+         items = Manager.getThread().getAllCategories(); }
+        // model =(DefaultTableModel) Manager.getThread().getFood(category.getSelectedItem().toString()); }
+          catch (IOException ex) {
+            Logger.getLogger(UserMainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         setBackground(Color.getHSBColor(276,9,95));
         addCategory.setText("  Add category");
         deleteCategory.setText("  Delete category");
+        
+       
+     
+        
     }
      public static CategoryPanel getReference(){
          if (reference==null){
@@ -38,6 +58,25 @@ public class CategoryPanel extends javax.swing.JPanel {
      public JComboBox getCategory(){
          return category;
      }
+     public void addCategoryItem(String name){
+         category.addItem(name);
+     }
+     public void deleteCategoryItem(String name){
+         category.removeItem(name);
+     }
+     public String[] getItemsOfCategory(){
+         return items;
+     }
+     public boolean isCategory(String name){
+       int i=0;
+       while(i<category.getItemCount()){
+           if(category.getItemAt(i) == null ? name == null : category.getItemAt(i).equals(name)) {
+               return true;
+           } 
+           i++;
+       }
+       return false;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,7 +87,7 @@ public class CategoryPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         chose = new javax.swing.JButton();
-        category = new javax.swing.JComboBox();
+        category = new javax.swing.JComboBox(items);
         addCategory = new javax.swing.JButton();
         nameOfcategory = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -67,7 +106,6 @@ public class CategoryPanel extends javax.swing.JPanel {
             }
         });
 
-        category.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "pizza", "drinks" }));
         category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoryActionPerformed(evt);
@@ -83,13 +121,13 @@ public class CategoryPanel extends javax.swing.JPanel {
             }
         });
 
-        nameOfcategory.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        nameOfcategory.setFont(new java.awt.Font("Times New Roman", 3, 20)); // NOI18N
         nameOfcategory.setForeground(new java.awt.Color(0, 0, 51));
         nameOfcategory.setText("Name of category");
 
         menu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "margarita", "tomato chese",  new Double(10.0)},
+                {null, "", "", null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -178,8 +216,8 @@ public class CategoryPanel extends javax.swing.JPanel {
                 .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(nameOfcategory)
-                .addGap(261, 261, 261))
+                .addComponent(nameOfcategory, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(214, 214, 214))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +244,7 @@ public class CategoryPanel extends javax.swing.JPanel {
                     .addComponent(add_dish)
                     .addComponent(search_dish)
                     .addComponent(delete_dish))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -242,14 +280,22 @@ public class CategoryPanel extends javax.swing.JPanel {
 
     private void choseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choseActionPerformed
         // TODO add your handling code here:
+        
         nameOfcategory.setText(category.getSelectedItem().toString());
+      /*  try {
+       System.out.print( Manager.getThread().getFood(category.getSelectedItem().toString()).toString());
+       tbm.addRow( Manager.getThread().getFood(category.getSelectedItem().toString()).toArray() );
+        menu.setModel(tbm);}
+        catch (IOException ex) {
+            Logger.getLogger(UserMainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
     }//GEN-LAST:event_choseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCategory;
     private javax.swing.JButton add_dish;
-    public javax.swing.JComboBox category;
+    private javax.swing.JComboBox category;
     private javax.swing.JButton chose;
     private javax.swing.JButton deleteCategory;
     private javax.swing.JButton delete_dish;
