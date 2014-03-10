@@ -30,12 +30,13 @@ public class CategoryPanel extends javax.swing.JPanel {
     String[] items;
     String path=System.getProperty("user.dir");
     private static CategoryPanel reference;
-    DefaultTableModel tbm = new DefaultTableModel(); 
+    
+   
     
    private CategoryPanel() {
          try {
          items = Manager.getThread().getAllCategories(); }
-        // model =(DefaultTableModel) Manager.getThread().getFood(category.getSelectedItem().toString()); }
+        
           catch (IOException ex) {
             Logger.getLogger(UserMainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -282,13 +283,7 @@ public class CategoryPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         nameOfcategory.setText(category.getSelectedItem().toString());
-      /*  try {
-       System.out.print( Manager.getThread().getFood(category.getSelectedItem().toString()).toString());
-       tbm.addRow( Manager.getThread().getFood(category.getSelectedItem().toString()).toArray() );
-        menu.setModel(tbm);}
-        catch (IOException ex) {
-            Logger.getLogger(UserMainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+      
     }//GEN-LAST:event_choseActionPerformed
 
 
