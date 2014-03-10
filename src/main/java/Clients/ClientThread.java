@@ -15,6 +15,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.List;
 import server.Server;
 
 /**
@@ -76,7 +77,12 @@ public class ClientThread extends Thread{
         return gson.fromJson(response, String[].class);        
     }
     
-
+    public List<FoodData> getFood(String category)throws IOException{
+        out.println("{\"method\":"+"\"getFood\""+",\"params\":[\""+category+"\"]}");
+        String response = in.readLine();
+        Gson gson = new Gson();
+        return gson.fromJson(response, List.class);        
+    }
     public String clockedIn(int userId) throws IOException {
         out.println("{\"method\":"+"\"clockedIn\""+",\"params\":["+userId+"]}");
         return in.readLine();

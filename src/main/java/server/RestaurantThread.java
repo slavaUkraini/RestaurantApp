@@ -160,6 +160,15 @@ public class RestaurantThread extends Thread{
                     // from database
                     out.println(gson.toJson(SessionInfo.dbfood.getAllCategories()));
                  }
+                 else if(method.equals("getFood")){
+                     String category = jsonRequest.getParam(0);
+                    // from database
+                    out.println(gson.toJson(SessionInfo.dbfood.getFood(category)));
+                 }
+                 else if(method.equals("getEmployees")){
+                    // from database
+                    out.println(gson.toJson(SessionInfo.dbworkers.getWorkers()));
+                 }
                 else if(method.equals("changePass")){
                     //SessionInfo.password = jsonRequest.getParam(0);
                     File f = new File("Pass.txt");
