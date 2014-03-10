@@ -6,7 +6,9 @@
 
 package Clients;
 
+import MyClasses.FoodData;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.List;
+import javax.swing.JOptionPane;
 import server.Server;
 
 /**
@@ -80,8 +83,9 @@ public class ClientThread extends Thread{
     public List<FoodData> getFood(String category)throws IOException{
         out.println("{\"method\":"+"\"getFood\""+",\"params\":[\""+category+"\"]}");
         String response = in.readLine();
+        JOptionPane.showMessageDialog(null, response);
         Gson gson = new Gson();
-        return gson.fromJson(response, List.class);        
+        return gson.fromJson(response, new TypeToken<List<FoodData>>(){}.getType());        
     }
     public String clockedIn(int userId) throws IOException {
         out.println("{\"method\":"+"\"clockedIn\""+",\"params\":["+userId+"]}");

@@ -1,6 +1,7 @@
 
 
 package DBofrestaurant;
+import MyClasses.FoodData;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -215,60 +216,4 @@ public class Food {
                     return null;
                 }
 	}
-        
-        public class FoodData{
-		
-		private String name;
-		private String category;
-		private String compound;
-		private double price;
-		public FoodData(String name, String category, String compound,
-				double price) {
-			super();
-			this.name = name;
-			this.category = category;
-			this.compound = compound;
-			this.price = price;
-		}
-		
-		public FoodData(){
-			
-		}
-		
-		public String getName() {
-			return name;
-		}
-		public void setName(String name) {
-			this.name = name;
-		}
-		public String getCategory() {
-			return category;
-		}
-		public void setCategory(String category) {
-			this.category = category;
-		}
-		public String getCompound() {
-			return compound;
-		}
-		public void setCompound(String compound) {
-			this.compound = compound;
-		}
-		public double getPrice() {
-			return price;
-		}
-		public void setPrice(double price) {
-			this.price = price;
-		}
-		
-		@Override
-		public String toString() {
-			return "FoodData [name=" + name + ", category=" + category
-					+ ", compound=" + compound + ", price=" + price + "]";
-		}
-	}
-
 }
-
-
-
-

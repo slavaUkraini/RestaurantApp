@@ -6,6 +6,7 @@
 
 package com.mycompany.restaurant;
 import Clients.ClientThread;
+import MyClasses.FoodData;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +14,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -229,26 +231,28 @@ public class CustomerFrame extends javax.swing.JFrame {
         menu.setLayout(new BorderLayout());
         String[] categories = ct.getAllCategories();
         for(int j = 0; j<categories.length; j++){
-        JPanel jp = new JPanel();
-        jp.setLayout(new java.awt.GridLayout(4, 7));
-        //jp.setPreferredSize(new Dimension(100,100));
-        for(int i = 1; i<16; i++){
-            final JLabel jl = new JLabel();
-            jl.setText("Item "+i);
-            JPanel jpItem = new JPanel(); 
-            //jpItem.setPreferredSize(new Dimension(10,10));
-            jpItem.setBackground(new java.awt.Color(153, 255, 153));
-            jpItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            jpItem.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    addItem(evt, jl);
-                }
-            });  
-            jpItem.add(jl);
-            jp.add(jpItem);
-    } 
-        
+            JPanel jp = new JPanel();
+            jp.setLayout(new java.awt.GridLayout(4, 7));
+            //jp.setPreferredSize(new Dimension(100,100
+            List<FoodData> food = ct.getFood(categories[j]);
+            for(int i = 0; i<food.size(); i++){
+                final JLabel jl = new JLabel();
+                jl.setText(food.get(i).getName());
+                JPanel jpItem = new JPanel(); 
+                jpItem.add(jl);
+                
+                //jpItem.setPreferredSize(new Dimension(10,10));
+                jpItem.setBackground(new java.awt.Color(153, 255, 153));
+                jpItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                jpItem.addMouseListener(new java.awt.event.MouseAdapter() {
+                    @Override
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        addItem(evt, jl);
+                    }
+                }); 
+                jp.add(jpItem);
+            } 
+            
         tabbedPane.addTab(categories[j], jp);
         }
         //JPanel jp2 = new JPanel();

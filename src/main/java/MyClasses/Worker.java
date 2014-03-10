@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 
-package server;
+package MyClasses;
 
 /**
  *
- * @author Vita
+ * @author anzhela
  */
-public class Worker {
+	public class Worker {
 		private String name;
 		private String surname;
 		private int experiense;
@@ -60,4 +60,5 @@ public class Worker {
                     return String.format("name = %s , surname = %s , experiense = %s, post = %s, salary = %s ", name,surname,experiense,post,salary);
                 }
 	}
+
 

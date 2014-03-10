@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 
-package server;
+package MyClasses;
 
 /**
  *
- * @author Vita
+ * @author anzhela
  */
 public class FoodData{
 		
