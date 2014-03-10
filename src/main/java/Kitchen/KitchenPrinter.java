@@ -7,6 +7,7 @@
 package Kitchen;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 
 /**
  *
@@ -17,8 +18,11 @@ public class KitchenPrinter extends javax.swing.JFrame {
     /**
      * Creates new form KitchenPrinter
      */
+    String path=System.getProperty("user.dir");
+    
     public KitchenPrinter() {
         this.getContentPane().setBackground(Color.getHSBColor(153,255,153));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\cook32.png"));
         initComponents();
    }
 

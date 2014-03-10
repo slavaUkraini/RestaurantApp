@@ -123,6 +123,7 @@ public class AddCategoryFrame extends javax.swing.JFrame {
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // TODO add your handling code here:
          JOptionPane.showMessageDialog(null, " Add category  -   " +nameOfCategory.getText() );
+         
          dispose();
     }//GEN-LAST:event_okActionPerformed
 
