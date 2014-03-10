@@ -237,7 +237,7 @@ public class CustomerFrame extends javax.swing.JFrame {
             List<FoodData> food = ct.getFood(categories[j]);
             for(int i = 0; i<food.size(); i++){
                 final JLabel jl = new JLabel();
-                jl.setText(food.get(i).getName());
+                jl.setText(food.get(i).getCategory());
                 JPanel jpItem = new JPanel(); 
                 jpItem.add(jl);
                 

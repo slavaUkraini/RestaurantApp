@@ -12,8 +12,9 @@ package MyClasses;
  */
 public class FoodData{
 		
-		private String name;
 		private String category;
+                private String name;
+		
 		private String compound;
 		private double price;
 		public FoodData(String name, String category, String compound,

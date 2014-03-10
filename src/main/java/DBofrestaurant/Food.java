@@ -45,7 +45,7 @@ public class Food {
 		Statement st = null;
 		try {
 			st = connection.createStatement();
-			ResultSet resultSet = st.executeQuery("SELECT `" + NAME_COLUMN +"`, `"+COMPOUND_COLUMN+""
+			ResultSet resultSet = st.executeQuery("SELECT `" + NAME_COLUMN +"`, `"+CATEGORY_COLUMN+"`, `"+COMPOUND_COLUMN+"`, `"+PRICE_COLUMN+""
 					+ "` FROM " + TABLE_NAME + " WHERE `" + CATEGORY_COLUMN
 					+ "`='" + categorie + "'");
 
@@ -165,8 +165,10 @@ public class Food {
 		try {
 			while (resultSet.next()) {
 				FoodData food=new FoodData();
-				food.setCategory(resultSet.getString(NAME_COLUMN));
+                                food.setName(resultSet.getString(NAME_COLUMN));
+				food.setCategory(resultSet.getString(CATEGORY_COLUMN));
 				food.setCompound(resultSet.getString(COMPOUND_COLUMN));
+                                food.setPrice(Double.parseDouble(resultSet.getString(PRICE_COLUMN)));
 				list.add(food);
 			}
 		} catch (SQLException e) {

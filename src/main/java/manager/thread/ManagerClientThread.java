@@ -9,6 +9,7 @@ package manager.thread;
 import MyClasses.FoodData;
 import MyClasses.Worker;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -103,14 +104,14 @@ public class ManagerClientThread extends Thread{
         out.println("{\"method\":"+"\"getEmployees\""+",\"params\":[]}");
         String response = in.readLine();
         Gson gson = new Gson();
-        return gson.fromJson(response, List.class);        
+        return gson.fromJson(response, new TypeToken<List<Worker>>(){}.getType());        
     }
     
     public List<FoodData> getFood(String category)throws IOException{
         out.println("{\"method\":"+"\"getFood\""+",\"params\":[\""+category+"\"]}");
         String response = in.readLine();
         Gson gson = new Gson();
-        return gson.fromJson(response, List.class);        
+        return gson.fromJson(response, new TypeToken<List<FoodData>>(){}.getType());        
     }
     
     public void closeThread(){

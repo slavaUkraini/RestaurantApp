@@ -53,13 +53,6 @@ public class RestaurantThread extends Thread{
                     continue;
                 //////lots of codes here :)
                 Gson gson = new Gson();
-                ///правильно розпарсити
-                /*File f = new File("f.txt");
-                f.createNewFile();
-                PrintWriter out2 = new PrintWriter(f);
-                out2.println(str);
-                out2.println(s.getMethod());
-                out2.close();*/
                 Request jsonRequest = gson.fromJson(str, Request.class);                
                 String method = jsonRequest.getMethod();
                 if(method.equals("check")){

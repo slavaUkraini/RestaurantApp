@@ -261,8 +261,8 @@ public static void main(String[] args) throws SQLException {
         
         //object1.insertManager("Віктор", "Тихонов",4,5000);
         //object1.insertManager("Вікторія", "Орлюк",6,7000);
-        object1.insertMenu(300,"піца","Барбекю","курка,моцарела,соус барбекю", 30);
-        object1.insertMenu(223, "напої", "Coca-Cola", " 0.5 ", 10);
+        object1.insertMenu(121,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(324, "десерти", "чіз кейк", "", 10);
         }
   }
 
