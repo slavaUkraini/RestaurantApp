@@ -399,27 +399,13 @@ public class PasswordFrame extends javax.swing.JFrame {
         System.out.println(a.length);
         System.out.println(b.length);
         try {
-            /*if(a.length!=b.length) {
-            password.setText("");
-            pw=""; 
-            JOptionPane.showMessageDialog(null, " Incorrect password! ");}
-            else*/
-            /*if (chek(a,b)==false) {
-            password.setText("");
-            pw=""; 
-            JOptionPane.showMessageDialog(null, " Incorrect password! ");}
-            else {
-            new MainMenu().setVisible(true);
-            this.dispose();
-            }*/
-            
             boolean response = Manager.getThread().checkPass(b);
             System.out.println(response);
             if(response){
                 new MainMenu().setVisible(true);
                 this.dispose();
             }
-            else {JOptionPane.showMessageDialog(this, " Incorrect password! ");}
+            else {JOptionPane.showMessageDialog(this, " Incorrect password! "); pw="";password.setText("");}
         }
         catch (UnknownHostException ex) {
             System.out.println("HostException");

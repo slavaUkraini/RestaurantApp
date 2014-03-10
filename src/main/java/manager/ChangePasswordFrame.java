@@ -8,10 +8,14 @@ package manager;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.net.UnknownHostException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -21,18 +25,24 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
     
     String path=System.getProperty("user.dir");
     String pw="";
-   
+    char[] s={'0','1','2','3','4','5','6','7','8','9'};
+    boolean a= false;
+    boolean a1=false;
+    boolean a2=false;
+    
     /**
      * Creates new form ChangePasswordFrame
      */
     public ChangePasswordFrame() {
+        
         this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pw.png"));
         initComponents();
         setResizable(false);
         password.setText("");
-        password1.setText("");
-        password2.setText("");
+        newPassword.setText("");
+        confNewPassword.setText("");
+      
     }
 
     /**
@@ -48,13 +58,11 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
         password = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        password1 = new javax.swing.JPasswordField();
+        newPassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        password2 = new javax.swing.JPasswordField();
+        confNewPassword = new javax.swing.JPasswordField();
         changeB = new javax.swing.JButton();
-        checkps = new javax.swing.JLabel();
-        checknps = new javax.swing.JLabel();
-        checkcfp = new javax.swing.JLabel();
+        cancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,7 +71,30 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
         jLabel1.setText("Enter your password:");
 
         password.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        password.setText("jPasswordField1");
+        password.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                passwordComponentAdded(evt);
+            }
+        });
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
+        password.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                passwordAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordKeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         jLabel2.setText("Change password");
@@ -72,16 +103,15 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 51, 0));
         jLabel3.setText("Enter new password:");
 
-        password1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        password1.setText("jPasswordField1");
+        newPassword.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 0));
         jLabel4.setText("Confirm password:");
 
-        password2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        password2.setText("jPasswordField1");
+        confNewPassword.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        changeB.setBackground(new java.awt.Color(255, 255, 153));
         changeB.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         changeB.setText("Change");
         changeB.addActionListener(new java.awt.event.ActionListener() {
@@ -90,83 +120,167 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
             }
         });
 
-        checkps.setText("invalid/corect");
-
-        checknps.setText("jLabel6");
-
-        checkcfp.setText("jLabel7");
+        cancel.setBackground(new java.awt.Color(255, 204, 204));
+        cancel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cancel.setText("Cancel");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(174, 174, 174)
-                .addComponent(jLabel2)
-                .addGap(186, 186, 186))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(password))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(confNewPassword))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(password))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(changeB, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkps, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(checkcfp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                        .addComponent(checknps, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(changeB, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel2)
-                .addGap(46, 46, 46)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(checkps))
+                    .addComponent(jLabel1))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(checknps)
-                    .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkcfp))
-                .addGap(47, 47, 47)
-                .addComponent(changeB, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                    .addComponent(confNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(changeB, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(509, 382));
+        setSize(new java.awt.Dimension(425, 361));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+     private void check1(){
+           try {
+            boolean response = Manager.getThread().checkPass(password.getPassword());
+            System.out.println(response);
+            if(response){
+                a=true;
+            }
+            else {a=false;}
+        }
+        catch (UnknownHostException ex) {
+            System.out.println("HostException");
+            Logger.getLogger(PasswordFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            System.out.println("OIException");
+            Logger.getLogger(PasswordFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       }
+   
+    private void check2(){
+       
+       if ( (newPassword.getPassword().length)!=(confNewPassword.getPassword().length)){a2=false;}
+       else { 
+           int i=0;
+           while(i<newPassword.getPassword().length){
+            if(newPassword.getPassword()[i]==confNewPassword.getPassword()[i])
+           {a2=true;}
+            i++;
+           }
+       }
+    }
+    private void check(){
+        int i=0; int j=0;
+        char[] t =newPassword.getPassword();
+        while(i<t.length){
+            while(j<s.length){
+               if( t[i]==s[j]){a1=true;}
+                j++;
+            }
+            i++;
+        }
+       
+    }
+   
     private void changeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBActionPerformed
-        try {
-            Manager.getThread().changePass(this.password1.getPassword());
+        check1();
+        check2();
+        check();
+         System.out.print("a1=== " +a1+ "a= " +a +"a2="+a2);
+        if((a1==true)&&(a==true)&&(a2==true)){
+           try {
+            Manager.getThread().changePass(this.newPassword.getPassword());
             JOptionPane.showMessageDialog(null, " Password is changed ! ");
         } catch (UnknownHostException ex) {
             Logger.getLogger(ChangePasswordFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         dispose();
+       }
+       
+       else{
+           confNewPassword.setText("");
+           newPassword.setText("");
+           password.setText("");
+           
+           JOptionPane.showMessageDialog(this, " Incorrect password! You can only enter numbers ! Check data and try again!"); 
+        }
     }//GEN-LAST:event_changeBActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_cancelActionPerformed
+
+  
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code 
+        //checkps.setText("Only numbers fhfhfhfg!");
+       
+        ///
+    }//GEN-LAST:event_passwordActionPerformed
+
+    private void passwordComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_passwordComponentAdded
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_passwordComponentAdded
+
+    private void passwordAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_passwordAncestorAdded
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_passwordAncestorAdded
+
+    private void passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_passwordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -204,16 +318,14 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancel;
     private javax.swing.JButton changeB;
-    private javax.swing.JLabel checkcfp;
-    private javax.swing.JLabel checknps;
-    private javax.swing.JLabel checkps;
+    private javax.swing.JPasswordField confNewPassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField newPassword;
     private javax.swing.JPasswordField password;
-    private javax.swing.JPasswordField password1;
-    private javax.swing.JPasswordField password2;
     // End of variables declaration//GEN-END:variables
 }
