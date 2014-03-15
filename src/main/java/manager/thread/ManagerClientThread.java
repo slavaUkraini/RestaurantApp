@@ -73,9 +73,13 @@ public class ManagerClientThread extends Thread{
         out.println("{\"method\":"+"\"deleteDish\""+",\"params\":[\""+name+"\"]}");
         
     }
+    public void deleteDish(int id){
+        out.println("{\"method\":"+"\"deleteDishId\""+",\"params\":[\""+id+"\"]}");
+        
+    }
     
     public void deleteEmployee(int id){
-        out.println("{\"method\":"+"\"deleteEmploye\""+",\"params\":[\""+id+"\"]}");
+        out.println("{\"method\":"+"\"deleteEmployee\""+",\"params\":[\""+id+"\"]}");
     }
     
     public void changePass(char[] pass){

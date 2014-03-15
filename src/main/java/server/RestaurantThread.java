@@ -149,6 +149,12 @@ public class RestaurantThread extends Thread{
                     //delete from database
                     SessionInfo.db.DeleteWORKERS(id);
                 }
+                 else if(method.equals("deleteDishId")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    //delete from database
+                    SessionInfo.db.DeleteMenu(id);
+                }
+              
                  else if(method.equals("getAllCategories")){
                     // from database
                     out.println(gson.toJson(SessionInfo.dbfood.getAllCategories()));
