@@ -9,7 +9,58 @@ package MyClasses;
  *
  * @author anzhela
  */
-public class FoodData {
+public class FoodData{
+		
+		private String category;
+                private String name;
+		
+		private String compound;
+		private double price;
+		public FoodData(String name, String category, String compound,
+				double price) {
+			super();
+			this.name = name;
+			this.category = category;
+			this.compound = compound;
+			this.price = price;
+		}
+		
+		public FoodData(){
+			
+		}
+		
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public String getCategory() {
+			return category;
+		}
+		public void setCategory(String category) {
+			this.category = category;
+		}
+		public String getCompound() {
+			return compound;
+		}
+		public void setCompound(String compound) {
+			this.compound = compound;
+		}
+		public double getPrice() {
+			return price;
+		}
+		public void setPrice(double price) {
+			this.price = price;
+		}
+		
+		@Override
+		public String toString() {
+                    
+                    return (name + "        " + price);
+		}
+               
+	}
 
     private int id;
     private String category;
