@@ -24,7 +24,7 @@ public class Food {
 	private static final String DB = "org.sqlite.JDBC";
 
 	private static final String TABLE_NAME = "MENU";
-
+        private static final String ID_COLUMN = "Id";
 	private static final String NAME_COLUMN = "NAME";
 	private static final String CATEGORY_COLUMN = "CATEGORY";
 	private static final String PRICE_COLUMN = "PRICE";
@@ -63,7 +63,7 @@ public class Food {
 		Statement st = null;
 		try {
 			st = connection.createStatement();
-			ResultSet resultSet = st.executeQuery("SELECT `" + NAME_COLUMN +"`, `"+CATEGORY_COLUMN+"`, `"+COMPOUND_COLUMN+"`, `"+PRICE_COLUMN+""
+			ResultSet resultSet = st.executeQuery("SELECT `" +ID_COLUMN+"`, `"+ NAME_COLUMN +"`, `"+CATEGORY_COLUMN+"`, `"+COMPOUND_COLUMN+"`, `"+PRICE_COLUMN+""
 					+ "` FROM " + TABLE_NAME + " WHERE `" + CATEGORY_COLUMN
 					+ "`='" + categorie + "'");
 
@@ -131,7 +131,7 @@ public class Food {
 
 		try {
 			while (resultSet.next()) {
-                                FoodData food = new FoodData(resultSet.getString(NAME_COLUMN), resultSet.getString(CATEGORY_COLUMN), resultSet.getString(COMPOUND_COLUMN), resultSet.getDouble(PRICE_COLUMN));
+                                FoodData food = new FoodData(resultSet.getInt(ID_COLUMN),resultSet.getString(NAME_COLUMN), resultSet.getString(CATEGORY_COLUMN), resultSet.getString(COMPOUND_COLUMN), resultSet.getDouble(PRICE_COLUMN));
 				list.add(food);
 			}
 		} catch (SQLException e) {
@@ -183,6 +183,7 @@ public class Food {
 		try {
 			while (resultSet.next()) {
 				FoodData food=new FoodData();
+                                food.setId(resultSet.getInt(ID_COLUMN));
                                 food.setName(resultSet.getString(NAME_COLUMN));
 				food.setCategory(resultSet.getString(CATEGORY_COLUMN));
 				food.setCompound(resultSet.getString(COMPOUND_COLUMN));
