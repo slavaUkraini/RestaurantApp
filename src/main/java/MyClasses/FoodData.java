@@ -5,12 +5,17 @@
  */
 package MyClasses;
 
+import DBofrestaurant.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  *
  * @author anzhela
  */
 public class FoodData{
-
+   
     private int id;
     private String category;
     private String name;
@@ -30,7 +35,7 @@ public class FoodData{
     public FoodData() {
 
     }
-
+    
     public int getId() {
         return id;
     }

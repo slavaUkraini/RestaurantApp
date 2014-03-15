@@ -6,7 +6,11 @@
 
 package server;
 
+import DBofrestaurant.Food;
+import MyClasses.FoodData;
+import MyClasses.Order;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,9 +23,11 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 //import javax.swing.MultiUIDefaults.MultiUIDefaultsEnumerator.Type;
 
 /**
@@ -88,6 +94,22 @@ public class RestaurantThread extends Thread{
                     if (ll.size()==0)
                         out.println("null");
                     else out.println(gson.toJson(ll));
+                }
+                else if(method.equals("getOrder")){
+                    int id = Integer.parseInt(jsonRequest.getParam(0));
+                    //List<Order> foods =  (List<Order>) SessionInfo.dborder.getFoods(id);
+                    List<FoodData> ll = (List<FoodData>) Food.convert(SessionInfo.dborder.getFoods(id));
+                    if (ll.isEmpty())
+                        out.println("null");
+                    else  out.println(gson.toJson(ll)); 
+                }
+                else if(method.equals("addOrder")){
+                    //List <Order> order = gson.fromJson(jsonRequest.getParam(0), new TypeToken<List<Order>>(){}.getType());        
+                    int tableNumber = Integer.parseInt(jsonRequest.getParam(0));
+                    String[] food = jsonRequest.getParams();
+                    for (String food1 : food) {
+                        SessionInfo.db.insertOrder(Integer.parseInt(food1), 1, tableNumber);
+                    }
                 }
                 else if(method.equals("clockedIn")){
                     int id = Integer.parseInt(jsonRequest.getParam(0));

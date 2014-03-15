@@ -7,6 +7,7 @@
 package Clients;
 
 import MyClasses.FoodData;
+import MyClasses.Order;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
@@ -17,6 +18,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import server.Server;
@@ -97,6 +99,32 @@ public class ClientThread extends Thread{
     public String clockedIn(int userId) throws IOException {
         out.println("{\"method\":"+"\"clockedIn\""+",\"params\":["+userId+"]}");
         return in.readLine();
+    }
+    
+    public void addOrder(List<Order> food){
+       // Gson gson = new Gson();
+        if (food.isEmpty())
+            return;
+        String str = "{\"method\":"+"\"addOrder\""+",\"params\":[";
+        str+=food.get(0).getTable();
+        str+=",";
+        for(int i =0;i<food.size(); i++){
+            str+=food.get(i).getId();
+            str+=",";
+        }
+        str=str.substring(0, str.length()-1);//забираємо останню кому
+        str+="]}";
+        //JOptionPane.showMessageDialog(null, str);
+        out.println(str); 
+    }
+    public Iterable<FoodData> getOrder(int tableNumber) throws IOException{
+        out.println("{\"method\":"+"\"getOrder\""+",\"params\":["+tableNumber+"]}");
+        String response = in.readLine();
+        //JOptionPane.showMessageDialog(null, response);
+        if(response.equals("null"))
+            return new ArrayList<FoodData>();
+        Gson gson = new Gson();
+        return gson.fromJson(response, new TypeToken<List<FoodData>>(){}.getType());        
     }
 
     public void clockIn(int userId) {

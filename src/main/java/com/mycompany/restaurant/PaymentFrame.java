@@ -387,6 +387,7 @@ public class PaymentFrame extends javax.swing.JFrame {
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         try{
             double sum = Double.parseDouble(this.jTextField1.getText().toString());
+            
             this.ct.closeTable(this.tableNumber);
         }
         catch(java.lang.NumberFormatException e){

@@ -3,51 +3,69 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.restaurant;
+
 import Clients.ClientThread;
+import DBofrestaurant.Food;
 import MyClasses.FoodData;
+import MyClasses.Order;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import server.SessionInfo;
+
 /**
  *
  * @author Vita
  */
+
 public class CustomerFrame extends javax.swing.JFrame {
+    Color colorOrder = new Color(240,240,240);
     private final ClientThread ct;
     private final int tableId;
     private DefaultListModel listModel;
     private double totalSum = 0;//замінити на щось нормальне
-    //private List<FoodData> allFood;
+    private List<FoodData> order;
+    private List<Order> newOrder = new ArrayList<Order>();
     /**
      * Creates new form CustomerFrame
      */
-    String path=System.getProperty("user.dir");
-    
+    String path = System.getProperty("user.dir");
+
     public CustomerFrame(ClientThread ct, int tableId) {
         this.tableId = tableId;
         this.ct = ct;
-        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
+
+        this.getContentPane().setBackground(Color.getHSBColor(276, 9, 95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path + "\\src\\main\\java\\manager\\image\\pizza.png"));
         initComponents();
-        menu.setBackground(Color.getHSBColor(276,9,95));
-        optionPanel.setBackground(Color.getHSBColor(276,9,95));
+        menu.setBackground(Color.getHSBColor(276, 9, 95));
+        optionPanel.setBackground(Color.getHSBColor(276, 9, 95));
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
-        this.setLocation (screenWidth / 2 - this.getWidth()/2, screenHeight / 2 - this.getHeight() / 2);
+        this.setLocation(screenWidth / 2 - this.getWidth() / 2, screenHeight / 2 - this.getHeight() / 2);
         try {
             loadMenu();
+            order = (List<FoodData>) ct.getOrder(tableId);//(List<FoodData>) Food.convert(SessionInfo.dborder.getFoods(tableId));//server request
+            for (int i = 0; i<order.size(); i++){
+            if(order.get(i)==null)
+            order.remove(i);
+            }
+            //JOptionPane.showMessageDialog(null, order.size());
+            loadOrder();
+            
             //allFood = this.ct.getAllFood();
         } catch (IOException ex) {
             Logger.getLogger(CustomerFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -217,17 +235,21 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         new MainFrame(ct).setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_mainFrameActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         int selectedIndex = orderList.getSelectedIndex();
-        if (selectedIndex != -1){
-            FoodData item = (FoodData)listModel.getElementAt(selectedIndex);
-            totalSum-=item.getPrice();
-            total.setText("Total amount        "+totalSum);
+        if (selectedIndex != -1) {
+            FoodData item = (FoodData) listModel.getElementAt(selectedIndex);
+            if(orderList.getCellRenderer().getListCellRendererComponent(orderList, item, selectedIndex, true, false).getBackground().equals(this.colorOrder))
+               return;        
+            totalSum -= item.getPrice();
+            total.setText("Total amount        " + totalSum);
+            newOrder.remove(orderList.getSelectedIndex()-order.size());
+        
             listModel.remove(orderList.getSelectedIndex());
-        }
+            }
     }//GEN-LAST:event_deleteActionPerformed
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
@@ -238,23 +260,40 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
+        ct.addOrder(this.newOrder);
+        //JOptionPane.showMessageDialog(new JFrame(), SessionInfo.db.k);
+        new MainFrame(ct).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_sendActionPerformed
 
-    private void loadMenu() throws IOException{
+    private void loadOrder() {
+        if (order.isEmpty()) {
+            return;
+        }
+        for (int i = 0; i < order.size(); i++) {
+            this.listModel.addElement(order.get(i));
+            this.orderList.setCellRenderer(new MyListCellThing());
+            
+            totalSum += order.get(i).getPrice();
+            this.total.setText("Total amount        " + totalSum);
+        }
+    }
+
+    private void loadMenu() throws IOException {
         Font font = new Font("Verdana", Font.PLAIN, 12);
         final JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setFont(font);
         menu.setLayout(new BorderLayout());
         String[] categories = ct.getAllCategories();
-        for(int j = 0; j<categories.length; j++){
+        for (int j = 0; j < categories.length; j++) {
             JPanel jp = new JPanel();
             jp.setLayout(new java.awt.GridLayout(4, 7));
             //jp.setPreferredSize(new Dimension(100,100
             List<FoodData> food = ct.getFood(categories[j]);
-            for(int i = 0; i<food.size(); i++){
+            for (int i = 0; i < food.size(); i++) {
                 final JLabel jl = new JLabel();
                 jl.setText(food.get(i).getName());
-                JPanel jpItem = new JPanel(); 
+                JPanel jpItem = new JPanel();
                 jpItem.add(jl);
                 //final JLabel price = new JLabel();
                 //price.setText(""+food.get(i).getPrice());
@@ -268,24 +307,26 @@ public class CustomerFrame extends javax.swing.JFrame {
                     public void mouseClicked(java.awt.event.MouseEvent evt) {
                         addItem(foodItem);
                     }
-                }); 
+                });
                 jp.add(jpItem);
-            } 
-            
-        tabbedPane.addTab(categories[j], jp);
+            }
+
+            tabbedPane.addTab(categories[j], jp);
         }
         //JPanel jp2 = new JPanel();
         //tabbedPane.addTab("Beverages", jp2);
-        menu.add(tabbedPane);              
+        menu.add(tabbedPane);
     }
-    
-     private void addItem(FoodData food) {
+
+    private void addItem(FoodData food) {
          //JPanel jp = (JPanel) evt.getComponent();
-         //this.listModel.addElement(jl.getText().toString());
-         this.listModel.addElement(food);         
-         totalSum+=food.getPrice();
-         this.total.setText("Total amount        " +totalSum);
-     }
+        //this.listModel.addElement(jl.getText().toString());
+        this.listModel.addElement(food);
+        totalSum += food.getPrice();
+        this.total.setText("Total amount        " + totalSum);
+        newOrder.add(new Order(food.getId(), 1, this.tableId));
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -316,7 +357,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new CustomerFrame().setVisible(true);
+                // new CustomerFrame().setVisible(true);
             }
         });
     }
@@ -335,4 +376,21 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel tableNumber;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
+private class MyListCellThing extends JLabel implements ListCellRenderer {
+
+    public MyListCellThing() {
+        setOpaque(true);
+    }
+
+    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        // Assumes the stuff in the list has a pretty toString
+        setText(value.toString());
+        if(index<order.size())
+        setBackground(new Color(240,240,240));
+        else if (isSelected)
+            setBackground(new Color(0,230,230));
+        else setBackground(new Color(255,255,255));
+        return this;
+    }
+}
 }

@@ -2,6 +2,7 @@
 
 package DBofrestaurant;
 import MyClasses.FoodData;
+import MyClasses.Order;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -40,6 +42,20 @@ public class Food {
 	 * @param categorie
 	 * @return
 	 */
+        public static Iterable<FoodData> convert(Iterable<Order> order){
+        Food foodClass = new Food();
+        List<FoodData> food = new ArrayList<FoodData>();
+        Iterator<Order> iterator = order.iterator();
+        while(iterator.hasNext()){
+            Order item = iterator.next();
+            if(item==null)
+                continue;
+            for(int i = 0; i<item.getAmount(); i++){
+                food.add(foodClass.searchDish(item.getId()));
+            }
+        }
+        return food;
+    }
         public Iterable<FoodData> getAllFood(){
             Connection connection = getConnection();
 		Statement st = null;
@@ -117,6 +133,23 @@ public class Food {
 		}
 
 		return Collections.emptyList();
+	}
+                public FoodData searchDish(int id) {
+
+		Connection connection = getConnection();
+		Statement st = null;
+		try {
+			st = connection.createStatement();
+			ResultSet resultSet = st.executeQuery("SELECT * FROM " + TABLE_NAME+" WHERE `"+ID_COLUMN+"`='"+id+"'");
+                        FoodData result = new FoodData(id, resultSet.getString(NAME_COLUMN),resultSet.getString(CATEGORY_COLUMN),resultSet.getString(COMPOUND_COLUMN),resultSet.getDouble(PRICE_COLUMN));
+			connection.close();
+
+			return result;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		return null;
 	}
         
          public static void main(String[] args) {

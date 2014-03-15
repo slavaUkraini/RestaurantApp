@@ -2,6 +2,7 @@ package server;
 
 import DBofrestaurant.CreationofDB;
 import DBofrestaurant.Food;
+import DBofrestaurant.Orders;
 import DBofrestaurant.Workers;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class SessionInfo {
     public static CreationofDB db = new CreationofDB();
     public static Food dbfood= new Food();
     public static Workers dbworkers = new Workers();
+    public static Orders dborder = new Orders();
     
    //public static String password = "1234";  
    public static final int maxTables = 111;
