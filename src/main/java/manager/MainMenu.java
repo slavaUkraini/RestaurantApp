@@ -29,15 +29,18 @@ public class MainMenu extends javax.swing.JFrame {
      */
    
     public MainMenu() {
-        this.categoryP = new CategoryPanel();
+        this.categoryP =  CategoryPanel.getReference();
         
        // jPanel1=new NumberPanel();
         this.add(categoryP);
-         this.pack();
+        this.pack();
+        
         this.add(historyP);
-         this.pack();
+        this.pack();
+        
         this.add(personelP);
         this.pack();
+        
         this.setSize(FORM_WIDTH, FORM_HEIGHT);
         historyP.setVisible(false);
         personelP.setVisible(false);
@@ -107,7 +110,7 @@ public class MainMenu extends javax.swing.JFrame {
         jMenu1.add(viewCategory);
 
         deleteCategory.setIcon(new javax.swing.ImageIcon(path+"\\src\\main\\java\\manager\\image\\delete.png"));
-        deleteCategory.setText("delette");
+        deleteCategory.setText("delete");
         deleteCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteCategoryActionPerformed(evt);

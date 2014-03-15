@@ -25,7 +25,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new javax.swing.ImageIcon(path+&quot;\\src\\main\\java\\manager\\image\\delete.png&quot;)" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="delette"/>
+                <Property name="text" type="java.lang.String" value="delete"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCategoryActionPerformed"/>

@@ -118,10 +118,21 @@ public class DeleteCategoryFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cancelActionPerformed
 
+    
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, " Delete category!" + nameOfCategory.getText());
+        
+        if((CategoryPanel.getReference().isCategory(nameOfCategory.getText().toString())==false)){
+            nameOfCategory.setText("");
+            JOptionPane.showMessageDialog(null, " No such category - " + nameOfCategory.getText()+ " !");
+       }
+        else{
+        CategoryPanel.getReference().deleteCategoryItem(nameOfCategory.getText());
+        JOptionPane.showMessageDialog(null, " Delete category - " + nameOfCategory.getText()+ " !");
+        // треба , ще дописати , щоб воно якось з бази його забирало , ну не завадило б
+        
         dispose();
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     /**
