@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -28,7 +29,8 @@ class Tables{
    LinkedList<Integer> tables = new LinkedList<Integer>(); 
 }
 public class SessionInfo {
-    
+   // public static KitchenPrinter printer;
+    public static List<String> kitchenOrder = new ArrayList<String>();
     public static CreationofDB db = new CreationofDB();
     public static Food dbfood= new Food();
     public static Workers dbworkers = new Workers();
@@ -42,14 +44,18 @@ public class SessionInfo {
    private Tables[] servers = new Tables[maxServers];
    private boolean[] activeServers = new boolean[maxServers]; //true - працівники, що зараз на роботі
    private Map<Integer,Date> clockin;
+    public static double[] totalMoney = new double[maxServers];
+   
      
      private SessionInfo(){
+             
          clockin = new HashMap<Integer,Date>();
          for(int i = 0; i<maxTables; i++){
              tables[i]=0;
          }
          for (int i=0; i<maxServers;i++){
              servers[i]=new Tables();
+             totalMoney[i]=0;
          }
      }
      public static SessionInfo getReference(){

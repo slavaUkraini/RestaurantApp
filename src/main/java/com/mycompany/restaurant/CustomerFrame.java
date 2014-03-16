@@ -16,7 +16,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,6 +36,7 @@ public class CustomerFrame extends javax.swing.JFrame {
     Color colorOrder = new Color(240,240,240);
     private final ClientThread ct;
     private final int tableId;
+    private final int userId;
     private DefaultListModel listModel;
     private double totalSum = 0;//замінити на щось нормальне
     private List<FoodData> order;
@@ -42,9 +46,10 @@ public class CustomerFrame extends javax.swing.JFrame {
      */
     String path = System.getProperty("user.dir");
 
-    public CustomerFrame(ClientThread ct, int tableId) {
+    public CustomerFrame(ClientThread ct, int tableId, int userId) {
         this.tableId = tableId;
         this.ct = ct;
+        this.userId = userId;
 
         this.getContentPane().setBackground(Color.getHSBColor(276, 9, 95));
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(path + "\\src\\main\\java\\manager\\image\\pizza.png"));
@@ -90,7 +95,6 @@ public class CustomerFrame extends javax.swing.JFrame {
         optionPanel = new javax.swing.JPanel();
         send = new javax.swing.JButton();
         print = new javax.swing.JButton();
-        sendPrint = new javax.swing.JButton();
         mainFrame = new javax.swing.JButton();
         delete = new javax.swing.JButton();
         close = new javax.swing.JButton();
@@ -130,8 +134,11 @@ public class CustomerFrame extends javax.swing.JFrame {
         });
 
         print.setText("Print");
-
-        sendPrint.setText("Send/Print Check");
+        print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printActionPerformed(evt);
+            }
+        });
 
         mainFrame.setText("Main Frame");
         mainFrame.addActionListener(new java.awt.event.ActionListener() {
@@ -168,9 +175,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                     .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(86, 86, 86)
-                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(mainFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sendPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mainFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         optionPanelLayout.setVerticalGroup(
@@ -178,8 +183,7 @@ public class CustomerFrame extends javax.swing.JFrame {
             .addGroup(optionPanelLayout.createSequentialGroup()
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sendPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,22 +264,79 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
+        double s = 0;
+        for(int i = 0; i<order.size(); i++){
+            if (order.get(i)==null)
+                continue;
+            s+=order.get(i).getPrice();
+        }
+        double j = SessionInfo.totalMoney[this.userId];
+        j+=this.totalSum;
+        j-=s;
+        SessionInfo.totalMoney[userId]=j;
         ct.addOrder(this.newOrder);
-        //JOptionPane.showMessageDialog(new JFrame(), SessionInfo.db.k);
+        //хулі не працюєш?
+        //int idServer = SessionInfo.getReference().serverNumber(tableId);
         new MainFrame(ct).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_sendActionPerformed
+
+    private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
+        // TODO add your handling code here:
+        File f = new File("ServerCheck.txt");
+        try {
+            if(!f.exists())
+            f.createNewFile();
+            PrintWriter out2 = new PrintWriter(f);
+            out2.println("Check");
+            out2.println("Table "+ this.tableId);
+            out2.println();
+                    out2.println();
+                            out2.println("Vitanyanzhela pizzeria");
+              out2.println();
+                    out2.println();
+           List<FoodData> foodOrder = (List<FoodData>) ct.getOrder(tableId);
+            double total = 0;
+            for (int i = 0; i < foodOrder.size(); i++) {
+                if (foodOrder.get(i) != null) {
+                   String s = foodOrder.get(i).toString();
+                    out2.println(s);
+                    total += foodOrder.get(i).getPrice();
+                }
+            }
+            out2.println();
+            out2.println();
+            out2.println();
+            out2.println("____________");
+            out2.println("total amount" + total);
+            out2.println("please, pay your server");
+            out2.println("7% - " + total * 0.07);
+            out2.println("10% - " + total * 0.1);
+            out2.println("Please, come again!");
+             out2.println("---------Thank you!---------");
+            
+            out2.close();
+        } catch (IOException ex) {
+        }
+            
+            new MainFrame(ct).setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_printActionPerformed
 
     private void loadOrder() {
         if (order.isEmpty()) {
             return;
         }
         for (int i = 0; i < order.size(); i++) {
+            if(order.get(i)==null){
+                order.remove(i);
+                continue;
+            }
             this.listModel.addElement(order.get(i));
             this.orderList.setCellRenderer(new MyListCellThing());
-            
             totalSum += order.get(i).getPrice();
             this.total.setText("Total amount        " + totalSum);
+            
         }
     }
 
@@ -372,7 +433,6 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JList orderList;
     private javax.swing.JButton print;
     private javax.swing.JButton send;
-    private javax.swing.JButton sendPrint;
     private javax.swing.JLabel tableNumber;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
@@ -390,6 +450,8 @@ private class MyListCellThing extends JLabel implements ListCellRenderer {
         else if (isSelected)
             setBackground(new Color(0,230,230));
         else setBackground(new Color(255,255,255));
+        setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+
         return this;
     }
 }

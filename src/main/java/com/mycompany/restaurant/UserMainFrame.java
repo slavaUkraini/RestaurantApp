@@ -413,9 +413,9 @@ public class UserMainFrame extends javax.swing.JFrame {
             return;
         }
         try {
-            // TODO add your handling code here:
+            
             if(ct.toTable(tableNumber,this.userId).equals("true")){
-                new CustomerFrame(ct,tableNumber ).setVisible(true);
+                new CustomerFrame(ct,tableNumber, this.userId ).setVisible(true);
                 this.dispose();
             }
             else {

@@ -33,7 +33,7 @@ public class ClientThread extends Thread{
     private PrintWriter out;
     public ClientThread(InetAddress addr) throws NullPointerException {
         try {
-            socket = new Socket(addr, Server.PORT);
+            socket = new Socket(addr, 8093);
         } catch (IOException e) {
             System.err.println("IOException |?|?|?|?|?|??|");
         }
@@ -126,7 +126,10 @@ public class ClientThread extends Thread{
         Gson gson = new Gson();
         return gson.fromJson(response, new TypeToken<List<FoodData>>(){}.getType());        
     }
-
+    
+    public void deleteOrder(int tableNumber){
+        out.println("{\"method\":"+"\"deleteOrder\""+",\"params\":["+tableNumber+"]}");
+    }
     public void clockIn(int userId) {
         out.println("{\"method\":"+"\"clockIn\""+",\"params\":["+userId+"]}");
     }

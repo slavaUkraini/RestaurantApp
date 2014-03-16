@@ -33,7 +33,7 @@ public class ManagerClientThread extends Thread{
     
     public ManagerClientThread(InetAddress addr) throws java.lang.NullPointerException{
         try {
-            socket = new Socket(addr, Server.PORT);
+            socket = new Socket(addr, 8093);
         } catch (IOException e) {
             System.err.println("IOException |?|?|?|?|?|??|");
         }

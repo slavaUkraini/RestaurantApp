@@ -3,13 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.restaurant;
 
 import Clients.ClientThread;
+import DBofrestaurant.Food;
+import MyClasses.FoodData;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,25 +25,50 @@ public class PaymentFrame extends javax.swing.JFrame {
 
     private final ClientThread ct;
     private final int tableNumber;
+    private List<FoodData> foodOrder;
+    private double total = 0;
     /**
      * Creates new form PaymentFrame
      */
-    
-    String path=System.getProperty("user.dir");
-    
+
+    String path = System.getProperty("user.dir");
+
     public PaymentFrame(ClientThread ct, int tableNumber) {
         this.tableNumber = tableNumber;
         this.ct = ct;
-        this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\pizza.png"));
+        this.getContentPane().setBackground(Color.getHSBColor(276, 9, 95));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(path + "\\src\\main\\java\\manager\\image\\pizza.png"));
         initComponents();
-        numberPanel.setBackground(Color.getHSBColor(276,9,95));
+        numberPanel.setBackground(Color.getHSBColor(276, 9, 95));
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
-        this.setLocation (screenWidth / 2 - this.getWidth()/2, screenHeight / 2 - this.getHeight() / 2);
+        this.setLocation(screenWidth / 2 - this.getWidth() / 2, screenHeight / 2 - this.getHeight() / 2);
+        loadCheck();
+    }
 
+    private void loadCheck() {
+        try {
+            checkReport.setText("Check \nTable "
+                    + this.tableNumber + "\n\nVitanyanzhela pizzeria\n\n");
+            foodOrder = (List<FoodData>) ct.getOrder(tableNumber);
+            String info = "";
+            for (int i = 0; i < foodOrder.size(); i++) {
+                if (foodOrder.get(i) != null) {
+                    info += "\n";
+                    info += foodOrder.get(i).toString();
+                    total += foodOrder.get(i).getPrice();
+                }
+            }
+            checkReport.setText(checkReport.getText() + info
+                    + "\n\n\n____________\n\ntotal amount\t\t" + total
+                    + "\n\nplease, pay your server\n7% - " + total * 0.07 + "\n10% - " + total * 0.1 + "\n\n"
+                    + "Please, come again!"
+                    + "\n---------Thank you!----------");
+        } catch (IOException ex) {
+            Logger.getLogger(PaymentFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -64,6 +94,7 @@ public class PaymentFrame extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         dot = new javax.swing.JButton();
+        zero1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         checkReport = new javax.swing.JTextArea();
         mainFrame = new javax.swing.JButton();
@@ -171,6 +202,18 @@ public class PaymentFrame extends javax.swing.JFrame {
             }
         });
 
+        zero1.setText("C");
+        zero1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                zero1onMouseClicked(evt);
+            }
+        });
+        zero1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zero1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout numberPanelLayout = new javax.swing.GroupLayout(numberPanel);
         numberPanel.setLayout(numberPanelLayout);
         numberPanelLayout.setHorizontalGroup(
@@ -187,7 +230,8 @@ public class PaymentFrame extends javax.swing.JFrame {
                                 .addGroup(numberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(one, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(four, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(seven, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(seven, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(zero1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(numberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(numberPanelLayout.createSequentialGroup()
@@ -236,21 +280,15 @@ public class PaymentFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(numberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(zero, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dot, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(dot, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(zero1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(33, 54, Short.MAX_VALUE))
         );
 
+        checkReport.setEditable(false);
         checkReport.setColumns(20);
-        checkReport.setFont(new java.awt.Font("Monospaced", 0, 8)); // NOI18N
+        checkReport.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         checkReport.setRows(5);
-        checkReport.setText("Check \nTable "
-            + this.tableNumber+"\n\nGlacier Village Cafe\n\n"
-            + "coffee\t\t2\t10.10\ntoast\t\t2\t11.00\nhuck cobb\t1\t6.00"
-            + "\n\n\n____________\n\ntotal amount\t\t27.10"
-            + "\n\nplease, pay your server\n7% - 1.9\n10% - 2.7\n\n"
-            + "Please, come again!"
-            + "\n---------Thank you!----------"
-            + "\n\nyour server Vita\n");
         jScrollPane1.setViewportView(checkReport);
 
         mainFrame.setText("Main Frame");
@@ -308,62 +346,62 @@ public class PaymentFrame extends javax.swing.JFrame {
 
     private void oneonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oneonMouseClicked
         // TODO add your handling code here:
-        javax.swing.JButton jb = (javax.swing.JButton)evt.getComponent();
-        this.jTextField1.setText(jTextField1.getText()+jb.getText());
+        javax.swing.JButton jb = (javax.swing.JButton) evt.getComponent();
+        this.jTextField1.setText(jTextField1.getText() + jb.getText());
     }//GEN-LAST:event_oneonMouseClicked
 
     private void fouronMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fouronMouseClicked
         // TODO add your handling code here:
-        javax.swing.JButton jb = (javax.swing.JButton)evt.getComponent();
-        this.jTextField1.setText(jTextField1.getText()+jb.getText());
+        javax.swing.JButton jb = (javax.swing.JButton) evt.getComponent();
+        this.jTextField1.setText(jTextField1.getText() + jb.getText());
     }//GEN-LAST:event_fouronMouseClicked
 
     private void nineonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nineonMouseClicked
         // TODO add your handling code here:
-        javax.swing.JButton jb = (javax.swing.JButton)evt.getComponent();
-        this.jTextField1.setText(jTextField1.getText()+jb.getText());
+        javax.swing.JButton jb = (javax.swing.JButton) evt.getComponent();
+        this.jTextField1.setText(jTextField1.getText() + jb.getText());
     }//GEN-LAST:event_nineonMouseClicked
 
     private void fiveonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fiveonMouseClicked
         // TODO add your handling code here:
-        javax.swing.JButton jb = (javax.swing.JButton)evt.getComponent();
-        this.jTextField1.setText(jTextField1.getText()+jb.getText());
+        javax.swing.JButton jb = (javax.swing.JButton) evt.getComponent();
+        this.jTextField1.setText(jTextField1.getText() + jb.getText());
     }//GEN-LAST:event_fiveonMouseClicked
 
     private void eightonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eightonMouseClicked
         // TODO add your handling code here:
-        javax.swing.JButton jb = (javax.swing.JButton)evt.getComponent();
-        this.jTextField1.setText(jTextField1.getText()+jb.getText());
+        javax.swing.JButton jb = (javax.swing.JButton) evt.getComponent();
+        this.jTextField1.setText(jTextField1.getText() + jb.getText());
     }//GEN-LAST:event_eightonMouseClicked
 
     private void sixonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sixonMouseClicked
         // TODO add your handling code here:
-        javax.swing.JButton jb = (javax.swing.JButton)evt.getComponent();
-        this.jTextField1.setText(jTextField1.getText()+jb.getText());
+        javax.swing.JButton jb = (javax.swing.JButton) evt.getComponent();
+        this.jTextField1.setText(jTextField1.getText() + jb.getText());
     }//GEN-LAST:event_sixonMouseClicked
 
     private void twoonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twoonMouseClicked
         // TODO add your handling code here:
-        javax.swing.JButton jb = (javax.swing.JButton)evt.getComponent();
-        this.jTextField1.setText(jTextField1.getText()+jb.getText());
+        javax.swing.JButton jb = (javax.swing.JButton) evt.getComponent();
+        this.jTextField1.setText(jTextField1.getText() + jb.getText());
     }//GEN-LAST:event_twoonMouseClicked
 
     private void sevenonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sevenonMouseClicked
         // TODO add your handling code here:
-        javax.swing.JButton jb = (javax.swing.JButton)evt.getComponent();
-        this.jTextField1.setText(jTextField1.getText()+jb.getText());
+        javax.swing.JButton jb = (javax.swing.JButton) evt.getComponent();
+        this.jTextField1.setText(jTextField1.getText() + jb.getText());
     }//GEN-LAST:event_sevenonMouseClicked
 
     private void threeonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_threeonMouseClicked
         // TODO add your handling code here:
-        javax.swing.JButton jb = (javax.swing.JButton)evt.getComponent();
-        this.jTextField1.setText(jTextField1.getText()+jb.getText());
+        javax.swing.JButton jb = (javax.swing.JButton) evt.getComponent();
+        this.jTextField1.setText(jTextField1.getText() + jb.getText());
     }//GEN-LAST:event_threeonMouseClicked
 
     private void zeroonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zeroonMouseClicked
         // TODO add your handling code here:
-        javax.swing.JButton jb = (javax.swing.JButton)evt.getComponent();
-        this.jTextField1.setText(jTextField1.getText()+jb.getText());
+        javax.swing.JButton jb = (javax.swing.JButton) evt.getComponent();
+        this.jTextField1.setText(jTextField1.getText() + jb.getText());
     }//GEN-LAST:event_zeroonMouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -385,20 +423,32 @@ public class PaymentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_mainFrameActionPerformed
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
-        try{
-            double sum = Double.parseDouble(this.jTextField1.getText().toString());
-            
+        double sum = 0;
+        try {
+            sum = Double.parseDouble(this.jTextField1.getText().toString());
+            if (sum < total) {
+                this.jTextField1.setText("");
+                return;
+            }
             this.ct.closeTable(this.tableNumber);
-        }
-        catch(java.lang.NumberFormatException e){
+            ct.deleteOrder(tableNumber);
+        } catch (java.lang.NumberFormatException e) {
             this.jTextField1.setText("");
             return;
         }
-        JOptionPane.showMessageDialog(this, "Change = 0.0");
-        
+        JOptionPane.showMessageDialog(this, "Change = " + (sum - total));
         new MainFrame(ct).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_okActionPerformed
+
+    private void zero1onMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zero1onMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_zero1onMouseClicked
+
+    private void zero1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zero1ActionPerformed
+        // TODO add your handling code here:
+        this.jTextField1.setText("");
+    }//GEN-LAST:event_zero1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -455,5 +505,7 @@ public class PaymentFrame extends javax.swing.JFrame {
     private javax.swing.JButton three;
     private javax.swing.JButton two;
     private javax.swing.JButton zero;
+    private javax.swing.JButton zero1;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import server.SessionInfo;
 
 /**
  *
@@ -51,7 +52,7 @@ public class ServerReport extends javax.swing.JFrame {
         this.jTextArea1.setText(" Server report \n\n Server "+this.userId+
                 "\n\n Start working     " + this.ct.getClocks(userId)+
                 "\n Finish working     " + sdf.format(cal.getTime())+ "\n\n Date     "+ 
-                sdf2.format(cal.getTime())+"\n\n Net Deposit"+"\n\n Signature    _______________");
+                sdf2.format(cal.getTime())+"\n\n Net Deposit "+ SessionInfo.totalMoney[this.userId]+"\n\n Signature    _______________");
 
     }
 

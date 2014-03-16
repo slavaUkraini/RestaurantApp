@@ -38,7 +38,7 @@ public class CreationofDB {
                 //men.close();
             //PreparedStatement order7 = con.prepareStatement("drop table 'ORDERS';");
            
-           // int result90 = order7.executeUpdate();
+            //int result90 = order7.executeUpdate();
             PreparedStatement order = con.prepareStatement("create table if not exists 'ORDERS' ('ID_FOODS' INTEGER, 'AMOUNT' INTEGER, 'ROOM_TABLE' INTEGER);");
            
             int result4 = order.executeUpdate();
@@ -119,7 +119,7 @@ public class CreationofDB {
         }
     }
      //додаю меню
-      public void insertMenu (int id,String category, String name, String compound, int price){
+      public void insertMenu (int id,String category, String name, String compound, double price){
         try{
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
             PreparedStatement statement = con.prepareStatement("INSERT INTO MENU(ID,CATEGORY,NAME,COMPOUND,PRICE) VALUES (?,?,?,?,?)");
@@ -127,7 +127,7 @@ public class CreationofDB {
             statement.setString(2,category);
             statement.setString(3,name);
             statement.setString(4,compound);
-            statement.setInt(5,price);
+            statement.setDouble(5,price);
             int result7 = statement.executeUpdate();
             statement.close();
         }catch (SQLException e){

@@ -142,10 +142,7 @@
                       <Component id="print" min="-2" pref="114" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="mainFrame" max="32767" attributes="0"/>
-                      <Component id="sendPrint" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="mainFrame" min="-2" pref="115" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -156,7 +153,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="send" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="delete" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="sendPrint" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -182,11 +178,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Print"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="sendPrint">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Send/Print Check"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="mainFrame">
           <Properties>

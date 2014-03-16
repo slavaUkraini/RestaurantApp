@@ -19,7 +19,7 @@ public class Workers {
         private static final String DB_NAME = "sqlite";
 	private static final String DB_FILE_NAME = "restaurant.db";
 	private static final String DB = "org.sqlite.JDBC";
-
+private static final String ID_COLUMN = "Id";
 	private static final String TABLE_NAME = "WORKERS";
 
 	public Workers() {
@@ -54,12 +54,13 @@ public class Workers {
 		List<Worker> list = new ArrayList<Worker>();
 
 		while (rs.next()) {
+                    int id = Integer.parseInt(rs.getObject(0)+"");
 			String name = rs.getObject(2)+"";
 			String surname = rs.getObject(3)+"";
 			int experiense = Integer.parseInt(rs.getObject(4)+"");
 			String post = rs.getObject(5)+"";
 			double salary = Double.parseDouble(rs.getObject(6)+"");
-			Worker worker = new Worker(name, surname, experiense, post, salary);
+			Worker worker = new Worker(id,name, surname, experiense, post, salary);
 			list.add(worker);
 		}
 
@@ -90,6 +91,23 @@ public class Workers {
 	}
 
 	//
+        public Worker getWorker(int id) {
+
+		Connection connection = getConnection();
+		Statement st = null;
+		try {
+			st = connection.createStatement();
+			ResultSet resultSet = st.executeQuery("SELECT * FROM " + TABLE_NAME+" WHERE `"+ID_COLUMN+"`='"+id+"'");
+                        Worker result = new Worker(id,resultSet.getString("NAME"),resultSet.getString("SURNAME"),resultSet.getInt("EXPERIENSE"),resultSet.getString("POST"),resultSet.getDouble("SALARY"));
+			connection.close();
+
+			return result;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		return null;
+	}
 	private void initialization() {
 		try {
 			Connection con = getConnection();

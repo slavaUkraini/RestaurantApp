@@ -85,6 +85,7 @@
                                       <Component id="one" alignment="1" min="-2" pref="49" max="-2" attributes="0"/>
                                       <Component id="four" alignment="1" min="-2" pref="49" max="-2" attributes="0"/>
                                       <Component id="seven" alignment="1" min="-2" pref="49" max="-2" attributes="0"/>
+                                      <Component id="zero1" alignment="1" min="-2" pref="49" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -151,6 +152,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="zero" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="dot" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="zero1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -265,6 +267,15 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="zeroonMouseClicked"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="zero1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="C"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="zero1onMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="zero1ActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -276,15 +287,13 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="checkReport">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Monospaced" size="8" style="0"/>
+              <Font name="Monospaced" size="12" style="0"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="checkReport.setText(&quot;Check \nTable &quot;&#xa;+ this.tableNumber+&quot;\n\nGlacier Village Cafe\n\n&quot;&#xa;+ &quot;coffee\t\t2\t10.10\ntoast\t\t2\t11.00\nhuck cobb\t1\t6.00&quot;&#xa;+ &quot;\n\n\n____________\n\ntotal amount\t\t27.10&quot;&#xa;+ &quot;\n\nplease, pay your server\n7% - 1.9\n10% - 2.7\n\n&quot;&#xa;+ &quot;Please, come again!&quot;&#xa;+ &quot;\n---------Thank you!----------&quot;&#xa;+ &quot;\n\nyour server Vita\n&quot;);"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
