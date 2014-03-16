@@ -54,7 +54,7 @@ private static final String ID_COLUMN = "Id";
 		List<Worker> list = new ArrayList<Worker>();
 
 		while (rs.next()) {
-                    int id = Integer.parseInt(rs.getObject(0)+"");
+                    int id = Integer.parseInt(rs.getObject(1)+"");
 			String name = rs.getObject(2)+"";
 			String surname = rs.getObject(3)+"";
 			int experiense = Integer.parseInt(rs.getObject(4)+"");

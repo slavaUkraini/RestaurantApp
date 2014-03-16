@@ -56,7 +56,7 @@ public class KitchenPrinter1 extends javax.swing.JFrame {
     }
 
     public void print(String str) {
-        this.jTextArea1.setText(this.jTextArea1.getText() + str);
+        this.jTextArea1.setText(this.jTextArea1.getText() + str + "\n");
         //JOptionPane.showMessageDialog(this, str);
         jScrollPane1.setViewportView(jTextArea1);
     }

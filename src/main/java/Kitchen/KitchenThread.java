@@ -46,9 +46,15 @@ public class KitchenThread extends Thread {
 
     public void sendToKitchen() throws IOException {
         out.println("{\"method\":" + "\"kitchen\"" + ",\"params\":[]}");
-        String str = in.readLine();
+       /* String str = ;
         if (!str.equals("null")) {
             KitchenPrinter1.printer(this).print(str);
+        }*/
+        String str = in.readLine();
+        while (!str.equals("null")) {
+            KitchenPrinter1.printer(this).print(str);
+            out.println("{\"method\":" + "\"kitchen\"" + ",\"params\":[]}");
+            str = in.readLine();
         }
        // else KitchenPrinter1.printer(this).print(str);
     }

@@ -26,6 +26,8 @@ public class CreationofDB {
         try {
             Class.forName("org.sqlite.JDBC");
             Connection con = DriverManager.getConnection("jdbc:sqlite:restaurant.db");
+            //PreparedStatement work11 = con.prepareStatement("drop table 'WORKERS';");
+            //int result11 = work11.executeUpdate();
             PreparedStatement work = con.prepareStatement("create table if not exists 'WORKERS' ('Id' INTEGER PRIMARY KEY UNIQUE, 'NAME' text UNIQUE, 'SURNAME' text UNIQUE, 'EXPERIENSE' INTEGER, 'POST' text, 'SALARY' REAL);");
             int result = work.executeUpdate();
                work.close();

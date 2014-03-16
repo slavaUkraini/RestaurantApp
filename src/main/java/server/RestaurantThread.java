@@ -7,6 +7,7 @@ package server;
 
 import DBofrestaurant.Food;
 import MyClasses.FoodData;
+import MyClasses.Worker;
 import com.google.gson.Gson;
 import com.sun.jmx.remote.internal.ArrayQueue;
 import java.io.BufferedReader;
@@ -19,6 +20,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -37,14 +39,20 @@ public class RestaurantThread extends Thread {
 
     public static final int PORT = 8085;
     private Socket socket;
-    private int serverNumber = 11; //change to database
+    private List<Integer> serversNumber = new ArrayList<Integer>();
+    
    public RestaurantThread(Socket s) throws IOException {
         socket = s;
+        for(int i = 0; i<SessionInfo.getReference().employees.size(); i++)
+            serversNumber.add(SessionInfo.getReference().employees.get(i).getId());
+       
         start();
+        
     }
 
     private boolean checkEmployee(int id) {
-        return (serverNumber == id) || (id == 22);//замінити на базу даних, а не цю херню, блять
+        return serversNumber.contains(Integer.valueOf(id));
+        //return (serverNumber == id) || (id == 22);//замінити на базу даних, а не цю херню, блять
     }
 
     @Override
@@ -108,19 +116,21 @@ public class RestaurantThread extends Thread {
                     String[] food = jsonRequest.getParams();
                     String info = "Server ";
                     int userId = SessionInfo.getReference().serverNumber(tableNumber);
-                    info+=userId;
-                    info+="\n";
+                    //info+=userId;
+                    kitchenOrder.add(SessionInfo.dbworkers.getWorker(userId).getName());
+                   
+                    info+=", ";
                     info+=("Table " + tableNumber + "\n");
+                    kitchenOrder.add(info);
                     //info.concat("Server ");
-                   //info += SessionInfo.dbworkers.getWorker(SessionInfo.getReference().serverNumber(tableNumber)).getName();
                     //info += "\n";
                     for (String food1 : food) {
                         int id = Integer.parseInt(food1);
                         SessionInfo.db.insertOrder(id, 1, tableNumber);
-                       //FoodData fd = SessionInfo.dbfood.searchDish(id);
-                       //info+=("\n" + fd.getName() + "\n" + fd.getCompound());
+                       FoodData fd = SessionInfo.dbfood.searchDish(id);
+                       kitchenOrder.add("\n" + fd.getName() + "\n" + fd.getCompound());
                     }
-                    kitchenOrder.add(info);
+                    
                     //JOptionPane.showMessageDialog(null, info);
                     //KitchenPrinter.printer().print(info);
                 } else if (method.equals("deleteOrder")) {

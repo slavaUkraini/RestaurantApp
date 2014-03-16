@@ -1,0 +1,19 @@
+Check
+Table 36
+
+
+Vitanyanzhela pizzeria
+
+
+χ³η κεικ        10.0
+Coca-Cola        10.0
+
+
+
+____________
+total amount20.0
+please, pay your server
+7% - 1.4000000000000001
+10% - 2.0
+Please, come again!
+---------Thank you!---------

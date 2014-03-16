@@ -7,12 +7,14 @@
 package com.mycompany.restaurant;
 
 import Clients.ClientThread;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import server.SessionInfo;
 
 /**
  *
@@ -24,9 +26,11 @@ public class Client {
     public static final int maxTables = 111;
     
     public Client() throws UnknownHostException{
+       /**/
+        
         InetAddress addr;
         addr = InetAddress.getByName(null);
-        ct = new ClientThread(addr);					
+        ct = new ClientThread(addr);
     }    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

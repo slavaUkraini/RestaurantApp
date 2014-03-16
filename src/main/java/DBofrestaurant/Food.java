@@ -141,7 +141,7 @@ public class Food {
 		try {
 			st = connection.createStatement();
 			ResultSet resultSet = st.executeQuery("SELECT * FROM " + TABLE_NAME+" WHERE `"+ID_COLUMN+"`='"+id+"'");
-                        FoodData result = new FoodData(id, resultSet.getString(NAME_COLUMN),resultSet.getString(CATEGORY_COLUMN),resultSet.getString(COMPOUND_COLUMN),resultSet.getDouble(PRICE_COLUMN));
+                        FoodData result = new FoodData(id, resultSet.getString(CATEGORY_COLUMN),resultSet.getString(NAME_COLUMN),resultSet.getString(COMPOUND_COLUMN),resultSet.getDouble(PRICE_COLUMN));
 			connection.close();
 
 			return result;
