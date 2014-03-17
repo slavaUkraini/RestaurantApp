@@ -35,6 +35,9 @@ public class CreationofDB {
             
             int result2 = manag.executeUpdate();
                 //manag.close();
+           // PreparedStatement men3 = con.prepareStatement("drop table 'MENU';");
+            //int result33 = men3.executeUpdate();
+            
             PreparedStatement men = con.prepareStatement("create table if not exists 'MENU' ('Id' INTEGER PRIMARY KEY UNIQUE, 'CATEGORY' text, 'NAME' text UNIQUE, 'COMPOUND' text, 'PRICE' REAL);");
             int result3 = men.executeUpdate();
                 //men.close();
@@ -223,9 +226,33 @@ public static void main(String[] args) throws SQLException {
         
         //object1.insertManager("Віктор", "Тихонов",4,5000);
         //object1.insertManager("Вікторія", "Орлюк",6,7000);
-        //object1.insertMenu(121,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(11,"піца","Гавайська","курка,моцарела", 30);        
+        object1.insertMenu(12,"піца","Два сири","пармезан, швейцарський", 20);
+        object1.insertMenu(13,"піца","Мрія лижника","помідори, соус барбекю", 30);
+        object1.insertMenu(14,"піца","Холодний путін","оливки, перець", 10);
+        object1.insertMenu(15,"піца","Веселий математик","горішки, кукуруза, курочка", 30);
+        object1.insertMenu(16,"піца","Жизнь-боль","перець чилі, гарячий соус, свинина", 40);
+        object1.insertMenu(17,"піца","Біг бен","курка,моцарела", 30);
+        object1.insertMenu(18,"піца","Росомаха","оливки, соус А1, м'ясо буйвола", 50);
+        object1.insertMenu(19,"напої","Coke","0.5", 10);
+        object1.insertMenu(20,"напої","Fanta","0.5", 10);
+        object1.insertMenu(21,"напої","Sprite","0.5", 10);
+        object1.insertMenu(22,"напої","чай зелений","з жасмином", 20);
+        object1.insertMenu(23,"напої","чай чорний","з бергамотом", 20);
+        object1.insertMenu(24,"напої","чай фрукт","вишневий", 20);
+        object1.insertMenu(25,"напої","Bonaqua","0.5", 10);
+        object1.insertMenu(26,"напої","Сік Апельсин","0.5", 30);
+        object1.insertMenu(27,"десерти","Hawaiian","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(28,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(29,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(30,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(31,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(32,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(33,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(34,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
+        object1.insertMenu(35,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
         //object1.insertMenu(324, "десерти", "чіз кейк", "", 10);
-        object1.insertOrder(1, 1, 1);
+        //object1.insertOrder(1, 1, 1);
         System.out.print(object1.k);
         }
   }
