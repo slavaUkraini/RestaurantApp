@@ -123,4 +123,13 @@ private static final String ID_COLUMN = "Id";
 			e.printStackTrace();
 		}
         }
+        
+        public static void main(String[]args){
+            /*
+            Workers w = new Workers();
+            List<Worker> l = (List<Worker>)w.getWorkers();
+            System.out.print(l.get(0));
+           */
+            
+        }
 }
