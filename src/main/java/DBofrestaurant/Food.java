@@ -79,7 +79,7 @@ public class Food {
 		Statement st = null;
 		try {
 			st = connection.createStatement();
-			ResultSet resultSet = st.executeQuery("SELECT `" +ID_COLUMN+"`, `"+ NAME_COLUMN +"`, `"+CATEGORY_COLUMN+"`, `"+COMPOUND_COLUMN+"`, `"+PRICE_COLUMN+""
+			ResultSet resultSet = st.executeQuery("SELECT `" +ID_COLUMN+"`, `"+ CATEGORY_COLUMN +"`, `"+NAME_COLUMN+"`, `"+COMPOUND_COLUMN+"`, `"+PRICE_COLUMN+""
 					+ "` FROM " + TABLE_NAME + " WHERE `" + CATEGORY_COLUMN
 					+ "`='" + categorie + "'");
 
@@ -121,7 +121,7 @@ public class Food {
 		Statement st = null;
 		try {
 			st = connection.createStatement();
-			ResultSet resultSet = st.executeQuery("SELECT * FROM " + TABLE_NAME+" WHERE `"+NAME_COLUMN+"`='"+name+"'");
+			ResultSet resultSet = st.executeQuery("SELECT * FROM " + TABLE_NAME+" WHERE `"+CATEGORY_COLUMN+"`='"+name+"'");
 
 			List<FoodData> result = convertResultSetToNameList(resultSet);
 
@@ -164,7 +164,7 @@ public class Food {
 
 		try {
 			while (resultSet.next()) {
-                                FoodData food = new FoodData(resultSet.getInt(ID_COLUMN),resultSet.getString(NAME_COLUMN), resultSet.getString(CATEGORY_COLUMN), resultSet.getString(COMPOUND_COLUMN), resultSet.getDouble(PRICE_COLUMN));
+                                FoodData food = new FoodData(resultSet.getInt(ID_COLUMN),resultSet.getString(CATEGORY_COLUMN), resultSet.getString(NAME_COLUMN), resultSet.getString(COMPOUND_COLUMN), resultSet.getDouble(PRICE_COLUMN));
 				list.add(food);
 			}
 		} catch (SQLException e) {
@@ -217,8 +217,8 @@ public class Food {
 			while (resultSet.next()) {
 				FoodData food=new FoodData();
                                 food.setId(resultSet.getInt(ID_COLUMN));
-                                food.setName(resultSet.getString(NAME_COLUMN));
-				food.setCategory(resultSet.getString(CATEGORY_COLUMN));
+                                food.setCategory(resultSet.getString(CATEGORY_COLUMN));
+				food.setName(resultSet.getString(NAME_COLUMN));
 				food.setCompound(resultSet.getString(COMPOUND_COLUMN));
                                 food.setPrice(Double.parseDouble(resultSet.getString(PRICE_COLUMN)));
 				list.add(food);

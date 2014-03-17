@@ -56,7 +56,7 @@ public class KitchenPrinter1 extends javax.swing.JFrame {
     }
 
     public void print(String str) {
-        this.jTextArea1.setText(this.jTextArea1.getText() + str + "\n");
+        this.jTextArea1.setText(this.jTextArea1.getText()+"\n" + str + "\n");
         //JOptionPane.showMessageDialog(this, str);
         jScrollPane1.setViewportView(jTextArea1);
     }
@@ -83,6 +83,7 @@ public class KitchenPrinter1 extends javax.swing.JFrame {
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(100);
+        jTextArea1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setEnabled(false);
         jTextArea1.setSelectionColor(new java.awt.Color(255, 255, 204));

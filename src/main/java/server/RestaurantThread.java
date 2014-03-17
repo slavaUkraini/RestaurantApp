@@ -9,7 +9,6 @@ import DBofrestaurant.Food;
 import MyClasses.FoodData;
 import MyClasses.Worker;
 import com.google.gson.Gson;
-import com.sun.jmx.remote.internal.ArrayQueue;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -45,9 +44,7 @@ public class RestaurantThread extends Thread {
         socket = s;
         for(int i = 0; i<SessionInfo.getReference().employees.size(); i++)
             serversNumber.add(SessionInfo.getReference().employees.get(i).getId());
-       
         start();
-        
     }
 
     private boolean checkEmployee(int id) {
@@ -114,7 +111,7 @@ public class RestaurantThread extends Thread {
                     //List <Order> order = gson.fromJson(jsonRequest.getParam(0), new TypeToken<List<Order>>(){}.getType());        
                     int tableNumber = Integer.parseInt(jsonRequest.getParam(0));
                     String[] food = jsonRequest.getParams();
-                    String info = "Server ";
+                    String info = "";
                     int userId = SessionInfo.getReference().serverNumber(tableNumber);
                     //info+=userId;
                     kitchenOrder.add(SessionInfo.dbworkers.getWorker(userId).getName());
@@ -124,8 +121,8 @@ public class RestaurantThread extends Thread {
                     kitchenOrder.add(info);
                     //info.concat("Server ");
                     //info += "\n";
-                    for (String food1 : food) {
-                        int id = Integer.parseInt(food1);
+                    for (int i = 1; i<food.length; i++) {
+                        int id = Integer.parseInt(food[i]);
                         SessionInfo.db.insertOrder(id, 1, tableNumber);
                        FoodData fd = SessionInfo.dbfood.searchDish(id);
                        kitchenOrder.add("\n" + fd.getName() + "\n" + fd.getCompound());

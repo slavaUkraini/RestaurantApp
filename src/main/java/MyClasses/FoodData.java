@@ -22,7 +22,7 @@ public class FoodData{
     private String compound;
     private double price;
 
-    public FoodData(int id, String name, String category, String compound,
+    public FoodData(int id, String category,String name , String compound,
             double price) {
         super();
         this.id = id;

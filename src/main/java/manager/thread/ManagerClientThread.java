@@ -19,8 +19,6 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.List;
-import server.Server;
-import server.SessionInfo;
 
 /**
  *

@@ -242,17 +242,10 @@ public static void main(String[] args) throws SQLException {
         object1.insertMenu(24,"напої","чай фрукт","вишневий", 20);
         object1.insertMenu(25,"напої","Bonaqua","0.5", 10);
         object1.insertMenu(26,"напої","Сік Апельсин","0.5", 30);
-        object1.insertMenu(27,"десерти","Hawaiian","курка,моцарела,соус барбекю", 30);
-        object1.insertMenu(28,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
-        object1.insertMenu(29,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
-        object1.insertMenu(30,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
-        object1.insertMenu(31,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
-        object1.insertMenu(32,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
-        object1.insertMenu(33,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
-        object1.insertMenu(34,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
-        object1.insertMenu(35,"піца","Hawaiian","курка,моцарела,соус барбекю", 30);
-        //object1.insertMenu(324, "десерти", "чіз кейк", "", 10);
-        //object1.insertOrder(1, 1, 1);
+        object1.insertMenu(27,"десерти","чізкейк","візьми в холодильнику", 20);
+        object1.insertMenu(28,"десерти","пиріг вишн","візьми в холодильнику", 20);
+        object1.insertMenu(29,"десерти","торт київ","візьми в холодильнику", 25);
+        object1.insertMenu(30,"десерти","шоко фантазія","візьми в холодильнику", 15);
         System.out.print(object1.k);
         }
   }
