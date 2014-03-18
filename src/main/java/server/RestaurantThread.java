@@ -19,15 +19,10 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import static server.SessionInfo.kitchenOrder;
 //import javax.swing.MultiUIDefaults.MultiUIDefaultsEnumerator.Type;
 
 /**
@@ -114,20 +109,18 @@ public class RestaurantThread extends Thread {
                     String info = "";
                     int userId = SessionInfo.getReference().serverNumber(tableNumber);
                     //info+=userId;
-                    kitchenOrder.add(SessionInfo.dbworkers.getWorker(userId).getName());
+                    info+=SessionInfo.dbworkers.getWorker(userId).getName();
                    
                     info+=", ";
                     info+=("Table " + tableNumber + "\n");
-                    kitchenOrder.add(info);
-                    //info.concat("Server ");
-                    //info += "\n";
+                    //kitchenOrder.add(info);
                     for (int i = 1; i<food.length; i++) {
                         int id = Integer.parseInt(food[i]);
                         SessionInfo.db.insertOrder(id, 1, tableNumber);
                        FoodData fd = SessionInfo.dbfood.searchDish(id);
-                       kitchenOrder.add("\n" + fd.getName() + "\n" + fd.getCompound());
+                       info+=("\n" + fd.getName() + "\n" + fd.getCompound());
                     }
-                    
+                    SessionInfo.getReference().addOrder(info);
                     //JOptionPane.showMessageDialog(null, info);
                     //KitchenPrinter.printer().print(info);
                 } else if (method.equals("deleteOrder")) {
@@ -221,14 +214,10 @@ public class RestaurantThread extends Thread {
                     }
                 }
                 else if (method.equals("kitchen")){
-                    if(kitchenOrder.isEmpty())
+                    if(SessionInfo.getReference().orderIsEmpty())
                          out.println("null");
                     else {
-                        String s = "";
-                        for(int i = 0; i<kitchenOrder.size(); i++)
-                            s+=kitchenOrder.get(i);
-                        out.println(s);
-                        kitchenOrder.clear();
+                        out.println(SessionInfo.getReference().getOrder());
                     }
                     
                 }

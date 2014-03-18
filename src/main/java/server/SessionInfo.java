@@ -35,7 +35,7 @@ public class SessionInfo {
 
     // public static KitchenPrinter printer;
     public List<Worker> employees;
-    public static List<String> kitchenOrder = new ArrayList<String>();
+    private static List<String> kitchenOrder = new ArrayList<String>();
     public static CreationofDB db = new CreationofDB();
     public static Food dbfood = new Food();
     public static Workers dbworkers = new Workers();
@@ -119,5 +119,18 @@ public class SessionInfo {
 
     public Date getDate(int id) {
         return this.clockin.get(id);
+    }
+    public synchronized boolean orderIsEmpty(){
+        return kitchenOrder.isEmpty();
+    }
+    public synchronized String getOrder(){
+        String str = "";
+        for(int i = 0; i<kitchenOrder.size(); i++)
+            str+=kitchenOrder.get(i);
+        kitchenOrder.clear();
+        return str;
+    }
+    public synchronized void addOrder(String info){
+        kitchenOrder.add(info);
     }
 }
