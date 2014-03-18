@@ -105,6 +105,19 @@ public class AddDishFrame extends javax.swing.JFrame {
         idLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         idLabel.setText("Id");
 
+        id.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                idInputMethodTextChanged(evt);
+            }
+        });
+        id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                idKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,6 +226,15 @@ public class AddDishFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void idInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_idInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idInputMethodTextChanged
+
+    private void idKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_idKeyPressed
 
     /**
      * @param args the command line arguments

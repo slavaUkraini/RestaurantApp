@@ -182,6 +182,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="id">
+      <Events>
+        <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="idInputMethodTextChanged"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="idKeyPressed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -128,7 +128,31 @@ public class DeleteCategoryFrame extends javax.swing.JFrame {
         if((CategoryPanel.getReference().isCategory(nameOfCategory.getText().toString())==false)){
             nameOfCategory.setText("");
             JOptionPane.showMessageDialog(null, " No such category - " + nameOfCategory.getText()+ " !");
-       
+       }
+        else{
+            
+        CategoryPanel.getReference().deleteCategoryItem(nameOfCategory.getText());
+        JOptionPane.showMessageDialog(null, " Delete category - " + nameOfCategory.getText()+ " !");
+        try {
+            String nc= nameOfCategory.getText();
+            int i=0; int j=0;
+            String [] allC =Manager.getThread().getAllCategories();
+            while(i<allC.length){
+            if (nc.equals(allC[i])){
+                int t=Manager.getThread().getFood(nc).toArray().length;
+                System.out.print("leanth = "+Manager.getThread().getFood(nc).toArray().length);
+                while(j<t){
+                    System.out.print("---------"+Manager.getThread().getFood(nc).get(0).getId());
+                     Manager.getThread().deleteDish(Manager.getThread().getFood(nc).get(0).getId());
+                    j++;
+            }
+            }
+            i++;
+            }
+         }
+          catch (IOException ex) {
+            Logger.getLogger(DeleteCategoryFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // треба , ще дописати , щоб воно якось з бази його забирало , ну не завадило б
          CategoryPanel.getReference().setVisible(true);
          HistoryPanel.getReference().setVisible(false);
