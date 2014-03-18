@@ -116,6 +116,7 @@ public class DeleteDishFrame extends javax.swing.JFrame {
             Logger.getLogger(DeleteDishFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         CategoryPanel.getReference().writingData();
+        CategoryPanel.getReference().nameOfCategory();
         JOptionPane.showMessageDialog(null, " Delete dish -" + id.getText()+ "!");
         dispose();
     }//GEN-LAST:event_dleteActionPerformed

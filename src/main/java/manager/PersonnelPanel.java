@@ -51,6 +51,7 @@ public class PersonnelPanel extends javax.swing.JPanel {
         search_person = new javax.swing.JButton();
         delete_person = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        all = new javax.swing.JButton();
 
         jTable1.setModel(model);
         jScrollPane1.setViewportView(jTable1);
@@ -82,6 +83,14 @@ public class PersonnelPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Personnel");
 
+        all.setBackground(new java.awt.Color(255, 255, 153));
+        all.setText("all");
+        all.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,7 +108,9 @@ public class PersonnelPanel extends javax.swing.JPanel {
                         .addGap(50, 50, 50)
                         .addComponent(search_person, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)
-                        .addComponent(delete_person, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(delete_person, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,7 +124,8 @@ public class PersonnelPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_person)
                     .addComponent(search_person)
-                    .addComponent(delete_person))
+                    .addComponent(delete_person)
+                    .addComponent(all))
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -167,12 +179,19 @@ public class PersonnelPanel extends javax.swing.JPanel {
 
     private void search_personActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_personActionPerformed
         // TODO add your handling code here:
+        
         new SearchPersFrame().setVisible(true);
     }//GEN-LAST:event_search_personActionPerformed
+
+    private void allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allActionPerformed
+        // TODO add your handling code here:
+        writingData ();
+    }//GEN-LAST:event_allActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_person;
+    private javax.swing.JButton all;
     private javax.swing.JButton delete_person;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

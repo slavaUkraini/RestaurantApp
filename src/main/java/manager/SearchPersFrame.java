@@ -8,6 +8,9 @@ package manager;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,7 +23,7 @@ public class SearchPersFrame extends javax.swing.JFrame {
      */
     
     String path=System.getProperty("user.dir");
-    
+    Object[][] personal ;
     public SearchPersFrame() {
         this.getContentPane().setBackground(Color.getHSBColor(276,9,95));
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(path+"\\src\\main\\java\\manager\\image\\search.png"));
@@ -48,6 +51,12 @@ public class SearchPersFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Write Id of personnel :");
+
+        idOfP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idOfPActionPerformed(evt);
+            }
+        });
 
         search.setBackground(new java.awt.Color(204, 255, 204));
         search.setText("Search");
@@ -105,13 +114,40 @@ public class SearchPersFrame extends javax.swing.JFrame {
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
         // заносить в головну таблицю результати , кнопка all дає весь результат чи що не знаю.. придумайте ...
+        
         dispose();
     }//GEN-LAST:event_searchActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
+        int idt=Integer.parseInt(idOfP.getText());
+        try {
+             personal=new Object[Manager.getThread().getEmployees().toArray().length][4];
+            int i =0; int j=0;
+            while(i<Manager.getThread().getEmployees().toArray().length){
+                
+           if(idt ==Manager.getThread().getEmployees().get(i).getId()){
+               personal[0][0]= Manager.getThread().getEmployees().get(i).getId();
+               personal[0][1]= Manager.getThread().getEmployees().get(i).getName();
+               personal[0][2]= Manager.getThread().getEmployees().get(i).getSurname();
+               personal[0][3]= Manager.getThread().getEmployees().get(i).getSalary(); 
+               
+           }
+            i++;
+            }
+         
+         
+         }
+          catch (IOException ex) {
+            Logger.getLogger(SearchPersFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void idOfPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idOfPActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_idOfPActionPerformed
 
     /**
      * @param args the command line arguments

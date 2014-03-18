@@ -8,6 +8,9 @@ package manager;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,6 +21,7 @@ public class SearchDishFrame extends javax.swing.JFrame {
     /**
      * Creates new form SearchDishFrame
      */
+    Object[][] dishes ;
     
     String path=System.getProperty("user.dir");
      
@@ -38,7 +42,7 @@ public class SearchDishFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        id = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         search = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
 
@@ -79,7 +83,7 @@ public class SearchDishFrame extends javax.swing.JFrame {
                         .addGap(133, 133, 133))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(id)
+                            .addComponent(name)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -92,7 +96,7 @@ public class SearchDishFrame extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(search)
@@ -107,6 +111,31 @@ public class SearchDishFrame extends javax.swing.JFrame {
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
         // додається в таблицю головну а там де категорія , то пише результати пошуку
+        
+        String sn=name.getText();
+         try {
+             dishes=dishes=new Object[Manager.getThread().getFood(CategoryPanel.getReference().getSelectCategory()).toArray().length][4];
+            int i =0; int j=0;
+            while(i< Manager.getThread().getFood(CategoryPanel.getReference().getSelectCategory()).toArray().length){
+                System.out.print(sn.equals(Manager.getThread().getFood(CategoryPanel.getReference().getSelectCategory()).get(i).getName().toString()));
+           if(sn.equals(Manager.getThread().getFood(CategoryPanel.getReference().getSelectCategory()).get(i).getName().toString())){
+               dishes[j][0]= Manager.getThread().getFood(CategoryPanel.getReference().getSelectCategory()).get(i).getId();
+               dishes[j][1]= Manager.getThread().getFood(CategoryPanel.getReference().getSelectCategory()).get(i).getName();
+               dishes[j][2]= Manager.getThread().getFood(CategoryPanel.getReference().getSelectCategory()).get(i).getCompound();
+               dishes[j][3]= Manager.getThread().getFood(CategoryPanel.getReference().getSelectCategory()).get(i).getPrice(); 
+               j++;
+           }
+            i++;
+            }
+         
+         
+         }
+          catch (IOException ex) {
+            Logger.getLogger(SearchDishFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         CategoryPanel.getReference().setTextOfLable("Results of search ...");
+         CategoryPanel.getReference().setModelData(dishes);
+         
         dispose();
     }//GEN-LAST:event_searchActionPerformed
 
@@ -152,8 +181,8 @@ public class SearchDishFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
-    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField name;
     private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
 }

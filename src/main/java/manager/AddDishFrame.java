@@ -192,6 +192,7 @@ public class AddDishFrame extends javax.swing.JFrame {
         dish.add(composition.getText());
         dish.add(Double.parseDouble(price.getText()));
         CategoryPanel.getReference().addNewRow(dish);
+        CategoryPanel.getReference().nameOfCategory();
         JOptionPane.showMessageDialog(null, " Add new dish !"  );
         dispose();
         

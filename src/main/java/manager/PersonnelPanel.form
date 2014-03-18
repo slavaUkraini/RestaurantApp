@@ -31,6 +31,8 @@
                       <Component id="search_person" min="-2" pref="78" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Component id="delete_person" min="-2" pref="77" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="all" min="-2" pref="78" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="25" max="32767" attributes="0"/>
@@ -49,6 +51,7 @@
                   <Component id="add_person" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="search_person" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="delete_person" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="all" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -112,6 +115,17 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Personnel"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="all">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="all"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

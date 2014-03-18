@@ -69,6 +69,10 @@ public class CategoryPanel extends javax.swing.JPanel {
      public JComboBox getCategory(){
          return category;
      }
+     public void setTextOfLable(String newText ){
+     nameOfcategory.setText( newText);
+     }
+     
      public void addNewRow(Vector<Object> newDish){
          model.addRow(newDish);
      }
@@ -84,6 +88,9 @@ public class CategoryPanel extends javax.swing.JPanel {
      public String[] getItemsOfCategory(){
          return items;
      }
+     public void nameOfCategory(){
+         nameOfcategory.setText(category.getSelectedItem().toString());
+     }
      public boolean isCategory(String name){
        int i=0;
        while(i<category.getItemCount()){
@@ -94,6 +101,9 @@ public class CategoryPanel extends javax.swing.JPanel {
        }
        return false;
     }
+     public void setModelData( Object[][] selectDishes){
+          model.setDataVector(selectDishes, columnNames);
+     }
      public void writingData(){
          
         model.setDataVector(null, columnNames);
@@ -313,7 +323,7 @@ public class CategoryPanel extends javax.swing.JPanel {
                //dish.removeAllElements();
               
                dishes[i][0]= Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getId();
-               dishes[i][1]=Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getName();
+               dishes[i][1]= Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getName();
                dishes[i][2]= Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getCompound();
                dishes[i][3]= Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getPrice(); 
                
