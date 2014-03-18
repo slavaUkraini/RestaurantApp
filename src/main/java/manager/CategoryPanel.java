@@ -94,6 +94,33 @@ public class CategoryPanel extends javax.swing.JPanel {
        }
        return false;
     }
+     public void writingData(){
+         
+        model.setDataVector(null, columnNames);
+      try {
+          int i=0; 
+          dishes=new Object[Manager.getThread().getFood(category.getSelectedItem().toString()).toArray().length][4];
+          while(i<Manager.getThread().getFood(category.getSelectedItem().toString()).toArray().length){
+               
+               //dish.removeAllElements();
+              
+               dishes[i][0]= Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getId();
+               dishes[i][1]=Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getName();
+               dishes[i][2]= Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getCompound();
+               dishes[i][3]= Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getPrice(); 
+               
+              
+               i++;
+               
+          }
+          
+          
+         }
+          catch (IOException ex) {
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model.setDataVector(dishes, columnNames);
+     }
      
     /**
      * This method is called from within the constructor to initialize the form.

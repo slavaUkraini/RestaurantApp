@@ -7,6 +7,10 @@
 package manager;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,9 +21,15 @@ public class HistoryPanel extends javax.swing.JPanel {
     /**
      * Creates new form HistoryPanel
      */
-    public HistoryPanel() {
+    private static HistoryPanel reference;
+    private static final Object[] columnNames = { "Id","Dishes", "Total amount", "Waiter"};
+    private DefaultTableModel model; 
+    Object[][] hist ;
+    private HistoryPanel() {
+        model = new DefaultTableModel(null, columnNames);
         initComponents();
         setBackground(Color.getHSBColor(276,9,95));
+        writingData ();
     }
 
     /**
@@ -35,25 +45,7 @@ public class HistoryPanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Id", "Dishes", "Total amount", "Waiter Id"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        jTable1.setModel(model);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -82,8 +74,41 @@ public class HistoryPanel extends javax.swing.JPanel {
                 .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
+ public static HistoryPanel getReference(){
+         if (reference==null){
+             reference = new HistoryPanel();
+         }
+         return reference;
+     }
+  public void writingData (){
+       model.setDataVector(null, columnNames);
+       try {
+          int i=0; 
+          //Manager.getThread().addEmployee(999678687, "terte","sfsdf", 55);
+          System.out.print(Manager.getThread().getEmployees().toArray().length);
+          hist=new Object[Manager.getThread().getEmployees().toArray().length][4];
+          while(i<Manager.getThread().getEmployees().toArray().length){
+               
+               //dish.removeAllElements();
+              
+               hist[i][0]= Manager.getThread().getEmployees().get(i).getId();
+               hist[i][1]=Manager.getThread().getEmployees().get(i).getName();
+               hist[i][2]= Manager.getThread().getEmployees().get(i).getSurname();
+               hist[i][3]= Manager.getThread().getEmployees().get(i).getSalary(); 
+               
+              
+               i++;
+               
+          }
+           
+         
+         }
+          catch (IOException ex) {
+            Logger.getLogger(HistoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model.setDataVector(hist, columnNames);
+          
+   }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
