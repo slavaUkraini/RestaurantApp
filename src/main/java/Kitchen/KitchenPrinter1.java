@@ -33,7 +33,7 @@ public class KitchenPrinter1 extends javax.swing.JFrame {
         this.setTitle("Pizzeria");
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         this.setResizable(false);
-
+       
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jTextArea1.setEditable(false);
@@ -41,8 +41,11 @@ public class KitchenPrinter1 extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jTextArea1.setEnabled(false);
         jTextArea1.setSelectionColor(new java.awt.Color(255, 255, 204));
+        //jTextArea1.setBackground(java.awt.Color.BLUE);
+       // jTextArea1.setForeground(java.awt.Color.WHITE);
+        
         jScrollPane1.setViewportView(jTextArea1);
-
+        
         jLabel1.setFont(new java.awt.Font("Traditional Arabic", 3, 14)); // NOI18N
         jLabel1.setText("This is a kitchen");
             
@@ -79,6 +82,7 @@ public class KitchenPrinter1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jTextArea1.setEditable(false);

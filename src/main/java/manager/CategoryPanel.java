@@ -141,7 +141,6 @@ public class CategoryPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        chose = new javax.swing.JButton();
         category = new javax.swing.JComboBox(items);
         addCategory = new javax.swing.JButton();
         nameOfcategory = new javax.swing.JLabel();
@@ -153,13 +152,6 @@ public class CategoryPanel extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         menu = new javax.swing.JTable();
-
-        chose.setText("Chose ");
-        chose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                choseActionPerformed(evt);
-            }
-        });
 
         category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,8 +229,7 @@ public class CategoryPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(category, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(chose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(category, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -261,14 +252,12 @@ public class CategoryPanel extends javax.swing.JPanel {
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
                         .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(chose)
-                        .addGap(59, 59, 59)
+                        .addGap(101, 101, 101)
                         .addComponent(addCategory)
                         .addGap(18, 18, 18)
                         .addComponent(deleteCategory)
-                        .addGap(63, 63, 63)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -306,12 +295,7 @@ public class CategoryPanel extends javax.swing.JPanel {
 
     private void categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryActionPerformed
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_categoryActionPerformed
-
-    private void choseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choseActionPerformed
-        // TODO add your handling code here:
-        int l =0;
+       int l =0;
         nameOfcategory.setText(category.getSelectedItem().toString());
         model.setDataVector(null, columnNames);
       try {
@@ -344,14 +328,13 @@ public class CategoryPanel extends javax.swing.JPanel {
             System.out.println ();          //виводимо символи переводу каретки і нового рядка
                                             //після кожного проходження стовпцевих елементів рядка
         }
-    }//GEN-LAST:event_choseActionPerformed
+    }//GEN-LAST:event_categoryActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCategory;
     private javax.swing.JButton add_dish;
     private javax.swing.JComboBox category;
-    private javax.swing.JButton chose;
     private javax.swing.JButton deleteCategory;
     private javax.swing.JButton delete_dish;
     private javax.swing.JScrollPane jScrollPane1;

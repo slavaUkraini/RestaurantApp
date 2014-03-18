@@ -50,7 +50,7 @@ public class PersonnelPanel extends javax.swing.JPanel {
         add_person = new javax.swing.JButton();
         search_person = new javax.swing.JButton();
         delete_person = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        actoinWithP = new javax.swing.JLabel();
         all = new javax.swing.JButton();
 
         jTable1.setModel(model);
@@ -80,8 +80,8 @@ public class PersonnelPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("Personnel");
+        actoinWithP.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        actoinWithP.setText("Personnel");
 
         all.setBackground(new java.awt.Color(255, 255, 153));
         all.setText("all");
@@ -97,7 +97,7 @@ public class PersonnelPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(actoinWithP)
                 .addGap(332, 332, 332))
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
@@ -117,7 +117,7 @@ public class PersonnelPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jLabel1)
+                .addComponent(actoinWithP)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -135,6 +135,12 @@ public class PersonnelPanel extends javax.swing.JPanel {
          }
          return reference;
      }
+   public void setTextOfLable(String newText){
+       actoinWithP.setText(newText);
+   }
+   public void setModelData(Object[][] newData){
+       model.setDataVector(newData, columnNames);
+   }
    public void writingData (){
        model.setDataVector(null, columnNames);
        try {
@@ -185,15 +191,16 @@ public class PersonnelPanel extends javax.swing.JPanel {
 
     private void allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allActionPerformed
         // TODO add your handling code here:
+        actoinWithP.setText("Personnel");
         writingData ();
     }//GEN-LAST:event_allActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel actoinWithP;
     private javax.swing.JButton add_person;
     private javax.swing.JButton all;
     private javax.swing.JButton delete_person;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton search_person;

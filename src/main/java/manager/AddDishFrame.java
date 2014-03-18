@@ -186,14 +186,13 @@ public class AddDishFrame extends javax.swing.JFrame {
           catch (IOException ex) {
             Logger.getLogger(AddDishFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Vector<Object> dish = new Vector<Object>();
-        dish.add(Integer.parseInt(id.getText()));
-        dish.add(name.getText());
-        dish.add(composition.getText());
-        dish.add(Double.parseDouble(price.getText()));
-        CategoryPanel.getReference().addNewRow(dish);
+        
+        CategoryPanel.getReference().writingData();
         CategoryPanel.getReference().nameOfCategory();
         JOptionPane.showMessageDialog(null, " Add new dish !"  );
+         CategoryPanel.getReference().setVisible(true);
+         HistoryPanel.getReference().setVisible(false);
+         PersonnelPanel.getReference().setVisible(false);
         dispose();
         
     }//GEN-LAST:event_addActionPerformed

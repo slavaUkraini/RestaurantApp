@@ -136,6 +136,10 @@ public class SearchDishFrame extends javax.swing.JFrame {
          CategoryPanel.getReference().setTextOfLable("Results of search ...");
          CategoryPanel.getReference().setModelData(dishes);
          
+         CategoryPanel.getReference().setVisible(true);
+         HistoryPanel.getReference().setVisible(false);
+         PersonnelPanel.getReference().setVisible(false);
+         
         dispose();
     }//GEN-LAST:event_searchActionPerformed
 

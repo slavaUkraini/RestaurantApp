@@ -140,6 +140,9 @@ public class AddCategoryFrame extends javax.swing.JFrame {
         }   
          CategoryPanel.getReference().addCategoryItem(nameOfCategory.getText());
          JOptionPane.showMessageDialog(null, " Add new category  -   " +nameOfCategory.getText()+" !");
+         CategoryPanel.getReference().setVisible(true);
+         HistoryPanel.getReference().setVisible(false);
+         PersonnelPanel.getReference().setVisible(false);
          dispose();
          
         }

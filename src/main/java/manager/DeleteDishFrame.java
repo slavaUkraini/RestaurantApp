@@ -118,6 +118,9 @@ public class DeleteDishFrame extends javax.swing.JFrame {
         CategoryPanel.getReference().writingData();
         CategoryPanel.getReference().nameOfCategory();
         JOptionPane.showMessageDialog(null, " Delete dish -" + id.getText()+ "!");
+         CategoryPanel.getReference().setVisible(true);
+         HistoryPanel.getReference().setVisible(false);
+         PersonnelPanel.getReference().setVisible(false);
         dispose();
     }//GEN-LAST:event_dleteActionPerformed
 

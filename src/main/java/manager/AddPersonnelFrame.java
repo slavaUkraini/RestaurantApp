@@ -158,13 +158,13 @@ public class AddPersonnelFrame extends javax.swing.JFrame {
           catch (IOException ex) {
             Logger.getLogger(AddPersonnelFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Vector<Object> pers = new Vector<Object>();
-        pers.add(Integer.parseInt(id.getText()));
-        pers.add(name.getText());
-        pers.add(surname.getText());
-        pers.add(Double.parseDouble(salary.getText()));
-        PersonnelPanel.getReference().addNewRow(pers);
+        
+        PersonnelPanel.getReference().writingData();
         JOptionPane.showMessageDialog(null, " Add new personnel ! "  );
+        PersonnelPanel.getReference().setTextOfLable("Personnel");
+        CategoryPanel.getReference().setVisible(false);
+        HistoryPanel.getReference().setVisible(false);
+        PersonnelPanel.getReference().setVisible(true);
         dispose();
     }//GEN-LAST:event_addActionPerformed
 

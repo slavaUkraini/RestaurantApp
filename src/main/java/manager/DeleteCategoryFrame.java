@@ -128,13 +128,11 @@ public class DeleteCategoryFrame extends javax.swing.JFrame {
         if((CategoryPanel.getReference().isCategory(nameOfCategory.getText().toString())==false)){
             nameOfCategory.setText("");
             JOptionPane.showMessageDialog(null, " No such category - " + nameOfCategory.getText()+ " !");
-       }
-        else{
-            
-        CategoryPanel.getReference().deleteCategoryItem(nameOfCategory.getText());
-        JOptionPane.showMessageDialog(null, " Delete category - " + nameOfCategory.getText()+ " !");
+       
         // треба , ще дописати , щоб воно якось з бази його забирало , ну не завадило б
-        
+         CategoryPanel.getReference().setVisible(true);
+         HistoryPanel.getReference().setVisible(false);
+         PersonnelPanel.getReference().setVisible(false);
         dispose();
         }
     }//GEN-LAST:event_deleteActionPerformed

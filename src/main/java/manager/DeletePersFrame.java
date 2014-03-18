@@ -117,7 +117,11 @@ public class DeletePersFrame extends javax.swing.JFrame {
             Logger.getLogger(DeletePersFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         PersonnelPanel.getReference().writingData();
+        PersonnelPanel.getReference().setTextOfLable("Personnel");
         JOptionPane.showMessageDialog(null, " Delete personnel !" );
+        CategoryPanel.getReference().setVisible(false);
+        HistoryPanel.getReference().setVisible(false);
+        PersonnelPanel.getReference().setVisible(true);
         dispose();
     }//GEN-LAST:event_deleteActionPerformed
 

@@ -35,7 +35,7 @@ public class CreationofDB {
             
             int result2 = manag.executeUpdate();
                 //manag.close();
-           // PreparedStatement men3 = con.prepareStatement("drop table 'MENU';");
+            //PreparedStatement men3 = con.prepareStatement("drop table 'MENU';");
             //int result33 = men3.executeUpdate();
             
             PreparedStatement men = con.prepareStatement("create table if not exists 'MENU' ('Id' INTEGER PRIMARY KEY UNIQUE, 'CATEGORY' text, 'NAME' text UNIQUE, 'COMPOUND' text, 'PRICE' REAL);");

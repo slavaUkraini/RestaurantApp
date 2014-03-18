@@ -114,12 +114,6 @@ public class SearchPersFrame extends javax.swing.JFrame {
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
         // заносить в головну таблицю результати , кнопка all дає весь результат чи що не знаю.. придумайте ...
-        
-        dispose();
-    }//GEN-LAST:event_searchActionPerformed
-
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        // TODO add your handling code here:
         int idt=Integer.parseInt(idOfP.getText());
         try {
              personal=new Object[Manager.getThread().getEmployees().toArray().length][4];
@@ -141,6 +135,18 @@ public class SearchPersFrame extends javax.swing.JFrame {
           catch (IOException ex) {
             Logger.getLogger(SearchPersFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        PersonnelPanel.getReference().setTextOfLable(" Result of search...");
+        PersonnelPanel.getReference().setModelData(personal);
+       // PersonnelPanel.getReference().setModelData(null);
+        CategoryPanel.getReference().setVisible(false);
+        HistoryPanel.getReference().setVisible(false);
+        PersonnelPanel.getReference().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_searchActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        // TODO add your handling code here:
+        
         dispose();
     }//GEN-LAST:event_cancelActionPerformed
 
