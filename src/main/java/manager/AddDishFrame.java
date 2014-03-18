@@ -56,7 +56,7 @@ public class AddDishFrame extends javax.swing.JFrame {
         idLabel = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add dish");
 
         add.setBackground(new java.awt.Color(204, 204, 255));

@@ -45,7 +45,7 @@ public class AboutFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         ok = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("About");
 
         text.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N

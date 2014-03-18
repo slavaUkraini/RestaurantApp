@@ -52,7 +52,7 @@ public class AddPersonnelFrame extends javax.swing.JFrame {
         surname = new javax.swing.JTextField();
         salary = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add personnel");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

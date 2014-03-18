@@ -45,7 +45,7 @@ public class DeletePersFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         idOfP = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Delete personal");
 
         delete.setBackground(new java.awt.Color(102, 153, 255));
