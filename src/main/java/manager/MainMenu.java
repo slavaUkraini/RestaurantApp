@@ -19,7 +19,7 @@ public class MainMenu extends javax.swing.JFrame {
     
    private final CategoryPanel categoryP;
    private HistoryPanel historyP = new HistoryPanel();
-   private PersonnelPanel personelP = new PersonnelPanel();
+   private final PersonnelPanel personelP ;
    
    String path=System.getProperty("user.dir");
      private int FORM_WIDTH =1000;
@@ -30,7 +30,7 @@ public class MainMenu extends javax.swing.JFrame {
    
     public MainMenu() {
         this.categoryP =  CategoryPanel.getReference();
-        
+        this.personelP = PersonnelPanel.getReference();
        // jPanel1=new NumberPanel();
         this.add(categoryP);
         this.pack();

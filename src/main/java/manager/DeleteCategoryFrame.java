@@ -8,6 +8,9 @@ package manager;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -127,6 +130,7 @@ public class DeleteCategoryFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, " No such category - " + nameOfCategory.getText()+ " !");
        }
         else{
+            
         CategoryPanel.getReference().deleteCategoryItem(nameOfCategory.getText());
         JOptionPane.showMessageDialog(null, " Delete category - " + nameOfCategory.getText()+ " !");
         // треба , ще дописати , щоб воно якось з бази його забирало , ну не завадило б

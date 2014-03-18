@@ -8,6 +8,10 @@ package manager;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -145,6 +149,21 @@ public class AddPersonnelFrame extends javax.swing.JFrame {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
+          try {
+            
+            Manager.getThread().addEmployee(Integer.parseInt(id.getText()),name.getText(),surname.getText(),Double.parseDouble(salary.getText()));
+          
+         
+         }
+          catch (IOException ex) {
+            Logger.getLogger(AddPersonnelFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Vector<Object> pers = new Vector<Object>();
+        pers.add(Integer.parseInt(id.getText()));
+        pers.add(name.getText());
+        pers.add(surname.getText());
+        pers.add(Double.parseDouble(salary.getText()));
+        PersonnelPanel.getReference().addNewRow(pers);
         JOptionPane.showMessageDialog(null, " Add new personnel ! "  );
         dispose();
     }//GEN-LAST:event_addActionPerformed

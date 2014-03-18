@@ -9,10 +9,13 @@ package manager;
 import com.mycompany.restaurant.UserMainFrame;
 import java.awt.Color;
 import java.io.IOException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -30,22 +33,29 @@ public class CategoryPanel extends javax.swing.JPanel {
     String[] items;
     String path=System.getProperty("user.dir");
     private static CategoryPanel reference;
+    //private static final Object[][] rowData = {{1, "pizza", "chese", 100}};
+    private static final Object[] columnNames = { "Id","Name", "Discription", "Price"};
+    Object[][] dishes ;
+    Vector<Object> dish = new Vector<Object>();
+   private DefaultTableModel model;
     
-   
     
    private CategoryPanel() {
+       model = new DefaultTableModel(null, columnNames);
          try {
-         items = Manager.getThread().getAllCategories(); }
+         items = Manager.getThread().getAllCategories(); 
         
+         
+         }
           catch (IOException ex) {
-            Logger.getLogger(UserMainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
         setBackground(Color.getHSBColor(276,9,95));
         addCategory.setText("  Add category");
         deleteCategory.setText("  Delete category");
-        
-       
+        //menu.setModel();
+                   // model.addRow(r1);
      
         
     }
@@ -58,6 +68,12 @@ public class CategoryPanel extends javax.swing.JPanel {
      
      public JComboBox getCategory(){
          return category;
+     }
+     public void addNewRow(Vector<Object> newDish){
+         model.addRow(newDish);
+     }
+     public String getSelectCategory(){
+          return category.getSelectedItem().toString();
      }
      public void addCategoryItem(String name){
          category.addItem(name);
@@ -78,6 +94,7 @@ public class CategoryPanel extends javax.swing.JPanel {
        }
        return false;
     }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,14 +108,14 @@ public class CategoryPanel extends javax.swing.JPanel {
         category = new javax.swing.JComboBox(items);
         addCategory = new javax.swing.JButton();
         nameOfcategory = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        menu = new javax.swing.JTable();
         search_dish = new javax.swing.JButton();
         add_dish = new javax.swing.JButton();
         delete_dish = new javax.swing.JButton();
         deleteCategory = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        menu = new javax.swing.JTable();
 
         chose.setText("Chose ");
         chose.addActionListener(new java.awt.event.ActionListener() {
@@ -125,33 +142,6 @@ public class CategoryPanel extends javax.swing.JPanel {
         nameOfcategory.setFont(new java.awt.Font("Times New Roman", 3, 20)); // NOI18N
         nameOfcategory.setForeground(new java.awt.Color(0, 0, 51));
         nameOfcategory.setText("Name of category");
-
-        menu.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", "", null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Id", "Name", "Composition", "Price"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(menu);
-        if (menu.getColumnModel().getColumnCount() > 0) {
-            menu.getColumnModel().getColumn(0).setPreferredWidth(5);
-            menu.getColumnModel().getColumn(1).setPreferredWidth(10);
-            menu.getColumnModel().getColumn(3).setPreferredWidth(5);
-        }
 
         search_dish.setBackground(new java.awt.Color(204, 255, 204));
         search_dish.setText("search");
@@ -186,10 +176,17 @@ public class CategoryPanel extends javax.swing.JPanel {
             }
         });
 
+        menu.setModel(model);
+        jScrollPane1.setViewportView(menu);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(nameOfcategory, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(214, 214, 214))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -205,27 +202,23 @@ public class CategoryPanel extends javax.swing.JPanel {
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                             .addComponent(category, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(chose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(add_dish, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
+                        .addGap(94, 94, 94)
                         .addComponent(search_dish, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
+                        .addGap(76, 76, 76)
                         .addComponent(delete_dish, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(nameOfcategory, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(214, 214, 214))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(nameOfcategory)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,13 +232,13 @@ public class CategoryPanel extends javax.swing.JPanel {
                         .addComponent(deleteCategory)
                         .addGap(63, 63, 63)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_dish)
                     .addComponent(search_dish)
                     .addComponent(delete_dish))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -281,9 +274,39 @@ public class CategoryPanel extends javax.swing.JPanel {
 
     private void choseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choseActionPerformed
         // TODO add your handling code here:
-        
+        int l =0;
         nameOfcategory.setText(category.getSelectedItem().toString());
-      
+        model.setDataVector(null, columnNames);
+      try {
+          int i=0; int j=0;
+          l=Manager.getThread().getFood(category.getSelectedItem().toString()).toArray().length;
+          dishes=new Object[Manager.getThread().getFood(category.getSelectedItem().toString()).toArray().length][4];
+          while(i<Manager.getThread().getFood(category.getSelectedItem().toString()).toArray().length){
+               
+               //dish.removeAllElements();
+              
+               dishes[i][0]= Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getId();
+               dishes[i][1]=Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getName();
+               dishes[i][2]= Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getCompound();
+               dishes[i][3]= Manager.getThread().getFood(category.getSelectedItem().toString()).get(i).getPrice(); 
+               
+              
+               i++;
+               
+          }
+          
+          
+         }
+          catch (IOException ex) {
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model.setDataVector(dishes, columnNames);
+        for (int i=0; i<l; i++){
+            for (int j=0; j<4; j++)         // зверніть увагу на відсутність фігурної дужки
+                 System.out.print (dishes[i][j]+"    ");//даний рядок відноситься до масиву по j
+            System.out.println ();          //виводимо символи переводу каретки і нового рядка
+                                            //після кожного проходження стовпцевих елементів рядка
+        }
     }//GEN-LAST:event_choseActionPerformed
 
 

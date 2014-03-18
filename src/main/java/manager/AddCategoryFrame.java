@@ -8,6 +8,9 @@ package manager;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -127,11 +130,20 @@ public class AddCategoryFrame extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, " Category with such name exists !");
         }
         else{
+                  try {
+
+           Manager.getThread().addCategory(nameOfCategory.getText());          
+         
+         }
+          catch (IOException ex) {
+            Logger.getLogger(AddCategoryFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }   
          CategoryPanel.getReference().addCategoryItem(nameOfCategory.getText());
          JOptionPane.showMessageDialog(null, " Add new category  -   " +nameOfCategory.getText()+" !");
-         
          dispose();
+         
         }
+        
     }//GEN-LAST:event_okActionPerformed
 
     /**

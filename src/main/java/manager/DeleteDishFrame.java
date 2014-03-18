@@ -8,6 +8,9 @@ package manager;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -103,6 +106,15 @@ public class DeleteDishFrame extends javax.swing.JFrame {
 
     private void dleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dleteActionPerformed
         // TODO add your handling code here:
+        
+        try {
+           
+            Manager.getThread().deleteDish(Integer.parseInt(id.getText()));
+         
+         }
+          catch (IOException ex) {
+            Logger.getLogger(DeleteDishFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(null, " Delete dish -" + id.getText()+ "!");
         dispose();
     }//GEN-LAST:event_dleteActionPerformed

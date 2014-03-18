@@ -7,6 +7,11 @@
 package manager;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,9 +22,18 @@ public class PersonnelPanel extends javax.swing.JPanel {
     /**
      * Creates new form PersonnelPanel
      */
-    public PersonnelPanel() {
+    private static final Object[] columnNames = { "Id","Name", "Surname", "Salary"};
+    private DefaultTableModel model;
+    Object[][] personal ;
+    private static PersonnelPanel reference;
+    
+    private PersonnelPanel() {
+        model = new DefaultTableModel(null, columnNames);
+        
         initComponents();
         setBackground(Color.getHSBColor(276,9,95));
+        writingData();
+          
     }
 
     /**
@@ -38,25 +52,7 @@ public class PersonnelPanel extends javax.swing.JPanel {
         delete_person = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Id", "Name", "Surname", "Salary"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        jTable1.setModel(model);
         jScrollPane1.setViewportView(jTable1);
 
         add_person.setBackground(new java.awt.Color(204, 204, 255));
@@ -121,7 +117,44 @@ public class PersonnelPanel extends javax.swing.JPanel {
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+   public static PersonnelPanel getReference(){
+         if (reference==null){
+             reference = new PersonnelPanel();
+         }
+         return reference;
+     }
+   public void writingData (){
+       model.setDataVector(null, columnNames);
+       try {
+          int i=0; 
+          //Manager.getThread().addEmployee(999678687, "terte","sfsdf", 55);
+          System.out.print(Manager.getThread().getEmployees().toArray().length);
+          personal=new Object[Manager.getThread().getEmployees().toArray().length][4];
+          while(i<Manager.getThread().getEmployees().toArray().length){
+               
+               //dish.removeAllElements();
+              
+               personal[i][0]= Manager.getThread().getEmployees().get(i).getId();
+               personal[i][1]=Manager.getThread().getEmployees().get(i).getName();
+               personal[i][2]= Manager.getThread().getEmployees().get(i).getSurname();
+               personal[i][3]= Manager.getThread().getEmployees().get(i).getSalary(); 
+               
+              
+               i++;
+               
+          }
+           
+         
+         }
+          catch (IOException ex) {
+            Logger.getLogger(PersonnelPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model.setDataVector(personal, columnNames);
+          
+   }
+    public void addNewRow(Vector<Object> newPersonnel){
+         model.addRow(newPersonnel);
+     }
     private void delete_personActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_personActionPerformed
         // TODO add your handling code here:
         new DeletePersFrame().setVisible(true);

@@ -8,6 +8,9 @@ package manager;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -105,6 +108,14 @@ public class DeletePersFrame extends javax.swing.JFrame {
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
+        try {
+           
+            Manager.getThread().deleteEmployee(Integer.parseInt(idOfP.getText()));
+         
+         }
+          catch (IOException ex) {
+            Logger.getLogger(DeletePersFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(null, " Delete personnel !" );
         dispose();
     }//GEN-LAST:event_deleteActionPerformed
